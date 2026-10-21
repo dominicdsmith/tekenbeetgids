@@ -1,22 +1,19 @@
-FROM oven/bun:alpine
+# Stap 1: Bouw de app met Bun
+FROM oven/bun:alpine AS builder
 WORKDIR /app
 COPY package.json bun.lockb* ./
 RUN bun install
 COPY . .
 RUN bun run build
 
-# We maken een heel simpel server.js bestand aan dat de SPA correct afhandelt
-RUN echo 'const express = require("express");' > server.js \
-    && echo 'const path = require("path");' >> server.js \
-    && echo 'const app = express();' >> server.js \
-    && echo 'const PORT = process.env.PORT || 8080;' >> server.js \
-    && echo 'app.use(express.static(path.join(__dirname, ".output/public")));' >> server.js \
-    && echo 'app.get("*", (req, res) => { res.sendFile(path.join(__dirname, ".output/public/index.html")); });' >> server.js \
-    && echo 'app.listen(PORT, () => { console.log(`Server running on port ${PORT}`); });' >> server.js
+# Stap 2: Serveer de bestanden ultralicht en robuust via Nginx
+FROM nginx:alpine
 
-RUN bun install express
+# Kopieer de gebouwde webbestanden naar Nginx's public HTML map
+COPY --from=builder /app/.output/public /usr/share/nginx/html
 
-ENV PORT=8080
+# Zorg dat Nginx luistert naar poort 8080 (wat Cloud Run vereist)
+RUN sed -i 's/listen       80;/listen       8080;/g' /etc/nginx/conf.d/default.conf
+
 EXPOSE 8080
-
-CMD ["bun", "run", "server.js"]
+CMD ["nginx", "-g", "daemon off;"]
