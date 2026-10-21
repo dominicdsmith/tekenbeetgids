@@ -1,4 +1,8 @@
 [[build.env]]
+name = "BP_NODE_RUN_SCRIPTS"
+value = "build"
+
+[[build.env]]
 name = "BP_WEB_SERVER"
 value = "nginx"
 
