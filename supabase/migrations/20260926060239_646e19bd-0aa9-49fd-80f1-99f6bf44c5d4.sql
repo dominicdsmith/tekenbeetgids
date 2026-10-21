@@ -1,0 +1,1 @@
+CREATE POLICY "Niemand heeft toegang tot interne sleutels" ON public.interne_sleutels FOR ALL TO anon, authenticated USING (false) WITH CHECK (false);

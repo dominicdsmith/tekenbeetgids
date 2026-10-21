@@ -1,0 +1,18 @@
+import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
+
+const schema = z.object({
+  datum: z.string().max(10).optional().nullable(),
+  provincieId: z.string().max(40).optional().nullable(),
+  plaats: z.string().max(80).optional().nullable(),
+  soort: z.string().max(60).optional().nullable(),
+  bron: z.string().max(30).optional().nullable(),
+});
+
+/** Publieke, anonieme telling: datum, locatie en tekensoort van een scan. */
+export const registreerTellingFn = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => schema.parse(data))
+  .handler(async ({ data }) => {
+    const { registreerTelling } = await import("./telling.server");
+    return registreerTelling(data);
+  });

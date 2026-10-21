@@ -1,0 +1,22 @@
+Contact: https://tekenrisicokaart.nl/?tab=help#help-contact
+Preferred-Languages: nl, en
+Canonical: https://tekenrisicokaart.nl/.well-known/security.txt
+Policy: https://tekenrisicokaart.nl/gebruiksvoorwaarden
+Expires: 2027-12-31T23:59:59.000Z
+
+# Legitimiteitsverklaring / Legitimacy statement
+# TekenRisicoKaart (tekenrisicokaart.nl) en TekenbeetGids (tekenbeetgids.nl) zijn
+# publieke voorlichtingswebsites over teken en tekenbeetziekten in Nederland.
+# Beheerder: Dominic Smith Advies, KvK 01170115, Nederland.
+# De sites vragen geen betalingen, geen inloggegevens en geen creditcardgegevens.
+# Er worden geen tracking- of marketingcookies geplaatst. Alle verbindingen via HTTPS.
+# Gegevens zijn afkomstig van openbare bronnen (RIVM/LCI, GGD, CBS, NVWA, Tekenradar,
+# Wageningen University & Research, Universiteit Utrecht, ECDC) met bronvermelding.
+# Onderzoeksdeelname is vrijwillig; gezondheidsgegevens worden alleen met uitdrukkelijke toestemming gepseudonimiseerd opgeslagen.
+# Foto’s blijven lokaal, behalve bij een expliciet gekozen optionele AI-scan; geen duurzame foto-opslag.
+#
+# These are legitimate public health information websites. No payments, no logins,
+# No marketing or tracking cookies; research health data is stored pseudonymously only with explicit consent.
+# Optional AI photo processing requires an explicit scan action; photos are not stored permanently.
+# Operator: Dominic Smith Advies, CoC 01170115.
+# False-positive reports: use the contact form under Help.

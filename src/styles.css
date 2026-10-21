@@ -1,0 +1,303 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-tick-dermacentor: var(--tick-dermacentor);
+  --color-tick-hyalomma: var(--tick-hyalomma);
+}
+
+:root {
+  --tick-dermacentor: oklch(0.418 0.192 308.5);
+  --tick-hyalomma: oklch(0.551 0.092 232.7);
+  --radius: 0.5rem;
+  /* Huisstijl Stichting Tekenbeetziekten */
+  --background: oklch(0.983 0.009 230);
+  --foreground: oklch(0.333 0.061 239);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.333 0.061 239);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.333 0.061 239);
+  --primary: oklch(0.40 0.07 232);
+  --primary-foreground: oklch(0.99 0.005 60);
+  --secondary: oklch(0.56 0.10 240);
+  --secondary-foreground: oklch(0.99 0.005 60);
+  --muted: oklch(0.95 0.02 230);
+  --muted-foreground: oklch(0.52 0.03 235);
+  --accent: oklch(0.66 0.12 235);
+  --accent-foreground: oklch(0.99 0.005 60);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.48 0.14 30);
+  --input: oklch(0.9 0.02 230);
+  --ring: oklch(0.56 0.10 240);
+
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --tick-dermacentor: oklch(0.418 0.192 308.5);
+  --tick-hyalomma: oklch(0.551 0.092 232.7);
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-background);
+    color-scheme: light;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  /* Voorkom dat iOS (Safari) inzoomt bij focus van formulierinvulvelden.
+     iOS zoomt in wanneer input-font-size onder 16 px ligt. */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Eigen ondoorzichtige laag: Safari mag de kaartfilters niet met de bovenbalk
+   samenstellen. Geen transform/blur op tekst, ook niet na schermrotatie. */
+.kaart-header {
+  position: relative;
+  z-index: 60;
+  isolation: isolate;
+  filter: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.kaart-header > h1,
+.kaart-header > span {
+  flex-shrink: 0;
+}
+
+.kaart-header > div {
+  min-width: 0;
+}
+
+.assistent-knop {
+  font-size: 11px;
+  letter-spacing: 0;
+}
+/* Zwevende knoppen onder in beeld: ASSISTENT rechtsonder, cookievoorzieningen
+   linksonder. Beide knoppen zijn gelijk in vorm, kleur en schaduw. */
+.assistent-zwevend,
+.schild-zwevend {
+  position: fixed;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 70;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(12, 32, 44, 0.28);
+  transition: bottom 0.25s ease;
+}
+.assistent-zwevend {
+  right: calc(12px + env(safe-area-inset-right, 0px));
+}
+.schild-zwevend {
+  left: calc(12px + env(safe-area-inset-left, 0px));
+}
+.assistent-zwevend > svg,
+.schild-zwevend > img {
+  width: 22px;
+  height: 22px;
+}
+.assistent-paneel {
+  --assistent-onder: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 80;
+  width: min(380px, calc(100vw - 24px));
+  height: clamp(300px, calc(100dvh - var(--assistent-onder) - 68px - max(env(safe-area-inset-top, 0px), 44px)), 640px);
+  max-height: clamp(300px, calc(100dvh - var(--assistent-onder) - 68px - max(env(safe-area-inset-top, 0px), 44px)), 640px);
+  letter-spacing: 0;
+}
+@media print {
+  .assistent-knop, .assistent-paneel, .schild-zwevend { display: none !important; }
+}
+
+.browser-splash {
+  position: fixed;
+  inset: 0;
+  /* Ook het gebied buiten het scherm (overscroll) krijgt de randkleur van de
+     startschermfoto, zodat er geen donkerblauwe balken zichtbaar zijn. */
+  width: 100vw;
+  height: 100dvh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f5fafe;
+  opacity: 1;
+  isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: opacity;
+  animation: splash-verdwijnen 600ms ease-in-out 5000ms forwards;
+}
+
+.browser-splash__picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.browser-splash__image {
+  display: block;
+  /* Rekbaar aan ieder scherm: de foto vult altijd het hele venster (cover),
+     zodat er geen vulkleur nodig is. De foto kan daardoor aan de randen
+     iets afgesneden worden, maar er zijn nooit lege balken. */
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  /* Rekbaar: de foto wordt exact op de schermmaat getrokken, zodat er nooit
+     een vulkleur of balk zichtbaar is en er ook niets wordt afgesneden. */
+  object-fit: fill;
+  object-position: center;
+  background: #f5fafe;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .browser-splash {
+    animation-duration: 1ms;
+  }
+}
+
+/* Eén tekstmaat voor alle uitleg, bronregels en labels in de kaartlegenda.
+   De scoped override vervangt ook bestaande inline tekstmaten. */
+.kaartlegenda,
+.kaartlegenda :where(div, section, p, span, button, dl, dt, dd, a, strong) {
+  font-size: 10px !important;
+  line-height: 1.5 !important;
+}
+
+/* TekenbeetGids gebruikt in de browser dezelfde timing als TekenRisicoKaart. */
+.browser-splash--tekenbeethulp {
+  background: #f5fafe;
+  animation: splash-verdwijnen 600ms ease-in-out 5000ms forwards;
+}
+
+
+@keyframes splash-verdwijnen {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+

@@ -1,0 +1,1 @@
+update public.databronnen set url='https://www.nvwa.nl/onderwerpen/plant/muggen-knutten-en-teken/teken', vingerafdruk=null where sleutel='nvwa';
