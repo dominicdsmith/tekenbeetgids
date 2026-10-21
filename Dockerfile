@@ -9,11 +9,11 @@ FROM oven/bun:alpine AS runner
 WORKDIR /app
 RUN bun install -g serve
 
-# Kopieer alleen de dist-map die zojuist tijdens de build is aangemaakt
-COPY --from=build /app/dist ./dist
+# Kopieer alles wat de build-stap heeft opgeleverd direct naar de werkmap
+COPY --from=build /app ./ 
 
 ENV PORT=8080
 EXPOSE 8080
 
-# Serveer direct vanuit de dist-map met SPA routing ingeschakeld
-CMD ["serve", "-s", "dist", "-l", "8080"]
+# Laat de server zoeken in de huidige map of de public/dist mappen die er nu zijn
+CMD ["serve", "-s", ".", "-l", "8080"]
