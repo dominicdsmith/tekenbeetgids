@@ -9,11 +9,10 @@ FROM oven/bun:alpine AS runner
 WORKDIR /app
 RUN bun install -g serve
 
-# Kopieer alles wat de build-stap heeft opgeleverd direct naar de werkmap
-COPY --from=build /app ./ 
+# Kopieer de gegenereerde outputmap (Vite exporteert standaard naar dist)
+COPY --from=build /app/dist /app/dist
 
 ENV PORT=8080
 EXPOSE 8080
 
-# Laat de server zoeken in de huidige map of de public/dist mappen die er nu zijn
-CMD ["serve", "-s", ".", "-l", "8080"]
+CMD ["serve", "-s", "dist", "-l", "8080"]
