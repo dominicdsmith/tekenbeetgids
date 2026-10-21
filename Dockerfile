@@ -1,22 +1,19 @@
 FROM oven/bun:alpine AS build
 WORKDIR /app
-
 COPY package.json bun.lockb* ./
 RUN bun install
-
 COPY . .
 RUN bun run build
 
 FROM oven/bun:alpine AS runner
 WORKDIR /app
-
-# Installeer een eenvoudige, snellehttp-server via Bun
 RUN bun install -g serve
 
-# Kopieer de volledige app of de outputmap (we vangen beide op)
-COPY --from=build /app/dist ./dist
+# Kopieer de hele app-map inclusief build-resultaat
+COPY --from=build /app /app
 
 ENV PORT=8080
 EXPOSE 8080
 
-CMD ["serve", "-s", "dist", "-l", "8080"]
+# Laat serve automatisch zoeken naar de juiste build-map in de werkmap
+CMD ["serve", "-s", ".", "-l", "8080"]
