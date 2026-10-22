@@ -5,8 +5,8 @@ export const Route = createFileRoute("/api/public/assistent")({
     handlers: {
       POST: async ({ request }) => {
         try {
-          const origin = request.headers.get("origin");
-          if (!origin || new URL(origin).origin !== new URL(request.url).origin) return new Response(null, { status: 403 });
+          const { zelfdeOorsprong } = await import("@/lib/bridgeHeaders.server");
+          if (!zelfdeOorsprong(request)) return new Response(null, { status: 403 });
           const { forwardCloudRequest } = await import("@/lib/cloudBridge.server");
           if (process.env["APP_HOSTING"] === "cloud-run" || process.env["CLOUD_BACKEND_URL"]) {
             if (Number(request.headers.get("content-length") ?? 0) > 40000) return new Response(null, { status: 413 });
