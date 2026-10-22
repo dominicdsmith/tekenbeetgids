@@ -1,0 +1,104 @@
+name: Deploy TekenbeetGids to Cloud Run
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cloud-run-production
+  cancel-in-progress: false
+env:
+  GCP_PROJECT_ID: tekenbeetgids-vertex-ai
+  GCP_REGION: europe-west4
+  CLOUD_RUN_SERVICE: tekenbeetgids
+  ARTIFACT_REPOSITORY: tekenbeetgids
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.5'
+      - name: Check deployment configuration
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          RUNTIME_SERVICE_ACCOUNT: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
+          CLOUD_BACKEND_URL: ${{ vars.CLOUD_BACKEND_URL }}
+          CLOUD_RUN_SECRETS: ${{ vars.CLOUD_RUN_SECRETS }}
+        run: |
+          test -n "$VITE_SUPABASE_URL" || { echo 'Missing VITE_SUPABASE_URL variable'; exit 1; }
+          test -n "$VITE_SUPABASE_PUBLISHABLE_KEY" || { echo 'Missing VITE_SUPABASE_PUBLISHABLE_KEY variable'; exit 1; }
+          test -n "$RUNTIME_SERVICE_ACCOUNT" || { echo 'Missing GCP_RUNTIME_SERVICE_ACCOUNT variable'; exit 1; }
+          test -n "$CLOUD_BACKEND_URL" || { echo 'Missing CLOUD_BACKEND_URL variable'; exit 1; }
+          printf '%s' "$CLOUD_RUN_SECRETS" | grep -q '^CLOUD_BACKEND_SECRET=' || { echo 'Missing CLOUD_BACKEND_SECRET Secret Manager binding'; exit 1; }
+          test -f src/lib/cloudBridge.server.ts || { echo 'Missing current Cloud Run connection source; sync app source before deploying'; exit 1; }
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Run tests
+        run: bun test tests
+      - name: Build Bun / Vite for Cloud Run
+        env:
+          NITRO_PRESET: node-server
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_SUPABASE_PROJECT_ID: ${{ vars.VITE_SUPABASE_PROJECT_ID }}
+        run: |
+          rm -f .env .env.*
+          bun run build
+          test -f .output/server/index.mjs
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ env.GCP_PROJECT_ID }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Build and push container
+        run: |
+          gcloud auth configure-docker "${GCP_REGION}-docker.pkg.dev" --quiet
+          IMAGE="${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT_ID}/${ARTIFACT_REPOSITORY}/${CLOUD_RUN_SERVICE}:${GITHUB_SHA}"
+          docker build --tag "$IMAGE" .
+          docker push "$IMAGE"
+          echo "DEPLOY_IMAGE=$IMAGE" >> "$GITHUB_ENV"
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v3
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          service: ${{ env.CLOUD_RUN_SERVICE }}
+          region: ${{ env.GCP_REGION }}
+          image: ${{ env.DEPLOY_IMAGE }}
+          env_vars: |
+            APP_HOSTING=cloud-run
+            CLOUD_BACKEND_URL=${{ vars.CLOUD_BACKEND_URL }}
+            SUPABASE_URL=${{ vars.VITE_SUPABASE_URL }}
+            SUPABASE_PUBLISHABLE_KEY=${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          env_vars_update_strategy: merge
+          secrets: ${{ vars.CLOUD_RUN_SECRETS }}
+          secrets_update_strategy: merge
+          flags: >-
+            --service-account=${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
+            --port=8080
+            --memory=512Mi
+            --cpu=1
+            --min-instances=0
+            --max-instances=3
+            --timeout=120
+            --no-invoker-iam-check
+      - name: Check deployed web page
+        env:
+          SERVICE_URL: ${{ steps.deploy.outputs.url }}
+        run: |
+          curl --fail --silent --show-error --retry 5 --retry-delay 5 --connect-timeout 10 --max-time 120 "$SERVICE_URL/" -o /tmp/cloud-run-page.html
+          grep -q '<html' /tmp/cloud-run-page.html
+          curl --fail --silent --show-error --connect-timeout 10 --max-time 120 "$SERVICE_URL/api/public/backend-status" -o /tmp/cloud-run-backend.json
+          grep -q '"ok":true' /tmp/cloud-run-backend.json
+          echo "Cloud Run deployment: $SERVICE_URL" >> "$GITHUB_STEP_SUMMARY"
