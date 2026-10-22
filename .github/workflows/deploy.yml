@@ -9,7 +9,7 @@ concurrency:
   group: cloud-run-production
   cancel-in-progress: false
 env:
-  GCP_PROJECT_ID: tekenbeetgids-vertex-ai
+  GCP_PROJECT_ID: tekenbeetgids-vertex-ai-512307
   GCP_REGION: europe-west4
   CLOUD_RUN_SERVICE: tekenbeetgids
   ARTIFACT_REPOSITORY: tekenbeetgids
@@ -74,6 +74,13 @@ jobs:
             gcloud artifacts repositories create "$ARTIFACT_REPOSITORY" --project "$GCP_PROJECT_ID" --location "$GCP_REGION" --repository-format=docker --quiet
           fi
           gcloud artifacts repositories describe "$ARTIFACT_REPOSITORY" --project "$GCP_PROJECT_ID" --location "$GCP_REGION" --format='value(name,format)'
+          RUNTIME_SA="${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}"
+          if ! gcloud iam service-accounts describe "$RUNTIME_SA" --project "$GCP_PROJECT_ID" >/dev/null 2>&1; then
+            echo "Runtime account $RUNTIME_SA not found; creating it"
+            gcloud iam service-accounts create "${RUNTIME_SA%%@*}" --project "$GCP_PROJECT_ID" --display-name="TekenbeetGids Cloud Run runtime" --quiet
+          fi
+          gcloud secrets add-iam-policy-binding cloud-backend-secret --project "$GCP_PROJECT_ID" --member="serviceAccount:${RUNTIME_SA}" --role=roles/secretmanager.secretAccessor --quiet >/dev/null
+          echo "Runtime account can read cloud-backend-secret"
 
       - name: Build and push container
         run: |
