@@ -79,8 +79,10 @@ jobs:
             echo "Runtime account $RUNTIME_SA not found; creating it"
             gcloud iam service-accounts create "${RUNTIME_SA%%@*}" --project "$GCP_PROJECT_ID" --display-name="TekenbeetGids Cloud Run runtime" --quiet
           fi
-          gcloud secrets add-iam-policy-binding cloud-backend-secret --project "$GCP_PROJECT_ID" --member="serviceAccount:${RUNTIME_SA}" --role=roles/secretmanager.secretAccessor --quiet >/dev/null
-          echo "Runtime account can read cloud-backend-secret"
+          BACKEND_SECRET_NAME="$(printf '%s' '${{ vars.CLOUD_RUN_SECRETS }}' | sed -n 's/^CLOUD_BACKEND_SECRET=\([^:]*\).*/\1/p')"
+          test -n "$BACKEND_SECRET_NAME" || { echo 'Could not read Secret Manager secret name from CLOUD_RUN_SECRETS'; exit 1; }
+          gcloud secrets add-iam-policy-binding "$BACKEND_SECRET_NAME" --project "$GCP_PROJECT_ID" --member="serviceAccount:${RUNTIME_SA}" --role=roles/secretmanager.secretAccessor --quiet >/dev/null
+          echo "Runtime account can read Secret Manager secret ${BACKEND_SECRET_NAME}"
 
       - name: Build and push container
         run: |
