@@ -61,6 +61,20 @@ jobs:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
           project_id: ${{ env.GCP_PROJECT_ID }}
       - uses: google-github-actions/setup-gcloud@v3
+      - name: Check Google account and container repository
+        run: |
+          ACTIVE_ACCOUNT="$(gcloud auth list --filter=status:ACTIVE --format='value(account)')"
+          echo "Deploying as: ${ACTIVE_ACCOUNT}"
+          echo "Deploying as: \`${ACTIVE_ACCOUNT}\`" >> "$GITHUB_STEP_SUMMARY"
+          gcloud services enable artifactregistry.googleapis.com run.googleapis.com --project "$GCP_PROJECT_ID" --quiet || echo "Could not enable services (may already be enabled)"
+          echo "Repositories in ${GCP_REGION}:"
+          gcloud artifacts repositories list --project "$GCP_PROJECT_ID" --location "$GCP_REGION" --format='value(name,format)' || true
+          if ! gcloud artifacts repositories describe "$ARTIFACT_REPOSITORY" --project "$GCP_PROJECT_ID" --location "$GCP_REGION" >/dev/null 2>&1; then
+            echo "Repository ${ARTIFACT_REPOSITORY} not found in ${GCP_REGION}; creating Docker repository"
+            gcloud artifacts repositories create "$ARTIFACT_REPOSITORY" --project "$GCP_PROJECT_ID" --location "$GCP_REGION" --repository-format=docker --quiet
+          fi
+          gcloud artifacts repositories describe "$ARTIFACT_REPOSITORY" --project "$GCP_PROJECT_ID" --location "$GCP_REGION" --format='value(name,format)'
+
       - name: Build and push container
         run: |
           gcloud auth configure-docker "${GCP_REGION}-docker.pkg.dev" --quiet
