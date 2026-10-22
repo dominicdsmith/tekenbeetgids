@@ -5,7 +5,10 @@ export type { OnderzoekInvoer, OnderzoekDeelname } from "@/lib/onderzoek.server"
 
 export const meldAanVoorOnderzoek = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => onderzoekSchema.parse(input))
-  .handler(({ data }) => bewaarDeelname(data));
+  .handler(async ({ data }) => {
+    const { runCloudAction } = await import("./cloudBridge.server");
+    return runCloudAction("deelname", data, () => bewaarDeelname(data));
+  });
 
 export const haalOnderzoekDeelnames = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -13,4 +16,7 @@ export const haalOnderzoekDeelnames = createServerFn({ method: "POST" })
 
 export const meldTekenbeetGemeld = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => meldingSchema.parse(input))
-  .handler(({ data }) => markeerTekenbeetGemeld(data));
+  .handler(async ({ data }) => {
+    const { runCloudAction } = await import("./cloudBridge.server");
+    return runCloudAction("melding", data, () => markeerTekenbeetGemeld(data));
+  });

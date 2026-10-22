@@ -5,7 +5,10 @@ export type { ContactInvoer } from "@/lib/contact.server";
 
 export const verstuurContact = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => contactSchema.parse(input))
-  .handler(({ data }) => verwerkContact(data));
+  .handler(async ({ data }) => {
+    const { runCloudAction } = await import("./cloudBridge.server");
+    return runCloudAction("contact", data, () => verwerkContact(data));
+  });
 
 export const haalContactBerichten = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])

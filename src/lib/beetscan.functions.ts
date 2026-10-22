@@ -9,6 +9,8 @@ const schema = z.object({
 export const scanBeetplekFn = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {
+    const { runCloudAction } = await import("./cloudBridge.server");
+    return runCloudAction("beetscan", data, async () => {
     const { fotoscanToegestaan, fotoscanHash, fotoscanCacheOphalen, fotoscanCacheOpslaan, zelfdeHerkomst } = await import("./beveiliging.server");
     if (!zelfdeHerkomst()) {
       throw new Error(data.taal === "en" ? "This scan is only available from the website itself." : "Deze scan is alleen beschikbaar vanaf de website zelf.");
@@ -26,4 +28,5 @@ export const scanBeetplekFn = createServerFn({ method: "POST" })
     voegScanToeAanNextcloud("beetplek", { uitkomst: resultaat.categorie, kenmerken: resultaat.kenmerken, taal: data.taal })
       .catch((e) => console.error("Werkkopie-synchronisatie beetplekscan mislukt:", e));
     return resultaat;
+    });
   });

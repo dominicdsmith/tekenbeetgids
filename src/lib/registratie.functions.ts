@@ -13,8 +13,11 @@ const registratieSchema = z.object({
 export const slaTekenbeetRegistratieOp = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => registratieSchema.parse(input))
   .handler(async ({ data }) => {
-    const { bewaarRegistratie } = await import("@/lib/registratie.server");
-    return bewaarRegistratie(data);
+    const { runCloudAction } = await import("./cloudBridge.server");
+    return runCloudAction("registratie", data, async () => {
+      const { bewaarRegistratie } = await import("@/lib/registratie.server");
+      return bewaarRegistratie(data);
+    });
   });
 
 export const haalTekenbeetRegistraties = createServerFn({ method: "POST" })

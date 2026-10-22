@@ -9,10 +9,12 @@ const schema = z.object({
   bron: z.string().max(30).optional().nullable(),
 });
 
-/** Publieke, anonieme telling: datum, locatie en tekensoort van een scan. */
 export const registreerTellingFn = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {
-    const { registreerTelling } = await import("./telling.server");
-    return registreerTelling(data);
+    const { runCloudAction } = await import("./cloudBridge.server");
+    return runCloudAction("telling", data, async () => {
+      const { registreerTelling } = await import("./telling.server");
+      return registreerTelling(data);
+    });
   });

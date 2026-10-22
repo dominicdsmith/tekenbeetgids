@@ -15,6 +15,9 @@ const optOutInvoer = z.object({
 export const trekDeelnameIn = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => optOutInvoer.parse(input))
   .handler(async ({ data }) => {
-    const { verwerkOptOut } = await import("@/lib/optout.server");
-    return verwerkOptOut(data);
+    const { runCloudAction } = await import("./cloudBridge.server");
+    return runCloudAction("optout", data, async () => {
+      const { verwerkOptOut } = await import("@/lib/optout.server");
+      return verwerkOptOut(data);
+    });
   });
