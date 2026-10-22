@@ -9,7 +9,7 @@ concurrency:
   group: cloud-run-production
   cancel-in-progress: false
 env:
-  GCP_PROJECT_ID: tekenbeetgids-vertex-ai
+  GCP_PROJECT_ID: tekenbeetgids-vertex-ai-512307
   GCP_REGION: europe-west4
   CLOUD_RUN_SERVICE: tekenbeetgids
   ARTIFACT_REPOSITORY: tekenbeetgids
