@@ -30,6 +30,8 @@ import { Route as AuthenticatedBeheerOnderzoekRouteImport } from './routes/_auth
 import { Route as AuthenticatedBeheerPrivacyregisterRouteImport } from './routes/_authenticated/beheer.privacyregister'
 import { Route as AuthenticatedBeheerRegistratiesRouteImport } from './routes/_authenticated/beheer.registraties'
 import { Route as ApiPublicAssistentRouteImport } from './routes/api/public/assistent'
+import { Route as ApiPublicBackendStatusRouteImport } from './routes/api/public/backend-status'
+import { Route as ApiPublicCloudBackendRouteImport } from './routes/api/public/cloud-backend'
 import { Route as ApiPublicRivmSyncRouteImport } from './routes/api/public/rivm-sync'
 import { Route as ApiPublicTbeActiviteitSyncRouteImport } from './routes/api/public/tbe-activiteit-sync'
 import { Route as ApiPublicHooksBackupExportRouteImport } from './routes/api/public/hooks/backup-export'
@@ -147,6 +149,16 @@ const ApiPublicAssistentRoute = ApiPublicAssistentRouteImport.update({
   path: '/api/public/assistent',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBackendStatusRoute = ApiPublicBackendStatusRouteImport.update({
+  id: '/api/public/backend-status',
+  path: '/api/public/backend-status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicCloudBackendRoute = ApiPublicCloudBackendRouteImport.update({
+  id: '/api/public/cloud-backend',
+  path: '/api/public/cloud-backend',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicRivmSyncRoute = ApiPublicRivmSyncRouteImport.update({
   id: '/api/public/rivm-sync',
   path: '/api/public/rivm-sync',
@@ -198,6 +210,8 @@ export interface FileRoutesByFullPath {
   '/beheer/privacyregister': typeof AuthenticatedBeheerPrivacyregisterRoute
   '/beheer/registraties': typeof AuthenticatedBeheerRegistratiesRoute
   '/api/public/assistent': typeof ApiPublicAssistentRoute
+  '/api/public/backend-status': typeof ApiPublicBackendStatusRoute
+  '/api/public/cloud-backend': typeof ApiPublicCloudBackendRoute
   '/api/public/rivm-sync': typeof ApiPublicRivmSyncRoute
   '/api/public/tbe-activiteit-sync': typeof ApiPublicTbeActiviteitSyncRoute
   '/api/public/hooks/backup-export': typeof ApiPublicHooksBackupExportRoute
@@ -225,6 +239,8 @@ export interface FileRoutesByTo {
   '/beheer/privacyregister': typeof AuthenticatedBeheerPrivacyregisterRoute
   '/beheer/registraties': typeof AuthenticatedBeheerRegistratiesRoute
   '/api/public/assistent': typeof ApiPublicAssistentRoute
+  '/api/public/backend-status': typeof ApiPublicBackendStatusRoute
+  '/api/public/cloud-backend': typeof ApiPublicCloudBackendRoute
   '/api/public/rivm-sync': typeof ApiPublicRivmSyncRoute
   '/api/public/tbe-activiteit-sync': typeof ApiPublicTbeActiviteitSyncRoute
   '/api/public/hooks/backup-export': typeof ApiPublicHooksBackupExportRoute
@@ -254,6 +270,8 @@ export interface FileRoutesById {
   '/_authenticated/beheer/privacyregister': typeof AuthenticatedBeheerPrivacyregisterRoute
   '/_authenticated/beheer/registraties': typeof AuthenticatedBeheerRegistratiesRoute
   '/api/public/assistent': typeof ApiPublicAssistentRoute
+  '/api/public/backend-status': typeof ApiPublicBackendStatusRoute
+  '/api/public/cloud-backend': typeof ApiPublicCloudBackendRoute
   '/api/public/rivm-sync': typeof ApiPublicRivmSyncRoute
   '/api/public/tbe-activiteit-sync': typeof ApiPublicTbeActiviteitSyncRoute
   '/api/public/hooks/backup-export': typeof ApiPublicHooksBackupExportRoute
@@ -283,6 +301,8 @@ export interface FileRouteTypes {
     | '/beheer/privacyregister'
     | '/beheer/registraties'
     | '/api/public/assistent'
+    | '/api/public/backend-status'
+    | '/api/public/cloud-backend'
     | '/api/public/rivm-sync'
     | '/api/public/tbe-activiteit-sync'
     | '/api/public/hooks/backup-export'
@@ -310,6 +330,8 @@ export interface FileRouteTypes {
     | '/beheer/privacyregister'
     | '/beheer/registraties'
     | '/api/public/assistent'
+    | '/api/public/backend-status'
+    | '/api/public/cloud-backend'
     | '/api/public/rivm-sync'
     | '/api/public/tbe-activiteit-sync'
     | '/api/public/hooks/backup-export'
@@ -338,6 +360,8 @@ export interface FileRouteTypes {
     | '/_authenticated/beheer/privacyregister'
     | '/_authenticated/beheer/registraties'
     | '/api/public/assistent'
+    | '/api/public/backend-status'
+    | '/api/public/cloud-backend'
     | '/api/public/rivm-sync'
     | '/api/public/tbe-activiteit-sync'
     | '/api/public/hooks/backup-export'
@@ -363,6 +387,8 @@ export interface RootRouteChildren {
   ZiektenIdRoute: typeof ZiektenIdRoute
   ZiektenIndexRoute: typeof ZiektenIndexRoute
   ApiPublicAssistentRoute: typeof ApiPublicAssistentRoute
+  ApiPublicBackendStatusRoute: typeof ApiPublicBackendStatusRoute
+  ApiPublicCloudBackendRoute: typeof ApiPublicCloudBackendRoute
   ApiPublicRivmSyncRoute: typeof ApiPublicRivmSyncRoute
   ApiPublicTbeActiviteitSyncRoute: typeof ApiPublicTbeActiviteitSyncRoute
   ApiPublicHooksBackupExportRoute: typeof ApiPublicHooksBackupExportRoute
@@ -519,6 +545,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAssistentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/backend-status': {
+      id: '/api/public/backend-status'
+      path: '/api/public/backend-status'
+      fullPath: '/api/public/backend-status'
+      preLoaderRoute: typeof ApiPublicBackendStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/cloud-backend': {
+      id: '/api/public/cloud-backend'
+      path: '/api/public/cloud-backend'
+      fullPath: '/api/public/cloud-backend'
+      preLoaderRoute: typeof ApiPublicCloudBackendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/rivm-sync': {
       id: '/api/public/rivm-sync'
       path: '/api/public/rivm-sync'
@@ -595,6 +635,8 @@ const rootRouteChildren: RootRouteChildren = {
   ZiektenIdRoute: ZiektenIdRoute,
   ZiektenIndexRoute: ZiektenIndexRoute,
   ApiPublicAssistentRoute: ApiPublicAssistentRoute,
+  ApiPublicBackendStatusRoute: ApiPublicBackendStatusRoute,
+  ApiPublicCloudBackendRoute: ApiPublicCloudBackendRoute,
   ApiPublicRivmSyncRoute: ApiPublicRivmSyncRoute,
   ApiPublicTbeActiviteitSyncRoute: ApiPublicTbeActiviteitSyncRoute,
   ApiPublicHooksBackupExportRoute: ApiPublicHooksBackupExportRoute,

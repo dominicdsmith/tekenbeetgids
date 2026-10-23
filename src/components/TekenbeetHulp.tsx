@@ -1136,6 +1136,9 @@ function OnderzoekDialoog({ a, advies, sluit, onNummer }: { a: Antwoorden; advie
   const [fout, setFout] = useState<string | null>(null);
   const [gekopieerd, setGekopieerd] = useState(false);
   const [intrekcode, setIntrekcode] = useState<string | null>(null);
+  const [bewijsPdf, setBewijsPdf] = useState<Blob | null>(null);
+  const [bewijsFout, setBewijsFout] = useState<string | null>(null);
+  const [bewijsBezig, setBewijsBezig] = useState(false);
 
   const slaRegistratieOp = useServerFn(slaTekenbeetRegistratieOp);
 
@@ -1185,8 +1188,34 @@ function OnderzoekDialoog({ a, advies, sluit, onNummer }: { a: Antwoorden; advie
   };
 
   const bevestigingsHtml = nummer ? bouwOnderzoekHtml(a, advies, nummer, intrekcode) : null;
-  const printDirect = () => {
-    if (bevestigingsHtml) printHtml(bevestigingsHtml);
+  useEffect(() => {
+    let actief = true;
+    setBewijsPdf(null);
+    setBewijsFout(null);
+    if (bevestigingsHtml) {
+      maakPdf(bevestigingsHtml)
+        .then((blob) => { if (actief) setBewijsPdf(blob); })
+        .catch(() => { if (actief) setBewijsFout(en ? "The PDF could not be created. Please keep your participation number and withdrawal code." : "De PDF kon niet worden gemaakt. Bewaar uw deelnamenummer en intrekcode."); });
+    }
+    return () => { actief = false; };
+  }, [bevestigingsHtml, en]);
+
+  const exporteerBewijs = async (printen: boolean) => {
+    if (!bewijsPdf || bewijsBezig || !bevestigingsHtml) return;
+    setBewijsBezig(true);
+    setBewijsFout(null);
+    const naam = `${en ? "participation-proof" : "deelnamebewijs"}-${nummer}.pdf`;
+    try {
+      if (!printen || isIOS()) {
+        await deelOfDownloadPdf(bewijsPdf, naam, isMobiel());
+      } else {
+        printHtml(bevestigingsHtml);
+      }
+    } catch {
+      setBewijsFout(en ? "The PDF could not be opened or saved. Please try again." : "De PDF kon niet worden geopend of opgeslagen. Probeer het opnieuw.");
+    } finally {
+      setBewijsBezig(false);
+    }
   };
   const kopieerNummer = () => {
     if (!nummer) return;
@@ -1243,24 +1272,21 @@ function OnderzoekDialoog({ a, advies, sluit, onNummer }: { a: Antwoorden; advie
             </div>
 
             <div style={{ display: "flex", gap: 8, marginTop: 14, flexWrap: "wrap" }}>
-              <button type="button" onClick={printDirect} disabled={!bevestigingsHtml}
-                style={{ ...S.knop, flex: "1 1 160px", width: "auto" }}>
+              <Button type="button" onClick={() => void exporteerBewijs(false)} disabled={!bewijsPdf || bewijsBezig}
+                className="h-auto whitespace-normal flex-[1_1_160px] py-3">
                 {en ? "Save PDF proof" : "PDF-bewijs opslaan"}
-              </button>
-              <button type="button" onClick={printDirect} disabled={!bevestigingsHtml}
-                style={{ ...S.knop, flex: "1 1 160px", width: "auto", background: "transparent", color: T.primair, border: `1.5px solid ${T.primair}` }}>
+              </Button>
+              <Button type="button" variant="outline" onClick={() => void exporteerBewijs(true)} disabled={!bewijsPdf || bewijsBezig}
+                className="h-auto whitespace-normal flex-[1_1_160px] border-primary text-primary py-3">
                 {en ? "Print PDF proof" : "PDF-bewijs printen"}
-              </button>
+              </Button>
               <button type="button" onClick={sluit}
                 style={{ ...S.knop, flex: "1 1 110px", width: "auto", background: "transparent", color: T.grijs, border: `1.5px solid ${T.lijn}` }}>
                 {en ? "Close" : "Sluiten"}
               </button>
             </div>
-            <p style={{ fontSize: 10.5, lineHeight: 1.5, color: T.grijs, margin: "8px 0 0" }}>
-              {en
-                ? "Choose ‘Save as PDF’ in the print dialog to download the proof with your participation number and withdrawal code."
-                : "Kies in het printvenster bij bestemming ‘Opslaan als pdf’ om het bewijs met uw deelnamenummer en intrekcode te downloaden."}
-            </p>
+            {!bewijsPdf && !bewijsFout && <p role="status" className="mt-2 text-sm text-muted-foreground">{en ? "Preparing PDF…" : "PDF wordt klaargemaakt…"}</p>}
+            {bewijsFout && <p role="alert" className="mt-2 text-sm text-destructive">{bewijsFout}</p>}
           </>
         ) : (
           /* Toestemmingsformulier vóór akkoord */

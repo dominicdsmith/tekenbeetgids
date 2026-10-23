@@ -71,6 +71,21 @@ export type Database = {
         }
         Relationships: []
       }
+      cloud_bridge_nonces: {
+        Row: {
+          created_at: string
+          nonce: string
+        }
+        Insert: {
+          created_at?: string
+          nonce: string
+        }
+        Update: {
+          created_at?: string
+          nonce?: string
+        }
+        Relationships: []
+      }
       contact_berichten: {
         Row: {
           bericht: string
@@ -665,6 +680,10 @@ export type Database = {
     }
     Functions: {
       beveiligingscontrole: { Args: never; Returns: Json }
+      claim_cloud_bridge_request: {
+        Args: { request_nonce: string }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

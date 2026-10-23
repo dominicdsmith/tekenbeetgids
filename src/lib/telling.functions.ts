@@ -9,6 +9,7 @@ const schema = z.object({
   bron: z.string().max(30).optional().nullable(),
 });
 
+/** Publieke, anonieme telling: datum, locatie en tekensoort van een scan. */
 export const registreerTellingFn = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {

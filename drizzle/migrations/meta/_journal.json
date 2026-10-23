@@ -15,6 +15,13 @@
       "when": 1791451553979,
       "tag": "0001_backup_log",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792626098583,
+      "tag": "0002_cloud_bridge_replay_protection",
+      "breakpoints": true
     }
   ]
 }

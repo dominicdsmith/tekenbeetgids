@@ -1,4 +1,4 @@
-import { getRequestHeader } from "@tanstack/react-start/server";
+import { bridgeHeader } from "./bridgeHeaders.server";
 import { z } from "zod";
 import type { Json } from "@/integrations/supabase/types";
 
@@ -48,7 +48,7 @@ export async function bewaarRegistratie(data: z.output<typeof registratieSchema>
     .select("id", { count: "exact", head: true })
     .like("registratienummer", `${data.nummer}%`);
   if ((bestaand ?? 0) >= 3) return { ok: false as const, reden: "limiet" as const };
-  const ip = (getRequestHeader("cf-connecting-ip") || getRequestHeader("x-forwarded-for") || "").split(",")[0]?.trim() ?? "";
+  const ip = (bridgeHeader("cf-connecting-ip") || bridgeHeader("x-forwarded-for") || "").split(",")[0]?.trim() ?? "";
   const ipHash = ip ? await hashIp(ip) : null;
 
   if (ipHash) {

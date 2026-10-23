@@ -1,4 +1,5 @@
-import { getRequest, getRequestHeader } from "@tanstack/react-start/server";
+import { bridgeHeader } from "./bridgeHeaders.server";
+import { getRequest } from "@tanstack/react-start/server";
 import { z } from "zod";
 import { maakReferentie, maakVerzoeknummer } from "@/lib/contact-ref";
 
@@ -52,8 +53,8 @@ export async function verwerkContact(data: z.output<typeof contactSchema>) {
   }
   if (isSpamInhoud(data.onderwerp, data.bericht)) return { ok: false as const, reden: "spam_inhoud" as const };
 
-  const forwarded = getRequestHeader("x-forwarded-for") ?? "";
-  const ip = forwarded.split(",")[0]?.trim() || getRequestHeader("cf-connecting-ip") || getRequestHeader("x-real-ip") || "onbekend";
+  const forwarded = bridgeHeader("x-forwarded-for") ?? "";
+  const ip = forwarded.split(",")[0]?.trim() || bridgeHeader("cf-connecting-ip") || bridgeHeader("x-real-ip") || "onbekend";
   const ipHash = await hashIp(ip);
   const userAgent = (getRequest().headers.get("user-agent") ?? "").slice(0, 300);
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");

@@ -1,4 +1,4 @@
-import { getRequestHeader } from "@tanstack/react-start/server";
+import { bridgeHeader } from "./bridgeHeaders.server";
 
 /* Gedeelde beveiligingshulpjes (alleen server). */
 
@@ -37,7 +37,7 @@ export async function controleerIntrekcode(deelnamenummer: string, code: string 
 
 /** Uurlimiet per (gehasht) IP-adres voor een bepaalde actie. */
 export async function binnenLimiet(actie: string, maxPerUur: number, ipOverride?: string) {
-  const kop = getRequestHeader("cf-connecting-ip") || getRequestHeader("x-forwarded-for") || getRequestHeader("x-real-ip") || "onbekend";
+  const kop = bridgeHeader("cf-connecting-ip") || bridgeHeader("x-forwarded-for") || bridgeHeader("x-real-ip") || "onbekend";
   const uitKop = kop.split(",")[0]?.trim() || "onbekend";
   const ip = ipOverride ?? uitKop;
   const ipHash = hex(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`trk-${actie}:${ip}`)));
@@ -75,7 +75,7 @@ export async function isGeldigeCronAanroep(request: Request) {
 
 /** Daglimiet per (gehasht) IP-adres voor een bepaalde actie. */
 export async function binnenDagLimiet(actie: string, maxPerDag: number, ipOverride?: string) {
-  const kop = getRequestHeader("cf-connecting-ip") || getRequestHeader("x-forwarded-for") || getRequestHeader("x-real-ip") || "onbekend";
+  const kop = bridgeHeader("cf-connecting-ip") || bridgeHeader("x-forwarded-for") || bridgeHeader("x-real-ip") || "onbekend";
   const uitKop = kop.split(",")[0]?.trim() || "onbekend";
   const ip = ipOverride ?? uitKop;
   const ipHash = hex(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`trk-dag-${actie}:${ip}`)));
@@ -98,8 +98,8 @@ export async function binnenDagLimiet(actie: string, maxPerDag: number, ipOverri
 
 /** Alleen aanroepen vanaf de eigen website toestaan (geen proxy voor vreemde sites/scripts). */
 export function zelfdeHerkomst(): boolean {
-  const host = getRequestHeader("host") ?? "";
-  const bron = getRequestHeader("origin") ?? getRequestHeader("referer") ?? "";
+  const host = bridgeHeader("host") ?? "";
+  const bron = bridgeHeader("origin") ?? bridgeHeader("referer") ?? "";
   if (!host || !bron) return false;
   try {
     return new URL(bron).host === host;

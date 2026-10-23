@@ -1,3 +1,4 @@
+# Bun/Vite builds in GitHub Actions; only the generated Node server is shipped.
 FROM node:22-bookworm-slim
 WORKDIR /app
 ENV NODE_ENV=production

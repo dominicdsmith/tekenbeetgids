@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import { bridgeSignature, cloudBackendUrl, verifyBridgeSignature } from "../src/lib/cloudBridgeProtocol";
 
+// Public test fixture only; never used by the app or deployment.
 const fixture = "public-test-fixture-not-a-deployment-credential";
 async function headersFor(body: string, action = "registratie", time = Date.now()) {
   const timestamp = String(time);

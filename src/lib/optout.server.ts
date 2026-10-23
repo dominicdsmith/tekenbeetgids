@@ -1,4 +1,4 @@
-import { getRequestHeader } from "@tanstack/react-start/server";
+import { bridgeHeader } from "./bridgeHeaders.server";
 import { z } from "zod";
 
 /**
@@ -93,7 +93,7 @@ export async function verwerkOptOut(data: z.output<typeof optOutSchema>) {
   }
 
   const ip =
-    (getRequestHeader("cf-connecting-ip") || getRequestHeader("x-forwarded-for") || getRequestHeader("x-real-ip") || "onbekend")
+    (bridgeHeader("cf-connecting-ip") || bridgeHeader("x-forwarded-for") || bridgeHeader("x-real-ip") || "onbekend")
       .split(",")[0]
       ?.trim() || "onbekend";
   const ipHash = await hashIp(ip);

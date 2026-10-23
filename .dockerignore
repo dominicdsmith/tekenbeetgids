@@ -1,3 +1,4 @@
+# Allowlist: exclude source, .env, Git, dependencies and Google auth files.
 **
 !Dockerfile
 !.output/

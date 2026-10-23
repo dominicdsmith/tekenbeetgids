@@ -39,8 +39,8 @@ const bodySchema = z.object({
 const accessKey = "informatie-assistent-gemini-access-v1";
 
 export async function handleAssistent(request: Request) {
-  const origin = request.headers.get("origin");
-  if (!origin || new URL(origin).origin !== new URL(request.url).origin)
+  const { zelfdeOorsprong } = await import("./bridgeHeaders.server");
+  if (!zelfdeOorsprong(request))
     return Response.json({ message: "Deze aanvraag is niet toegestaan." }, { status: 403 });
   if (Number(request.headers.get("content-length") ?? 0) > 40000)
     return Response.json({ message: "Het gesprek is te lang." }, { status: 400 });
