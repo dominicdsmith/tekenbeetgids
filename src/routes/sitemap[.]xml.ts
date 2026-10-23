@@ -23,14 +23,11 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async ({ request }) => {
+        // De publieke adressen zijn de enige hosts. Het lovable.app-adres stuurt
+        // naar tekenrisicokaart.nl, dus de sitemap toont nooit dat adres.
         const host = new URL(request.url).hostname;
         const tbg = /(^|\.)tekenbeetgids\.nl$/i.test(host);
-        const lovable = /^tekenrisicokaart\.lovable\.app$/i.test(host);
-        const BASE_URL = tbg
-          ? "https://tekenbeetgids.nl"
-          : lovable
-            ? "https://tekenrisicokaart.lovable.app"
-            : "https://tekenrisicokaart.nl";
+        const BASE_URL = tbg ? "https://tekenbeetgids.nl" : "https://tekenrisicokaart.nl";
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           ...(tbg
@@ -52,10 +49,10 @@ export const Route = createFileRoute("/sitemap.xml")({
           ]
             .filter(Boolean)
             .join("\n"),
-        );
+            );
 
         const xml = [
-          `<?xml version="1.0" encoding="UTF-8"?>`,
+          `<?xml version="1.0" encoding="UTF-8"?>,
           `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
           ...urls,
           `</urlset>`,
