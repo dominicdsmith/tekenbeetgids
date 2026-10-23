@@ -8,6 +8,7 @@ import { leesTaal, useTaal } from "@/lib/taal";
 import { vertaalTekst } from "@/lib/vertaling";
 import { VERWIJDER_VERSION } from "@/data/appVersie";
 import { Button } from "@/components/ui/button";
+import { AI_SCAN_PRIVACY } from "@/data/aiVerwerking";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import AntibioticaKeuze from "@/components/AntibioticaKeuze";
 import ScanOvername from "@/components/ScanOvername";
@@ -2053,8 +2054,8 @@ function ScanStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResultaat,
       {/* 2. Daarna de scanoptie */}
       <p style={{ ...S.p, marginTop: 12 }}>
         {en
-          ? "Please note: only after your separate confirmation will the selected photo be sent via our server to the Google AI Studio / Gemini API for external AI processing. This is separate from research consent."
-          : "Let op: pas na uw aparte bevestiging wordt de geselecteerde foto via onze server naar de Google AI Studio / Gemini API gestuurd voor externe AI-verwerking. Dit staat los van onderzoekstoestemming."}
+          ? "Please note: only after your separate confirmation will the photo be processed via our server by Google (processor, under a data processing agreement). This is separate from research consent."
+          : "Let op: pas na uw aparte bevestiging wordt de foto via onze server verwerkt door Google (verwerker, met verwerkersovereenkomst). Dit staat los van onderzoekstoestemming."}
       </p>
       <Button type="button" onClick={() => setBevestiging(true)} disabled={!laatste || bezig}
         style={{ ...S.knop, marginTop: 12, opacity: !laatste || bezig ? 0.4 : 1 }}>
@@ -2065,13 +2066,11 @@ function ScanStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResultaat,
           <DialogTitle className="pr-6 leading-snug">{en ? "Confirm external AI processing" : "Externe AI-verwerking bevestigen"}</DialogTitle>
           <DialogDescription className="leading-relaxed">
             {en
-              ? "Do you explicitly consent to sending this photo via our server to the Google AI Studio / Gemini API for this scan? Google processes the photo; an EU processing region is not guaranteed."
-              : "Geeft u uitdrukkelijk toestemming om deze foto voor deze scan via onze server naar de Google AI Studio / Gemini API te sturen? Google verwerkt de foto; een EU-verwerkingsregio is niet gegarandeerd."}
+              ? "Do you explicitly consent to this photo being processed via our server by Google (processor, under a data processing agreement) for this scan? Google keeps requests for at most 55 days, solely for abuse monitoring."
+              : "Geeft u uitdrukkelijk toestemming om deze foto voor deze scan via onze server door Google (verwerker, met verwerkersovereenkomst) te laten verwerken? Google bewaart aanvragen maximaal 55 dagen, uitsluitend voor misbruikcontrole."}
           </DialogDescription>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            {en
-              ? "Without confirmation, the photo stays local. We do not store the scan photo or add it to the research dataset. Research requires separate consent. Provider retention periods and Gemini contractual coverage remain unverified; the Google storage agreement does not establish coverage of this AI service."
-              : "Zonder bevestiging blijft de foto lokaal. Wij slaan de scanfoto niet op en voegen deze niet toe aan het onderzoeksbestand. Voor onderzoek is aparte toestemming nodig. Bewaartermijnen bij dienstverleners en Gemini-contractdekking zijn nog niet geverifieerd; de Google-opslagovereenkomst bewijst geen dekking van deze AI-dienst."}
+            {AI_SCAN_PRIVACY[en ? "en" : "nl"]}
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed">{AI_BEPERKING[en ? 1 : 0]}</p>
           <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener noreferrer" className="text-sm text-primary underline">{en ? "Gemini API terms" : "Voorwaarden Gemini API"}</a>
@@ -2083,8 +2082,8 @@ function ScanStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResultaat,
       </Dialog>
       <p style={{ ...S.p, marginTop: 8, fontSize: 11.5, color: T.grijs }}>
         {en
-          ? "You are using an AI system here (art. 50 EU AI Act). With an AI scan, the photo is sent via our server to an external AI service for processing. The photo is not stored by us, not added to the research dataset and not used by us to train AI models. More information about processing by external service providers and local storage can be found in the privacy statement and the cookie policy. The result describes visible features only and provides no medical advice."
-          : "U gebruikt hier een AI-systeem (art. 50 Europese AI-verordening). Bij een AI-scan wordt de foto via onze server doorgestuurd naar een externe AI-dienst voor verwerking. De foto wordt niet door ons opgeslagen, niet toegevoegd aan het onderzoeksbestand en door ons niet gebruikt voor het trainen van AI-modellen. Meer informatie over de verwerking door externe dienstverleners en lokale opslag vindt u in de privacyverklaring en het cookiebeleid. De uitkomst beschrijft alleen zichtbare kenmerken en geeft geen medisch advies."}
+          ? "You are using an AI system (art. 50 EU AI Act). The photo is processed once and is not stored by us or used for model training. More information: privacy statement and cookie policy. The result describes visible features only and provides no medical advice."
+          : "U gebruikt hier een AI-systeem (art. 50 Europese AI-verordening). De foto wordt eenmalig verwerkt en door ons niet opgeslagen of gebruikt voor modeltraining. Meer informatie: privacyverklaring en cookiebeleid. De uitkomst beschrijft alleen zichtbare kenmerken en geeft geen medisch advies."}
       </p>
       {!laatste && !bezig && (
         <p style={{ ...S.p, marginTop: 8, color: T.grijs }}>
@@ -2174,8 +2173,8 @@ function ScanTeekStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResult
 
       <p style={{ ...S.p, marginTop: 12 }}>
         {en
-          ? "Please note: only after your separate confirmation will the selected photo be sent via our server to the Google AI Studio / Gemini API for external AI processing. This is separate from research consent."
-          : "Let op: pas na uw aparte bevestiging wordt de geselecteerde foto via onze server naar de Google AI Studio / Gemini API gestuurd voor externe AI-verwerking. Dit staat los van onderzoekstoestemming."}
+          ? "Please note: only after your separate confirmation will the photo be processed via our server by Google (processor, under a data processing agreement). This is separate from research consent."
+          : "Let op: pas na uw aparte bevestiging wordt de foto via onze server verwerkt door Google (verwerker, met verwerkersovereenkomst). Dit staat los van onderzoekstoestemming."}
       </p>
       <Button type="button" onClick={() => setBevestiging(true)} disabled={!laatste || bezig}
         style={{ ...S.knop, marginTop: 12, opacity: !laatste || bezig ? 0.4 : 1 }}>
@@ -2186,13 +2185,11 @@ function ScanTeekStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResult
           <DialogTitle className="pr-6 leading-snug">{en ? "Confirm external AI processing" : "Externe AI-verwerking bevestigen"}</DialogTitle>
           <DialogDescription className="leading-relaxed">
             {en
-              ? "Do you explicitly consent to sending this photo via our server to the Google AI Studio / Gemini API for this scan? Google processes the photo; an EU processing region is not guaranteed."
-              : "Geeft u uitdrukkelijk toestemming om deze foto voor deze scan via onze server naar de Google AI Studio / Gemini API te sturen? Google verwerkt de foto; een EU-verwerkingsregio is niet gegarandeerd."}
+              ? "Do you explicitly consent to this photo being processed via our server by Google (processor, under a data processing agreement) for this scan? Google keeps requests for at most 55 days, solely for abuse monitoring."
+              : "Geeft u uitdrukkelijk toestemming om deze foto voor deze scan via onze server door Google (verwerker, met verwerkersovereenkomst) te laten verwerken? Google bewaart aanvragen maximaal 55 dagen, uitsluitend voor misbruikcontrole."}
           </DialogDescription>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            {en
-              ? "Without confirmation, the photo stays local. We do not store the scan photo or add it to the research dataset. Research requires separate consent. Provider retention periods and Gemini contractual coverage remain unverified; the Google storage agreement does not establish coverage of this AI service."
-              : "Zonder bevestiging blijft de foto lokaal. Wij slaan de scanfoto niet op en voegen deze niet toe aan het onderzoeksbestand. Voor onderzoek is aparte toestemming nodig. Bewaartermijnen bij dienstverleners en Gemini-contractdekking zijn nog niet geverifieerd; de Google-opslagovereenkomst bewijst geen dekking van deze AI-dienst."}
+            {AI_SCAN_PRIVACY[en ? "en" : "nl"]}
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed">{AI_BEPERKING[en ? 1 : 0]}</p>
           <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener noreferrer" className="text-sm text-primary underline">{en ? "Gemini API terms" : "Voorwaarden Gemini API"}</a>
@@ -2204,8 +2201,8 @@ function ScanTeekStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResult
       </Dialog>
       <p style={{ ...S.p, marginTop: 8, fontSize: 11.5, color: T.grijs }}>
         {en
-          ? "You are using an AI system here (art. 50 EU AI Act). With an AI scan, the photo is sent via our server to an external AI service for processing. The photo is not stored by us, not added to the research dataset and not used by us to train AI models. More information about processing by external service providers and local storage can be found in the privacy statement and the cookie policy. The result is an indicative species comparison, not a medical assessment."
-          : "U gebruikt hier een AI-systeem (art. 50 Europese AI-verordening). Bij een AI-scan wordt de foto via onze server doorgestuurd naar een externe AI-dienst voor verwerking. De foto wordt niet door ons opgeslagen, niet toegevoegd aan het onderzoeksbestand en door ons niet gebruikt voor het trainen van AI-modellen. Meer informatie over de verwerking door externe dienstverleners en lokale opslag vindt u in de privacyverklaring en het cookiebeleid. De uitkomst is een indicatieve soortvergelijking en geen medische beoordeling."}
+          ? "You are using an AI system (art. 50 EU AI Act). The photo is processed once and is not stored by us or used for model training. More information: privacy statement and cookie policy. The result is an indicative species comparison, not a medical assessment."
+          : "U gebruikt hier een AI-systeem (art. 50 Europese AI-verordening). De foto wordt eenmalig verwerkt en door ons niet opgeslagen of gebruikt voor modeltraining. Meer informatie: privacyverklaring en cookiebeleid. De uitkomst is een indicatieve soortvergelijking en geen medische beoordeling."}
       </p>
       {!laatste && !bezig && (
         <p style={{ ...S.p, marginTop: 8, color: T.grijs }}>
