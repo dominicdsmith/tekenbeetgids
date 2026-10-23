@@ -15,4 +15,3 @@ Allow: /
 
 Sitemap: https://tekenrisicokaart.nl/sitemap.xml
 Sitemap: https://tekenbeetgids.nl/sitemap.xml
-Sitemap: https://tekenrisicokaart.lovable.app/sitemap.xml
