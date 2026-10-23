@@ -1,14 +1,16 @@
 # Roadmap
 
+- [x] Afzonderlijke persoonlijke limieten voor teek- en beetplekscans ingevoerd; beide volgordes getest (4 tests geslaagd, build OK); gezamenlijk kostenplafond behouden. Nog niet gepubliceerd.
+- [x] Gebruiker bevestigt deelnamebewijs opslaan/printen op iPhone en ontvangst van de e-mailmelding.
+
 - [x] PDF-deelnamebewijs lokaal vooraf maken; opslaan/download, iOS-deelmenu en desktopprint gecontroleerd met lokaal testnummer zonder inzending. PDF-tekst bevat beide codes; 14 tests geslaagd. Live log wees op scanlimiet, die voortaan als veilige NL/EN-limietmelding door de bridge gaat in plaats van foutieve beschikbaarheidsmelding. Publicatie en fysieke iPhone-printcontrole nog nodig.
 
-- [ ] Cloud Run-publicatie 015f73f (assistent-originfix + /__l5e-doorsturing) verifiëren: workflow run na push controleren, backend-status en assistent op de Cloud Run-link testen. Daarna nog niet getest via Cloud Run: deelname, registratie, opt-out, scans.
-- [ ] Cloud Run volledig zelfvoorzienend maken qua afbeeldingen: de 16 afbeeldingen bundelen (src/assets) vereist dat de platform-Git-synchronisatie ze naar GitHub stuurt; de synchronisatie heeft sinds 20:08 UTC niets meer gestuurd. Voorlopig lossen de doorgestuurde /__l5e-URL's het op.
+- [x] Cloud Run-publicatie 015f73f (assistent-originfix + /__l5e-doorsturing) geverifieerd: workflow geslaagd, backend-status 200 en assistent 200 op de Cloud Run-link.
 
+- [x] Volledige GitHub-synchronisatie hersteld: 27 gewijzigde/nieuwe bestanden (bewijs-PDF-print, scanlimietmelding, bridge-bestanden, Dockerfile, migraties) in één commit (2958d25da) naar main gezet via de gekoppelde GitHub-verbinding; Cloud Run-workflow geslaagd; backend-status 200, /__l5e-doorsturing 302 naar tekenbeetgids.nl, assistent 200 op beide routes. Afbeeldingen lopen nog via doorsturing; volledig meeleveren vereist dat de platform-Git-synchronisatie ze naar GitHub stuurt.
+- [x] Lovable-publicatie aangevraagd 23 oktober 2026 08:25 UTC (bewijs-opsla/print-oplossing + scanlimietmelding live op tekenrisicokaart.nl en tekenbeetgids.nl); fysieke iPhone-printcontrole nog nodig.
 
-- [ ] Cloud Run daadwerkelijk publiceren: project en runtimeaccount op tekenbeetgids-vertex-ai gezet; run 39835657045 mislukt. Tests, build en Google-authenticatie geslaagd; Google weigert serviceusage.services.enable en artifactregistry.repositories.list/create voor het account lovable-vertex-express uit project -512307. Wacht op herstel van Google-toegang voor dit account in tekenbeetgids-vertex-ai; geen Cloud Run-URL en live verbindingscontrole mogelijk.
-
-- [ ] Cloud Run veilig met de bestaande Lovable Cloud-registratie verbinden; deelname, registratie, contact, opt-out, telling, scans en assistent behouden. Live controle wacht op gedeelde verbindingssleutel en GitHub/Google Cloud-deploymenttoegang; bestaande domeinen en taken blijven staan.
+- [x] Cloud Run veilig verbonden met de bestaande Lovable Cloud-registratie; deelname en contact via Cloud Run door de gebruiker bevestigd; assistent, status en afbeeldingsdoorsturing door de AI getest. Nog niet via Cloud Run getest: registratie, opt-out, scans.
 
 - [x] GitHub Actions-deployment voor main naar Cloud Run (tekenbeetgids-vertex-ai, europe-west4) toegevoegd, met Bun/Vite-tests/build, Node-container, veilige secret-scheiding en setupinstructies; 42 tests en YAML-validatie geslaagd. Daadwerkelijke deployment niet uitgevoerd: wacht op Google/GitHub-accounts en secrets. Volledige verhuizing geblokkeerd door niet-overdraagbare Lovable Cloud-serverkey en nog niet geverifieerde connectorconfiguratie; bestaande domeinen/taken ongewijzigd.
 

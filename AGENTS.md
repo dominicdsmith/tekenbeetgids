@@ -31,7 +31,7 @@
 - PDFs use rapportPdf.ts DOM text rendering and jsPDF, never canvas screenshots. Skip decorative layers except .disclaimer. Prepare proof Blobs before enabling export; iOS shares locally, desktop downloads, avoiding hidden-frame printing on iPhones.
 
 - Share AI disclosures via aiVerwerking.ts; AI and storage contracts are separate.
-- Only reviewed scan-limit errors cross the bridge; arbitrary exceptions stay private and requests are never automatically resubmitted.
+- Personal photo limits are keyed by scan type; global cost limits remain shared. Only reviewed scan-limit errors cross the bridge; other errors stay private; never auto-retry.
 - Cloud Run CI builds Bun/Vite with NITRO_PRESET=node-server and ships only .output in a non-root Node container; keep private runtime secrets in Secret Manager, because Lovable runtime credentials are not automatically portable and must never enter browser builds or images.
 - Cloud Run forwards only allowlisted public actions to the Lovable-hosted cloud-backend endpoint using signed, expiring, atomically single-use requests; user-scoped admin reads remain authenticated and RLS-protected, and cron/connector execution stays on Lovable to preserve existing keys and withdrawal-code compatibility.
 - Bridge actions pass rewritten origin/IP headers via request-scoped AsyncLocalStorage (bridgeHeaders.server.ts, read with bridgeHeader); never mutate immutable edge request.headers. Same-origin checks compare host (zelfdeOorsprong), never full origin URLs (Cloud Run sees http://). /__l5e asset URLs resolve only on Lovable hosts; other hosting redirects them to tekenbeetgids.nl in src/start.ts.

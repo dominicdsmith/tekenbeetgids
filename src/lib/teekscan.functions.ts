@@ -18,7 +18,7 @@ export const scanTeekFn = createServerFn({ method: "POST" })
     const hash = await fotoscanHash(data.afbeelding);
     const cached = await fotoscanCacheOphalen(hash, "teek-gemini-v3", data.taal);
     if (cached) return cached;
-    if (!(await fotoscanToegestaan())) {
+    if (!(await fotoscanToegestaan("teek"))) {
       throw new Error(data.taal === "en" ? "Too many scans. Please try again later." : "Te veel scans. Probeer het later opnieuw.");
     }
     const { scanTeek } = await import("./teekscan.server");

@@ -108,10 +108,10 @@ export function zelfdeHerkomst(): boolean {
   }
 }
 
-/** Fotoscan: per bezoeker max 1/uur en 2/dag, en voor alle bezoekers samen max 10/uur en 40/dag (kostenplafond). */
-export async function fotoscanToegestaan() {
-  if (!(await binnenLimiet("fotoscan", 1))) return false;
-  if (!(await binnenDagLimiet("fotoscan", 2))) return false;
+/** Per scantype en IP max 1/uur en 2/dag; gezamenlijk kostenplafond blijft 10/uur en 40/dag. */
+export async function fotoscanToegestaan(soort: "teek" | "beetplek") {
+  if (!(await binnenLimiet(`fotoscan-${soort}`, 1))) return false;
+  if (!(await binnenDagLimiet(`fotoscan-${soort}`, 2))) return false;
   if (!(await binnenLimiet("fotoscan-totaal", 10, "alle-bezoekers"))) return false;
   return binnenDagLimiet("fotoscan-totaal", 40, "alle-bezoekers");
 }

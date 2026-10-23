@@ -18,7 +18,7 @@ export const scanBeetplekFn = createServerFn({ method: "POST" })
     const hash = await fotoscanHash(data.afbeelding);
     const cached = await fotoscanCacheOphalen(hash, "beetplek-gemini-v6", data.taal);
     if (cached) return cached;
-    if (!(await fotoscanToegestaan())) {
+    if (!(await fotoscanToegestaan("beetplek"))) {
       throw new Error(data.taal === "en" ? "Too many scans. Please try again later." : "Te veel scans. Probeer het later opnieuw.");
     }
     const { scanBeetplek } = await import("./beetscan.server");
