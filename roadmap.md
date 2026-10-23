@@ -1,6 +1,8 @@
 # Roadmap
 
-- [x] Afzonderlijke persoonlijke limieten voor teek- en beetplekscans ingevoerd; beide volgordes getest (4 tests geslaagd, build OK); gezamenlijk kostenplafond behouden. Nog niet gepubliceerd.
+- [x] Bij beide scans afzonderlijke bevestiging vóór overname in gidsvragen (NL/EN); annuleren, weigeren met handmatige invoer, bevestigen en wissen van oude soortovername in browser gecontroleerd met onderschepte proefscans zonder externe verzending/opslag. Acht tests geslaagd, build OK. Niet gepubliceerd.
+
+- [x] Afzonderlijke persoonlijke limieten voor teek- en beetplekscans ingevoerd; beide volgordes getest (2 tests geslaagd, build OK); gezamenlijk kostenplafond behouden. Gepubliceerd 23 oktober 2026 08:52 UTC en via commit 0ce8d34c1 naar Cloud Run overgenomen (workflow geslaagd, backend-status ok).
 - [x] Gebruiker bevestigt deelnamebewijs opslaan/printen op iPhone en ontvangst van de e-mailmelding.
 
 - [x] PDF-deelnamebewijs lokaal vooraf maken; opslaan/download, iOS-deelmenu en desktopprint gecontroleerd met lokaal testnummer zonder inzending. PDF-tekst bevat beide codes; 14 tests geslaagd. Live log wees op scanlimiet, die voortaan als veilige NL/EN-limietmelding door de bridge gaat in plaats van foutieve beschikbaarheidsmelding. Publicatie en fysieke iPhone-printcontrole nog nodig.
@@ -136,7 +138,7 @@
 - [x] Publiceren: deze sessie staat live op tekenrisicokaart.nl en tekenbeetgids.nl (19 oktober 2026); hierdoor draait de wekelijkse back-up weer (sleutelafleiding verlaagd naar de bovengrens van de serveromgeving; oudere back-ups blijven te openen met het eigen script)
 - [x] Besluit: knop "Verder zonder AI-vergelijking" bij vraag 3 en 5 behouden — AI-gebruik blijft expliciete keus
 - [x] Handmatige tekensoortvraag toegevoegd: kiest u bij vraag 5 "Verder zonder AI-vergelijking", dan volgt de vraag "Welke teek was het?" met de zes mensen-bijtende soorten en "weet ik niet" (NL/EN)
-- [ ] Besluit: scaninvloed loskoppelen (EM-vraag en automatische tekensoort-invulling) — advies uitstaan bij gebruiker
+- [x] Besluit: beide scanuitkomsten alleen na afzonderlijke gebruikersbevestiging overnemen in gidsvragen; geen automatische overname na fotoverwerkingstoestemming.
 
 - [x] Aanvinklijsten in de gids links uitgelijnd (hokje en tekst op gelijke linkerrand, vraag over lichaamspartijen en vraag over klachten); klachtentekst iets kleiner en hokjes groeien mee met twee-regelige regels zodat niets meer buiten de rand loopt; NL/EN op telefoon en computer gecontroleerd
 

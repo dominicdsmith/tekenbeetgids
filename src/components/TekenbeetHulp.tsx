@@ -10,6 +10,7 @@ import { VERWIJDER_VERSION } from "@/data/appVersie";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import AntibioticaKeuze from "@/components/AntibioticaKeuze";
+import ScanOvername from "@/components/ScanOvername";
 import { antibioticumNaam } from "@/data/antibiotica";
 import { ALFA_GAL_BEHANDELINGEN, alfaGalBehandelingNaam, alfaGalBehandelingStappen } from "@/data/alfaGalBehandeling";
 import { scanBeetplekFn } from "@/lib/beetscan.functions";
@@ -2007,11 +2008,12 @@ function FotoUpload({ titel, beelden, voegToe, verwijder }: {
 /* Stap: AI-scan van de beetplek.
    De foto wordt verkleind, blijft in de samenvatting/pdf en wordt eenmalig
    naar de AI gestuurd die hem met de referentiebeelden vergelijkt. */
-function ScanStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, verder }: {
+function ScanStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResultaat, zetResultaat, verder }: {
   beelden: string[]; voegToe: (fs: File[]) => void; verwijder: (i: number) => void;
   resultaat: ScanResultaat | null; zetResultaat: (r: ScanResultaat | null) => void; verder: () => void;
 }) {
   const en = useTaal() === "en";
+  const [resultaat, toonResultaat] = useState(opgeslagenResultaat);
   const [bezig, setBezig] = useState(false);
   const [fout, setFout] = useState<string | null>(null);
   const [bevestiging, setBevestiging] = useState(false);
@@ -2020,10 +2022,10 @@ function ScanStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, verder
   const scan = async () => {
     if (!laatste) return;
     setBevestiging(false);
-    setBezig(true); setFout(null); zetResultaat(null);
+    setBezig(true); setFout(null); toonResultaat(null); zetResultaat(null);
     try {
       const r = await scanBeetplekFn({ data: { afbeelding: laatste, taal: en ? "en" : "nl" } });
-      zetResultaat(r as ScanResultaat);
+      toonResultaat(r as ScanResultaat);
     } catch (e) {
       setFout(e instanceof Error ? e.message : en ? "The scan failed. Please try again." : "De scan is mislukt. Probeer het opnieuw.");
     } finally {
@@ -2032,9 +2034,9 @@ function ScanStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, verder
   };
 
   /* Upload stays local; invalidate stale results without sending the photo. */
-  const vorigeLaatste = useRef<string | undefined>(undefined);
+  const vorigeLaatste = useRef<string | undefined>(laatste);
   useEffect(() => {
-    if (laatste !== vorigeLaatste.current) { zetResultaat(null); setBevestiging(false); }
+    if (laatste !== vorigeLaatste.current) { toonResultaat(null); zetResultaat(null); setBevestiging(false); }
     vorigeLaatste.current = laatste;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [laatste]);
@@ -2112,28 +2114,14 @@ function ScanStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, verder
       <p style={{ ...S.p, marginTop: 12 }}>
         {!toonVeiligheid && SCAN_HUISARTSBOODSCHAP[en ? 1 : 0]}
       </p>
-      {(() => {
-        const klaar = !bezig;
-        return (
-          <button type="button" onClick={verder} disabled={!klaar}
-            style={{ ...S.knop, marginTop: 12, background: klaar ? T.primair : "#9DC2D6", cursor: klaar ? "pointer" : "not-allowed" }}>
-            {laatste
-              ? (bezig
-                ? (en ? "Scanning…" : "Bezig met scannen…")
-                : resultaat
-                  ? (en ? "Save and continue" : "Opslaan en verder")
-                  : (en ? "Continue without AI comparison" : "Verder zonder AI-vergelijking"))
-              : (en ? "I don't see a clear bite site" : "Ik zie geen duidelijke beetplek")}
-          </button>
-        );
-      })()}
-      {/* Aparte knop: altijd een expliciete keuze om zonder AI-vergelijking door te gaan.
-          Verborgen als de hoofdknop die tekst al toont (foto aanwezig, geen scanresultaat). */}
-      {!(laatste && !resultaat && !bezig) && (
-        <button type="button" onClick={() => { zetResultaat(null); verder(); }} disabled={bezig}
-          style={{ ...S.knop, marginTop: 8, background: "transparent", color: T.primair, border: `1.5px solid ${T.primair}`, opacity: bezig ? 0.4 : 1, cursor: bezig ? "not-allowed" : "pointer" }}>
-          {en ? "Continue without AI comparison" : "Verder zonder AI-vergelijking"}
-        </button>
+      {resultaat ? (
+        <ScanOvername resultaat={resultaat} label={resultaat.weergave} en={en}
+          overnemen={(r) => { zetResultaat(r); verder(); }}
+          zelfInvullen={() => { zetResultaat(null); verder(); }} />
+      ) : (
+        <Button type="button" disabled={bezig} className="mt-3 h-auto min-h-10 whitespace-normal" onClick={verder}>
+          {bezig ? (en ? "Scanning…" : "Bezig met scannen…") : (en ? "Continue without AI comparison" : "Verder zonder AI-vergelijking")}
+        </Button>
       )}
     </>
   );
@@ -2142,12 +2130,13 @@ function ScanStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, verder
 /* Stap: AI-scan van de verwijderde teek.
    De foto wordt verkleind, blijft in de samenvatting/pdf en wordt eenmalig
    naar de AI gestuurd die hem met de zes mensen-bijtende soorten vergelijkt. */
-function ScanTeekStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, zetSoort, verder }: {
+function ScanTeekStap({ beelden, voegToe, verwijder, resultaat: opgeslagenResultaat, zetResultaat, zetSoort, verder }: {
   beelden: string[]; voegToe: (fs: File[]) => void; verwijder: (i: number) => void;
   resultaat: TeekScanResultaat | null; zetResultaat: (r: TeekScanResultaat | null) => void;
   zetSoort: (id: string) => void; verder: () => void;
 }) {
   const en = useTaal() === "en";
+  const [resultaat, toonResultaat] = useState(opgeslagenResultaat);
   const [bezig, setBezig] = useState(false);
   const [fout, setFout] = useState<string | null>(null);
   const [bevestiging, setBevestiging] = useState(false);
@@ -2156,12 +2145,11 @@ function ScanTeekStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, ze
   const scan = async () => {
     if (!laatste) return;
     setBevestiging(false);
-    setBezig(true); setFout(null); zetResultaat(null);
+    setBezig(true); setFout(null); toonResultaat(null); zetResultaat(null);
     try {
       const r = await scanTeekFn({ data: { afbeelding: laatste, taal: en ? "en" : "nl" } });
       const res = r as TeekScanResultaat;
-      zetResultaat(res);
-      if (res.soort && TEKENSOORTEN.some((t) => t.id === res.soort)) zetSoort(res.soort);
+      toonResultaat(res);
     } catch (e) {
       setFout(e instanceof Error ? e.message : en ? "The scan failed. Please try again." : "De scan is mislukt. Probeer het opnieuw.");
     } finally {
@@ -2170,9 +2158,9 @@ function ScanTeekStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, ze
   };
 
   /* Upload stays local; invalidate stale results without sending the photo. */
-  const vorigeLaatste = useRef<string | undefined>(undefined);
+  const vorigeLaatste = useRef<string | undefined>(laatste);
   useEffect(() => {
-    if (laatste !== vorigeLaatste.current) { zetResultaat(null); setBevestiging(false); }
+    if (laatste !== vorigeLaatste.current) { toonResultaat(null); zetResultaat(null); setBevestiging(false); }
     vorigeLaatste.current = laatste;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [laatste]);
@@ -2249,16 +2237,19 @@ function ScanTeekStap({ beelden, voegToe, verwijder, resultaat, zetResultaat, ze
         </div>
       )}
 
-      <button type="button" onClick={verder} disabled={bezig}
-        style={{ ...S.knop, marginTop: 12, background: !bezig ? T.primair : "#9DC2D6", cursor: !bezig ? "pointer" : "not-allowed" }}>
-        {bezig
-          ? (en ? "Scanning…" : "Bezig met scannen…")
-          : resultaat
-            ? (en ? "Save and continue" : "Opslaan en verder")
-            : laatste
-              ? (en ? "Continue without AI comparison" : "Verder zonder AI-vergelijking")
-              : (en ? "Continue without AI comparison" : "Verder zonder AI-vergelijking")}
-      </button>
+      {resultaat ? (
+        <ScanOvername resultaat={resultaat} label={resultaat.titel} en={en}
+          overnemen={(r) => {
+            zetResultaat(r);
+            if (TEKENSOORTEN.some((t) => t.id === r.soort)) zetSoort(r.soort);
+            verder();
+          }}
+          zelfInvullen={() => { zetResultaat(null); verder(); }} />
+      ) : (
+        <Button type="button" disabled={bezig} className="mt-3 h-auto min-h-10 whitespace-normal" onClick={verder}>
+          {bezig ? (en ? "Scanning…" : "Bezig met scannen…") : (en ? "Continue without AI comparison" : "Verder zonder AI-vergelijking")}
+        </Button>
+      )}
     </>
   );
 }
@@ -2315,8 +2306,8 @@ export default function TekenbeetHulp() {
     "vast",
     a.vast === "ja" || a.vast === "onzeker" ? "verwijderen" : null,
 "scan",
-    /* Geen beschreven kenmerk is geen negatief huidantwoord: behoud handmatige invoer. */
-    !a.scan || BEETPLEK_ZONDER_KENMERK.includes(a.scan.categorie) ? "em_manueel" : null,
+    /* Only an explicitly adopted red-patch comparison can replace this answer. */
+    a.scan?.categorie === "em" ? null : "em_manueel",
     "uiterlijk",
     a.uiterlijk === "onbekend" ? null : "scan_teek",
     /* Handmatige soortvraag alleen als de AI-scan (of het overslaan ervan) geen soort heeft vastgelegd. */
@@ -3291,7 +3282,10 @@ export default function TekenbeetHulp() {
               voegToe={(fs) => voegBeeldenToe("teek", fs)}
               verwijder={(i) => verwijderBeeld("teek", i)}
               resultaat={a.teekScan} zetResultaat={(r) => {
-                set("teekScan", r);
+                setA((p) => ({
+                  ...p, teekScan: r,
+                  soort: !r && p.teekScan?.soort === p.soort ? null : p.soort,
+                }));
                 /* Actieve tekenbeten-telling: datum, locatie en tekensoort gepseudonimiseerd vastleggen. */
                 if (r && r.soort !== "geen_teek") {
                   void registreerTellingFn({ data: {
