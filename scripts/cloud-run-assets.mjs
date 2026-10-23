@@ -1,1 +1,34 @@
-Ly8gS29waWVlcnQgYWxsZSBwbGF0Zm9ybS1hZmJlZWxkaW5nZW4gKC5hc3NldC5qc29uKSBpbiBkZSBDbG91ZCBSdW4tYnVpbGQsCi8vIHpvZGF0IGRlIGVpZ2VuIGhvc3RpbmcgemUgemVsZiBsZXZlcnQgZW4gbmlldCB2YW4gZWVuIGRvbWVpbiBhZmhhbmd0LgppbXBvcnQgeyByZWFkZGlyU3luYywgcmVhZEZpbGVTeW5jLCBta2RpclN5bmMsIHdyaXRlRmlsZVN5bmMsIHN0YXRTeW5jIH0gZnJvbSAibm9kZTpmcyI7CmltcG9ydCB7IGpvaW4sIGRpcm5hbWUgfSBmcm9tICJub2RlOnBhdGgiOwoKY29uc3QgQlJPTiA9ICJodHRwczovL3Rla2VucmlzaWNva2FhcnQubG92YWJsZS5hcHAiOwpjb25zdCBET0VMID0gInB1YmxpYyI7IC8vIHbDs8OzciBkZSBidWlsZCwgem9kYXQgZGUgc2VydmVyIHplIGluIHppam4gYmVzdGFuZHNsaWpzdCBvcG5lZW10CgpmdW5jdGlvbiB6b2VrKG1hcCwgdWl0ID0gW10pIHsKICBmb3IgKGNvbnN0IG5hYW0gb2YgcmVhZGRpclN5bmMobWFwKSkgewogICAgY29uc3QgcGFkID0gam9pbihtYXAsIG5hYW0pOwogICAgaWYgKHN0YXRTeW5jKHBhZCkuaXNEaXJlY3RvcnkoKSkgem9layhwYWQsIHVpdCk7CiAgICBlbHNlIGlmIChuYWFtLmVuZHNXaXRoKCIuYXNzZXQuanNvbiIpKSB1aXQucHVzaChwYWQpOwogIH0KICByZXR1cm4gdWl0Owp9Cgpjb25zdCBwb2ludGVycyA9IFsuLi56b2VrKCJzcmMiKSwgLi4uem9laygicHVibGljIildOwpsZXQgZm91dGVuID0gMDsKZm9yIChjb25zdCBwIG9mIHBvaW50ZXJzKSB7CiAgY29uc3QgeyB1cmwsIHNpemUgfSA9IEpTT04ucGFyc2UocmVhZEZpbGVTeW5jKHAsICJ1dGY4IikpOwogIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKEJST04gKyB1cmwsIHsgcmVkaXJlY3Q6ICJmb2xsb3ciIH0pOwogIGNvbnN0IGJ1ZiA9IEJ1ZmZlci5mcm9tKGF3YWl0IHJlcy5hcnJheUJ1ZmZlcigpKTsKICBpZiAoIXJlcy5vayB8fCAoc2l6ZSAmJiBidWYubGVuZ3RoICE9PSBzaXplKSkgewogICAgY29uc29sZS5lcnJvcihgTWlzbHVrdDogJHt1cmx9ICgke3Jlcy5zdGF0dXN9LCAke2J1Zi5sZW5ndGh9LyR7c2l6ZX0pYCk7CiAgICBmb3V0ZW4rKzsKICAgIGNvbnRpbnVlOwogIH0KICBjb25zdCBiZXN0YW5kID0gam9pbihET0VMLCB1cmwpOwogIG1rZGlyU3luYyhkaXJuYW1lKGJlc3RhbmQpLCB7IHJlY3Vyc2l2ZTogdHJ1ZSB9KTsKICB3cml0ZUZpbGVTeW5jKGJlc3RhbmQsIGJ1Zik7Cn0KY29uc29sZS5sb2coYCR7cG9pbnRlcnMubGVuZ3RoIC0gZm91dGVufS8ke3BvaW50ZXJzLmxlbmd0aH0gYWZiZWVsZGluZ2VuIG1lZWdlbGV2ZXJkYCk7CmlmIChmb3V0ZW4pIHByb2Nlc3MuZXhpdCgxKTsK
+// Kopieert alle platform-afbeeldingen (.asset.json) in de Cloud Run-build,
+// zodat de eigen hosting ze zelf levert en niet van een domein afhangt.
+import { readdirSync, readFileSync, mkdirSync, writeFileSync, statSync } from "node:fs";
+import { join, dirname } from "node:path";
+
+const BRON = "https://tekenrisicokaart.lovable.app";
+const DOEL = "public"; // vóór de build, zodat de server ze in zijn bestandslijst opneemt
+
+function zoek(map, uit = []) {
+  for (const naam of readdirSync(map)) {
+    const pad = join(map, naam);
+    if (statSync(pad).isDirectory()) zoek(pad, uit);
+    else if (naam.endsWith(".asset.json")) uit.push(pad);
+  }
+  return uit;
+}
+
+const pointers = [...zoek("src"), ...zoek("public")];
+let fouten = 0;
+for (const p of pointers) {
+  const { url, size } = JSON.parse(readFileSync(p, "utf8"));
+  const res = await fetch(BRON + url, { redirect: "follow" });
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (!res.ok || (size && buf.length !== size)) {
+    console.error(`Mislukt: ${url} (${res.status}, ${buf.length}/${size})`);
+    fouten++;
+    continue;
+  }
+  const bestand = join(DOEL, url);
+  mkdirSync(dirname(bestand), { recursive: true });
+  writeFileSync(bestand, buf);
+}
+console.log(`${pointers.length - fouten}/${pointers.length} afbeeldingen meegeleverd`);
+if (fouten) process.exit(1);

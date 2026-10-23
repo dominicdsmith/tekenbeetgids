@@ -1,1 +1,214 @@
-aW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VNZW1vLCB1c2VSZWYsIHVzZVN0YXRlIH0gZnJvbSAicmVhY3QiOwppbXBvcnQgeyB1c2VDaGF0IH0gZnJvbSAiQGFpLXNkay9yZWFjdCI7CmltcG9ydCB7IERlZmF1bHRDaGF0VHJhbnNwb3J0IH0gZnJvbSAiYWkiOwppbXBvcnQgewogIENvbnZlcnNhdGlvbiwKICBDb252ZXJzYXRpb25Db250ZW50LAogIENvbnZlcnNhdGlvblNjcm9sbEJ1dHRvbiwKfSBmcm9tICJAL2NvbXBvbmVudHMvYWktZWxlbWVudHMvY29udmVyc2F0aW9uIjsKaW1wb3J0IHsgTWVzc2FnZSwgTWVzc2FnZUNvbnRlbnQsIE1lc3NhZ2VSZXNwb25zZSB9IGZyb20gIkAvY29tcG9uZW50cy9haS1lbGVtZW50cy9tZXNzYWdlIjsKaW1wb3J0IHsKICBQcm9tcHRJbnB1dCwKICBQcm9tcHRJbnB1dFRleHRhcmVhLAogIFByb21wdElucHV0Rm9vdGVyLAogIFByb21wdElucHV0U3VibWl0LAp9IGZyb20gIkAvY29tcG9uZW50cy9haS1lbGVtZW50cy9wcm9tcHQtaW5wdXQiOwppbXBvcnQgeyBTaGltbWVyIH0gZnJvbSAiQC9jb21wb25lbnRzL2FpLWVsZW1lbnRzL3NoaW1tZXIiOwppbXBvcnQgeyBCdXR0b24gfSBmcm9tICJAL2NvbXBvbmVudHMvdWkvYnV0dG9uIjsKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEFzc2lzdGVudEdlc3ByZWsoewogIHRhYWwsCiAgZ2lkc0hvc3QsCiAgb25kZXJ3ZXJwLAogIHZlcnZvbGcgPSBbXSwKICBhbGxlVnJhZ2VuID0gW10sCn06IHsKICBhbGxlVnJhZ2VuPzogeyB0aXRlbDogc3RyaW5nOyB0ZWtzdDogc3RyaW5nIH1bXTsKICB0YWFsOiAibmwiIHwgImVuIjsKICBnaWRzSG9zdDogYm9vbGVhbjsKICBvbmRlcndlcnA/OiBzdHJpbmcgfCB1bmRlZmluZWQ7CiAgdmVydm9sZz86IHN0cmluZ1tdOwp9KSB7CiAgY29uc3QgZW4gPSB0YWFsID09PSAiZW4iOwogIGNvbnN0IFt0ZWtzdCwgc2V0VGVrc3RdID0gdXNlU3RhdGUoIiIpOwogIGNvbnN0IGludm9lciA9IHVzZVJlZjxIVE1MVGV4dEFyZWFFbGVtZW50PihudWxsKTsKICBjb25zdCB0cmFuc3BvcnQgPSB1c2VNZW1vKAogICAgKCkgPT4KICAgICAgbmV3IERlZmF1bHRDaGF0VHJhbnNwb3J0KHsKICAgICAgICBhcGk6ICIvYXBpL3B1YmxpYy9hc3Npc3RlbnQiLAogICAgICAgIGJvZHk6IHsgdGFhbCwgZ2lkc0hvc3QgfSwKICAgICAgICBmZXRjaDogYXN5bmMgKHVybCwgaW5pdCkgPT4gewogICAgICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaCh1cmwsIGluaXQpOwogICAgICAgICAgaWYgKCFyZXNwb25zZS5vaykgewogICAgICAgICAgICBjb25zdCBkYXRhID0gKGF3YWl0IHJlc3BvbnNlLmpzb24oKS5jYXRjaCgoKSA9PiBudWxsKSkgYXMgeyBtZXNzYWdlPzogc3RyaW5nIH0gfCBudWxsOwogICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoCiAgICAgICAgICAgICAgZGF0YT8ubWVzc2FnZSA/PwogICAgICAgICAgICAgICAgKGVuID8gIlRoZSBhc3Npc3RhbnQgaXMgdW5hdmFpbGFibGUuIiA6ICJEZSBhc3Npc3RlbnQgaXMgbmlldCBiZXNjaGlrYmFhci4iKSwKICAgICAgICAgICAgKTsKICAgICAgICAgIH0KICAgICAgICAgIHJldHVybiByZXNwb25zZTsKICAgICAgICB9LAogICAgICB9KSwKICAgIFt0YWFsLCBnaWRzSG9zdCwgZW5dLAogICk7CiAgY29uc3QgeyBtZXNzYWdlcywgc2VuZE1lc3NhZ2UsIHN0YXR1cywgZXJyb3IsIHN0b3AgfSA9IHVzZUNoYXQoeyB0cmFuc3BvcnQgfSk7CiAgY29uc3QgYmV6aWcgPSBzdGF0dXMgPT09ICJzdWJtaXR0ZWQiIHx8IHN0YXR1cyA9PT0gInN0cmVhbWluZyI7CiAgY29uc3QgZ2VzdGVsZCA9IG1lc3NhZ2VzLmZsYXRNYXAoKG0pID0+CiAgICBtLnJvbGUgPT09ICJ1c2VyIiA/IG0ucGFydHMuZmxhdE1hcCgocCkgPT4gKHAudHlwZSA9PT0gInRleHQiID8gW3AudGV4dF0gOiBbXSkpIDogW10sCiAgKTsKICBjb25zdCBsYWF0c3RlID0gZ2VzdGVsZFtnZXN0ZWxkLmxlbmd0aCAtIDFdID8/ICIiOwogIGNvbnN0IHdvb3JkZW4gPSAodDogdW5rbm93bikgPT4KICAgIG5ldyBTZXQoU3RyaW5nKHQgPz8gIiIpLnRvTG93ZXJDYXNlKCkubm9ybWFsaXplKCJORkQiKS5yZXBsYWNlKC9bXmEtejAtOSBdL2csICIgIikuc3BsaXQoL1xzKy8pLmZpbHRlcigodykgPT4gdy5sZW5ndGggPiAzKSk7CiAgY29uc3QgcGFzc2VuZCA9ICgoKSA9PiB7CiAgICBjb25zdCBiYXNpcyA9IHdvb3JkZW4obGFhdHN0ZSk7CiAgICBpZiAoIWJhc2lzLnNpemUpIHJldHVybiB2ZXJ2b2xnOwogICAgY29uc3QgdGVsT3ZlcmxhcCA9ICh0ZWtzdDogc3RyaW5nKSA9PgogICAgICBbLi4ud29vcmRlbih0ZWtzdCldLmZpbHRlcigodykgPT4gWy4uLmJhc2lzXS5zb21lKChiKSA9PiBiLnN0YXJ0c1dpdGgody5zbGljZSgwLCA1KSkgfHwgdy5zdGFydHNXaXRoKGIuc2xpY2UoMCwgNSkpKSkubGVuZ3RoOwogICAgLy8gTWV0IGVlbiBnZWtvemVuIG9uZGVyd2VycDogYWxsZWVuIHZlcnZvbGd2cmFnZW4gYmlubmVuIGRhdCBvbmRlcndlcnAuCiAgICBpZiAob25kZXJ3ZXJwKSB7CiAgICAgIHJldHVybiB2ZXJ2b2xnCiAgICAgICAgLm1hcCgodiwgaSkgPT4gKHsgdiwgbjogdGVsT3ZlcmxhcCh2KSwgaSB9KSkKICAgICAgICAuc29ydCgoYSwgYikgPT4gYi5uIC0gYS5uIHx8IGEuaSAtIGIuaSkKICAgICAgICAubWFwKCh4KSA9PiB4LnYpOwogICAgfQogICAgY29uc3Qgc2NvcmVzID0gYWxsZVZyYWdlbgogICAgICAuZmlsdGVyKCh4KTogeCBpcyB7IHRpdGVsOiBzdHJpbmc7IHRla3N0OiBzdHJpbmcgfSA9PiB0eXBlb2YgeCA9PT0gIm9iamVjdCIgJiYgeCAhPT0gbnVsbCAmJiB0eXBlb2YgeC50aXRlbCA9PT0gInN0cmluZyIpCiAgICAgIC5tYXAoKHsgdGl0ZWwsIHRla3N0IH0pID0+ICh7IHY6IHRpdGVsLCBuOiB0ZWxPdmVybGFwKGAke3RpdGVsfSAke3Rla3N0fWApIH0pKQogICAgICAuZmlsdGVyKCh4KSA9PiB4Lm4gPiAwKQogICAgICAuc29ydCgoYSwgYikgPT4gYi5uIC0gYS5uKQogICAgICAubWFwKCh4KSA9PiB4LnYpOwogICAgcmV0dXJuIFsuLi5uZXcgU2V0KFsuLi5zY29yZXMsIC4uLnZlcnZvbGddKV07CiAgfSkoKQogICAgLmZpbHRlcigodikgPT4gIWdlc3RlbGQuaW5jbHVkZXModikpCiAgICAuc2xpY2UoMCwgNSk7CiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGlmICghYmV6aWcpIGludm9lci5jdXJyZW50Py5mb2N1cygpOwogIH0sIFtiZXppZ10pOwogIHVzZUVmZmVjdCgKICAgICgpID0+ICgpID0+IHsKICAgICAgdm9pZCBzdG9wKCk7CiAgICB9LAogICAgW3N0b3BdLAogICk7CiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4IG1pbi1oLTAgZmxleC0xIGZsZXgtY29sIj4KICAgICAgPENvbnZlcnNhdGlvbiBjbGFzc05hbWU9Im1pbi1oLTMyIGZsZXgtMSIgYXJpYS1sYWJlbD17ZW4gPyAiQ29udmVyc2F0aW9uIiA6ICJHZXNwcmVrIn0+CiAgICAgICAgPENvbnZlcnNhdGlvbkNvbnRlbnQgY2xhc3NOYW1lPSJnYXAtNCBweC00IHB5LTMiPgogICAgICAgICAge29uZGVyd2VycCAmJiBtZXNzYWdlcy5sZW5ndGggPT09IDAgJiYgKAogICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtc20gdGV4dC1tdXRlZC1mb3JlZ3JvdW5kIj4KICAgICAgICAgICAgICB7ZW4KICAgICAgICAgICAgICAgID8gYFRvcGljOiAke29uZGVyd2VycH0uIFR5cGUgeW91ciBxdWVzdGlvbiBiZWxvdy5gCiAgICAgICAgICAgICAgICA6IGBPbmRlcndlcnA6ICR7b25kZXJ3ZXJwfS4gVHlwIGhpZXJvbmRlciB1dyB2cmFhZy5gfQogICAgICAgICAgICA8L3A+CiAgICAgICAgICApfQogICAgICAgICAge21lc3NhZ2VzLm1hcCgobWVzc2FnZSkgPT4gKAogICAgICAgICAgICA8TWVzc2FnZSBrZXk9e21lc3NhZ2UuaWR9IGZyb209e21lc3NhZ2Uucm9sZX0+CiAgICAgICAgICAgICAgPE1lc3NhZ2VDb250ZW50CiAgICAgICAgICAgICAgICBjbGFzc05hbWU9e21lc3NhZ2Uucm9sZSA9PT0gInVzZXIiID8gImJnLXByaW1hcnkgdGV4dC1wcmltYXJ5LWZvcmVncm91bmQiIDogIiJ9CiAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAge21lc3NhZ2UucGFydHMubWFwKChwYXJ0LCBpKSA9PgogICAgICAgICAgICAgICAgICBwYXJ0LnR5cGUgPT09ICJ0ZXh0IiA/ICgKICAgICAgICAgICAgICAgICAgICBtZXNzYWdlLnJvbGUgPT09ICJhc3Npc3RhbnQiID8gKAogICAgICAgICAgICAgICAgICAgICAgPE1lc3NhZ2VSZXNwb25zZQogICAgICAgICAgICAgICAgICAgICAgICBrZXk9e2l9CiAgICAgICAgICAgICAgICAgICAgICAgIGNvbXBvbmVudHM9e3sKICAgICAgICAgICAgICAgICAgICAgICAgICBhOiAocHJvcHMpID0+ICgKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxhCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHsuLi5wcm9wc30KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFyZ2V0PSJfYmxhbmsiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlbD0ibm9vcGVuZXIgbm9yZWZlcnJlciIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJ0ZXh0LXByaW1hcnkgdW5kZXJsaW5lIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgLz4KICAgICAgICAgICAgICAgICAgICAgICAgICApLAogICAgICAgICAgICAgICAgICAgICAgICB9fQogICAgICAgICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgICAgICAgICB7cGFydC50ZXh0fQogICAgICAgICAgICAgICAgICAgICAgPC9NZXNzYWdlUmVzcG9uc2U+CiAgICAgICAgICAgICAgICAgICAgKSA6ICgKICAgICAgICAgICAgICAgICAgICAgIDxwIGtleT17aX0gY2xhc3NOYW1lPSJ3aGl0ZXNwYWNlLXByZS13cmFwIGJyZWFrLXdvcmRzIj4KICAgICAgICAgICAgICAgICAgICAgICAge3BhcnQudGV4dH0KICAgICAgICAgICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAgICAgICkgOiBudWxsLAogICAgICAgICAgICAgICAgKX0KICAgICAgICAgICAgICA8L01lc3NhZ2VDb250ZW50PgogICAgICAgICAgICA8L01lc3NhZ2U+CiAgICAgICAgICApKX0KICAgICAgICAgIHshYmV6aWcgJiYgcGFzc2VuZC5sZW5ndGggPiAwICYmICgKICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXggZmxleC13cmFwIGp1c3RpZnktZW5kIGdhcC0yIiBhcmlhLWxhYmVsPXtlbiA/ICJSZWxhdGVkIHRvcGljcyIgOiAiQmlqYmVob3JlbmRlIG9uZGVyd2VycGVuIn0+CiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ3LWZ1bGwgdGV4dC1yaWdodCB0ZXh0LXhzIHRleHQtbXV0ZWQtZm9yZWdyb3VuZCI+CiAgICAgICAgICAgICAgICB7b25kZXJ3ZXJwCiAgICAgICAgICAgICAgICAgID8gZW4KICAgICAgICAgICAgICAgICAgICA/IGBNb3JlIGFib3V0ICR7b25kZXJ3ZXJwfTpgCiAgICAgICAgICAgICAgICAgICAgOiBgTWVlciBvdmVyICR7b25kZXJ3ZXJwfTpgCiAgICAgICAgICAgICAgICAgIDogZW4KICAgICAgICAgICAgICAgICAgICA/ICJSZWxhdGVkIHRvcGljczoiCiAgICAgICAgICAgICAgICAgICAgOiAiQmlqYmVob3JlbmRlIG9uZGVyd2VycGVuOiJ9CiAgICAgICAgICAgICAgPC9wPgogICAgICAgICAgICAgIHtwYXNzZW5kLm1hcCgodikgPT4gKAogICAgICAgICAgICAgICAgICA8QnV0dG9uCiAgICAgICAgICAgICAgICAgICAga2V5PXt2fQogICAgICAgICAgICAgICAgICAgIHZhcmlhbnQ9InNlY29uZGFyeSIKICAgICAgICAgICAgICAgICAgICBjbGFzc05hbWU9ImgtYXV0byBtaW4taC05IHdoaXRlc3BhY2Utbm9ybWFsIHJvdW5kZWQteGwgcHgtMyBweS0xLjUgdGV4dC1sZWZ0IHRleHQtc20gZm9udC1zZW1pYm9sZCIKICAgICAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiB2b2lkIHNlbmRNZXNzYWdlKHsgdGV4dDogdiB9KX0KICAgICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgICAgIHt2fQogICAgICAgICAgICAgICAgICA8L0J1dHRvbj4KICAgICAgICAgICAgICAgICkpfQogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICl9CiAgICAgICAgICB7YmV6aWcgJiYgKAogICAgICAgICAgICA8U2hpbW1lciBjbGFzc05hbWU9InRleHQtc20iPgogICAgICAgICAgICAgIHtlbiA/ICJGaW5kaW5nIHJldmlld2VkIGluZm9ybWF0aW9u4oCmIiA6ICJHZWNvbnRyb2xlZXJkZSBpbmZvcm1hdGllIHpvZWtlbuKApiJ9CiAgICAgICAgICAgIDwvU2hpbW1lcj4KICAgICAgICAgICl9CiAgICAgICAgICB7ZXJyb3IgJiYgKAogICAgICAgICAgICA8cCByb2xlPSJhbGVydCIgY2xhc3NOYW1lPSJ0ZXh0LXNtIHRleHQtZGVzdHJ1Y3RpdmUiPgogICAgICAgICAgICAgIHtlcnJvci5tZXNzYWdlfQogICAgICAgICAgICA8L3A+CiAgICAgICAgICApfQogICAgICAgIDwvQ29udmVyc2F0aW9uQ29udGVudD4KICAgICAgICA8Q29udmVyc2F0aW9uU2Nyb2xsQnV0dG9uIGFyaWEtbGFiZWw9e2VuID8gIkxhdGVzdCBhbnN3ZXIiIDogIk5pZXV3c3RlIGFudHdvb3JkIn0gLz4KICAgICAgPC9Db252ZXJzYXRpb24+CiAgICAgIDxkaXYgY2xhc3NOYW1lPSJzaHJpbmstMCBib3JkZXItdCBib3JkZXItaW5wdXQgcC0zIj4KICAgICAgICA8cCBpZD0iYXNzaXN0ZW50LXByaXZhY3kiIGNsYXNzTmFtZT0ibWItMiB0ZXh0LXhzIHRleHQtbXV0ZWQtZm9yZWdyb3VuZCI+CiAgICAgICAgICB7ZW4KICAgICAgICAgICAgPyAiR29vZ2xlIChwcm9jZXNzb3IpIMK3IG5vIHBlcnNvbmFsIG9yIG1lZGljYWwgZGF0YSIKICAgICAgICAgICAgOiAiR29vZ2xlICh2ZXJ3ZXJrZXIpIMK3IGdlZW4gcGVyc29vbmxpamtlIG9mIG1lZGlzY2hlIGdlZ2V2ZW5zIn0KICAgICAgICA8L3A+CiAgICAgICAgPFByb21wdElucHV0CiAgICAgICAgICBtYXhGaWxlcz17MH0KICAgICAgICAgIG9uU3VibWl0PXthc3luYyAoKSA9PiB7CiAgICAgICAgICAgIGlmICghdGVrc3QudHJpbSgpIHx8IGJlemlnKSByZXR1cm47CiAgICAgICAgICAgIGNvbnN0IHZyYWFnID0gdGVrc3QudHJpbSgpOwogICAgICAgICAgICBzZXRUZWtzdCgiIik7CiAgICAgICAgICAgIGF3YWl0IHNlbmRNZXNzYWdlKHsgdGV4dDogdnJhYWcgfSk7CiAgICAgICAgICAgIGludm9lci5jdXJyZW50Py5mb2N1cygpOwogICAgICAgICAgfX0KICAgICAgICA+CiAgICAgICAgICA8UHJvbXB0SW5wdXRUZXh0YXJlYQogICAgICAgICAgICByZWY9e2ludm9lcn0KICAgICAgICAgICAgdmFsdWU9e3Rla3N0fQogICAgICAgICAgICBvbkNoYW5nZT17KGV2ZW50KSA9PiBzZXRUZWtzdChldmVudC50YXJnZXQudmFsdWUpfQogICAgICAgICAgICBtYXhMZW5ndGg9ezEwMDB9CiAgICAgICAgICAgIGFyaWEtZGVzY3JpYmVkYnk9ImFzc2lzdGVudC1wcml2YWN5IgogICAgICAgICAgICBhcmlhLWxhYmVsPXtlbiA/ICJZb3VyIHF1ZXN0aW9uIiA6ICJVdyB2cmFhZyJ9CiAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtlbiA/ICJZb3VyIHF1ZXN0aW9uIGFib3V0IHRoZSB3ZWJzaXRlc+KApiIgOiAiVXcgdnJhYWcgb3ZlciBkZSB3ZWJzaXRlc+KApiJ9CiAgICAgICAgICAgIGNsYXNzTmFtZT0ibWluLWgtMjAgdGV4dC1zbSIKICAgICAgICAgIC8+CiAgICAgICAgICA8UHJvbXB0SW5wdXRGb290ZXIgY2xhc3NOYW1lPSJqdXN0aWZ5LWVuZCI+CiAgICAgICAgICAgIDxQcm9tcHRJbnB1dFN1Ym1pdAogICAgICAgICAgICAgIHN0YXR1cz17c3RhdHVzfQogICAgICAgICAgICAgIG9uU3RvcD17KCkgPT4gdm9pZCBzdG9wKCl9CiAgICAgICAgICAgICAgZGlzYWJsZWQ9eyFiZXppZyAmJiAhdGVrc3QudHJpbSgpfQogICAgICAgICAgICAgIGFyaWEtbGFiZWw9ewogICAgICAgICAgICAgICAgYmV6aWcgPyAoZW4gPyAiU3RvcCIgOiAiU3RvcHBlbiIpIDogZW4gPyAiU2VuZCBxdWVzdGlvbiIgOiAiVnJhYWcgdmVyc3R1cmVuIgogICAgICAgICAgICAgIH0KICAgICAgICAgICAgICB0aXRsZT17YmV6aWcgPyAoZW4gPyAiU3RvcCIgOiAiU3RvcHBlbiIpIDogZW4gPyAiU2VuZCBxdWVzdGlvbiIgOiAiVnJhYWcgdmVyc3R1cmVuIn0KICAgICAgICAgICAgLz4KICAgICAgICAgIDwvUHJvbXB0SW5wdXRGb290ZXI+CiAgICAgICAgPC9Qcm9tcHRJbnB1dD4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICApOwp9Cg==
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
+import {
+  Conversation,
+  ConversationContent,
+  ConversationScrollButton,
+} from "@/components/ai-elements/conversation";
+import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
+import {
+  PromptInput,
+  PromptInputTextarea,
+  PromptInputFooter,
+  PromptInputSubmit,
+} from "@/components/ai-elements/prompt-input";
+import { Shimmer } from "@/components/ai-elements/shimmer";
+import { Button } from "@/components/ui/button";
+
+export default function AssistentGesprek({
+  taal,
+  gidsHost,
+  onderwerp,
+  vervolg = [],
+  alleVragen = [],
+}: {
+  alleVragen?: { titel: string; tekst: string }[];
+  taal: "nl" | "en";
+  gidsHost: boolean;
+  onderwerp?: string | undefined;
+  vervolg?: string[];
+}) {
+  const en = taal === "en";
+  const [tekst, setTekst] = useState("");
+  const invoer = useRef<HTMLTextAreaElement>(null);
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/public/assistent",
+        body: { taal, gidsHost },
+        fetch: async (url, init) => {
+          const response = await fetch(url, init);
+          if (!response.ok) {
+            const data = (await response.json().catch(() => null)) as { message?: string } | null;
+            throw new Error(
+              data?.message ??
+                (en ? "The assistant is unavailable." : "De assistent is niet beschikbaar."),
+            );
+          }
+          return response;
+        },
+      }),
+    [taal, gidsHost, en],
+  );
+  const { messages, sendMessage, status, error, stop } = useChat({ transport });
+  const bezig = status === "submitted" || status === "streaming";
+  const gesteld = messages.flatMap((m) =>
+    m.role === "user" ? m.parts.flatMap((p) => (p.type === "text" ? [p.text] : [])) : [],
+  );
+  const laatste = gesteld[gesteld.length - 1] ?? "";
+  const woorden = (t: unknown) =>
+    new Set(String(t ?? "").toLowerCase().normalize("NFD").replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w.length > 3));
+  const passend = (() => {
+    const basis = woorden(laatste);
+    if (!basis.size) return vervolg;
+    const telOverlap = (tekst: string) =>
+      [...woorden(tekst)].filter((w) => [...basis].some((b) => b.startsWith(w.slice(0, 5)) || w.startsWith(b.slice(0, 5)))).length;
+    // Met een gekozen onderwerp: alleen vervolgvragen binnen dat onderwerp.
+    if (onderwerp) {
+      return vervolg
+        .map((v, i) => ({ v, n: telOverlap(v), i }))
+        .sort((a, b) => b.n - a.n || a.i - b.i)
+        .map((x) => x.v);
+    }
+    const scores = alleVragen
+      .filter((x): x is { titel: string; tekst: string } => typeof x === "object" && x !== null && typeof x.titel === "string")
+      .map(({ titel, tekst }) => ({ v: titel, n: telOverlap(`${titel} ${tekst}`) }))
+      .filter((x) => x.n > 0)
+      .sort((a, b) => b.n - a.n)
+      .map((x) => x.v);
+    return [...new Set([...scores, ...vervolg])];
+  })()
+    .filter((v) => !gesteld.includes(v))
+    .slice(0, 5);
+  useEffect(() => {
+    if (!bezig) invoer.current?.focus();
+  }, [bezig]);
+  useEffect(
+    () => () => {
+      void stop();
+    },
+    [stop],
+  );
+  return (
+    <div className="flex min-h-0 flex-1 flex-col">
+      <Conversation className="min-h-32 flex-1" aria-label={en ? "Conversation" : "Gesprek"}>
+        <ConversationContent className="gap-4 px-4 py-3">
+          {onderwerp && messages.length === 0 && (
+            <p className="text-sm text-muted-foreground">
+              {en
+                ? `Topic: ${onderwerp}. Type your question below.`
+                : `Onderwerp: ${onderwerp}. Typ hieronder uw vraag.`}
+            </p>
+          )}
+          {messages.map((message) => (
+            <Message key={message.id} from={message.role}>
+              <MessageContent
+                className={message.role === "user" ? "bg-primary text-primary-foreground" : ""}
+              >
+                {message.parts.map((part, i) =>
+                  part.type === "text" ? (
+                    message.role === "assistant" ? (
+                      <MessageResponse
+                        key={i}
+                        components={{
+                          a: (props) => (
+                            <a
+                              {...props}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary underline"
+                            />
+                          ),
+                        }}
+                      >
+                        {part.text}
+                      </MessageResponse>
+                    ) : (
+                      <p key={i} className="whitespace-pre-wrap break-words">
+                        {part.text}
+                      </p>
+                    )
+                  ) : null,
+                )}
+              </MessageContent>
+            </Message>
+          ))}
+          {!bezig && passend.length > 0 && (
+            <div className="flex flex-wrap justify-end gap-2" aria-label={en ? "Related topics" : "Bijbehorende onderwerpen"}>
+              <p className="w-full text-right text-xs text-muted-foreground">
+                {onderwerp
+                  ? en
+                    ? `More about ${onderwerp}:`
+                    : `Meer over ${onderwerp}:`
+                  : en
+                    ? "Related topics:"
+                    : "Bijbehorende onderwerpen:"}
+              </p>
+              {passend.map((v) => (
+                  <Button
+                    key={v}
+                    variant="secondary"
+                    className="h-auto min-h-9 whitespace-normal rounded-xl px-3 py-1.5 text-left text-sm font-semibold"
+                    onClick={() => void sendMessage({ text: v })}
+                  >
+                    {v}
+                  </Button>
+                ))}
+            </div>
+          )}
+          {bezig && (
+            <Shimmer className="text-sm">
+              {en ? "Finding reviewed information…" : "Gecontroleerde informatie zoeken…"}
+            </Shimmer>
+          )}
+          {error && (
+            <p role="alert" className="text-sm text-destructive">
+              {error.message}
+            </p>
+          )}
+        </ConversationContent>
+        <ConversationScrollButton aria-label={en ? "Latest answer" : "Nieuwste antwoord"} />
+      </Conversation>
+      <div className="shrink-0 border-t border-input p-3">
+        <p id="assistent-privacy" className="mb-2 text-xs text-muted-foreground">
+          {en
+            ? "Google (processor) · no personal or medical data"
+            : "Google (verwerker) · geen persoonlijke of medische gegevens"}
+        </p>
+        <PromptInput
+          maxFiles={0}
+          onSubmit={async () => {
+            if (!tekst.trim() || bezig) return;
+            const vraag = tekst.trim();
+            setTekst("");
+            await sendMessage({ text: vraag });
+            invoer.current?.focus();
+          }}
+        >
+          <PromptInputTextarea
+            ref={invoer}
+            value={tekst}
+            onChange={(event) => setTekst(event.target.value)}
+            maxLength={1000}
+            aria-describedby="assistent-privacy"
+            aria-label={en ? "Your question" : "Uw vraag"}
+            placeholder={en ? "Your question about the websites…" : "Uw vraag over de websites…"}
+            className="min-h-20 text-sm"
+          />
+          <PromptInputFooter className="justify-end">
+            <PromptInputSubmit
+              status={status}
+              onStop={() => void stop()}
+              disabled={!bezig && !tekst.trim()}
+              aria-label={
+                bezig ? (en ? "Stop" : "Stoppen") : en ? "Send question" : "Vraag versturen"
+              }
+              title={bezig ? (en ? "Stop" : "Stoppen") : en ? "Send question" : "Vraag versturen"}
+            />
+          </PromptInputFooter>
+        </PromptInput>
+      </div>
+    </div>
+  );
+}

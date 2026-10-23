@@ -1,1 +1,69 @@
-aW1wb3J0IHsgY3JlYXRlU3RhcnQsIGNyZWF0ZUNzcmZNaWRkbGV3YXJlLCBjcmVhdGVNaWRkbGV3YXJlIH0gZnJvbSAiQHRhbnN0YWNrL3JlYWN0LXN0YXJ0IjsKCmltcG9ydCB7IHJlbmRlckVycm9yUGFnZSB9IGZyb20gIi4vbGliL2Vycm9yLXBhZ2UiOwppbXBvcnQgeyBhdHRhY2hTdXBhYmFzZUF1dGggfSBmcm9tICJAL2ludGVncmF0aW9ucy9zdXBhYmFzZS9hdXRoLWF0dGFjaGVyIjsKCmNvbnN0IGVycm9yTWlkZGxld2FyZSA9IGNyZWF0ZU1pZGRsZXdhcmUoKS5zZXJ2ZXIoYXN5bmMgKHsgbmV4dCB9KSA9PiB7CiAgdHJ5IHsKICAgIHJldHVybiBhd2FpdCBuZXh0KCk7CiAgfSBjYXRjaCAoZXJyb3IpIHsKICAgIGlmIChlcnJvciAhPSBudWxsICYmIHR5cGVvZiBlcnJvciA9PT0gIm9iamVjdCIgJiYgInN0YXR1c0NvZGUiIGluIGVycm9yKSB7CiAgICAgIHRocm93IGVycm9yOwogICAgfQogICAgY29uc29sZS5lcnJvcihlcnJvcik7CiAgICByZXR1cm4gbmV3IFJlc3BvbnNlKHJlbmRlckVycm9yUGFnZSgpLCB7CiAgICAgIHN0YXR1czogNTAwLAogICAgICBoZWFkZXJzOiB7ICJjb250ZW50LXR5cGUiOiAidGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04IiB9LAogICAgfSk7CiAgfQp9KTsKCi8vIFN0YXJ0IGluc3RhbGxzIHRoaXMgYXV0b21hdGljYWxseSB3aGVuIHNyYy9zdGFydC50cyBpcyBhYnNlbnQ7IGRlZmluaW5nIHRoZQovLyBmaWxlIG9wdHMgb3V0LCBzbyByZS1hZGQgaXQgZXhwbGljaXRseSB0byBrZWVwIHNlcnZlciBmdW5jdGlvbnMgcHJvdGVjdGVkCi8vIGZyb20gY3Jvc3Mtc2l0ZSByZXF1ZXN0cy4KY29uc3QgY3NyZk1pZGRsZXdhcmUgPSBjcmVhdGVDc3JmTWlkZGxld2FyZSh7CiAgZmlsdGVyOiAoY3R4KSA9PiBjdHguaGFuZGxlclR5cGUgPT09ICJzZXJ2ZXJGbiIsCn0pOwoKLy8gQmV6b2VrZXJzIGRpZSBoZXQgcHJvamVjdCB2aWEgaGV0IGxvdmFibGUuYXBwLWFkcmVzIG9wZW5lbiB3b3JkZW4gZGlyZWN0IG5hYXIKLy8gdGVrZW5yaXNpY29rYWFydC5ubCBnZXN0dXVyZC4gRGUgcHJldmlldy0gZW4gZGV2LWhvc3RzIGJsaWp2ZW4gZ2V3b29uIHdlcmtlbi4KY29uc3QgbG92YWJsZVJlZGlyZWN0TWlkZGxld2FyZSA9IGNyZWF0ZU1pZGRsZXdhcmUoKS5zZXJ2ZXIoYXN5bmMgKHsgcmVxdWVzdCwgbmV4dCB9KSA9PiB7CiAgY29uc3QgbWV0aG9kID0gcmVxdWVzdC5tZXRob2QudG9VcHBlckNhc2UoKTsKICBpZiAobWV0aG9kICE9PSAiR0VUIiAmJiBtZXRob2QgIT09ICJIRUFEIikgcmV0dXJuIG5leHQoKTsKCiAgY29uc3QgdXJsID0gbmV3IFVSTChyZXF1ZXN0LnVybCk7CiAgY29uc3QgZm9yd2FyZGVkSG9zdCA9IHJlcXVlc3QuaGVhZGVycy5nZXQoIngtZm9yd2FyZGVkLWhvc3QiKTsKICBjb25zdCByYXdIb3N0ID0gKHR5cGVvZiBmb3J3YXJkZWRIb3N0ID09PSAic3RyaW5nIiAmJiBmb3J3YXJkZWRIb3N0KSB8fCB1cmwuaG9zdG5hbWU7CiAgY29uc3QgaG9zdCA9IHJhd0hvc3Quc3BsaXQoIiwiKVswXSEudHJpbSgpLnNwbGl0KCI6IilbMF0hLnRvTG93ZXJDYXNlKCk7CgogIC8vIE9wIENsb3VkIFJ1biB3b3JkZW4gcGxhdGZvcm0tYWZiZWVsZGluZ2VuICgvX19sNWUvYXNzZXRzLXYxLy4uLikgdGlqZGVucwogIC8vIGRlIGJ1aWxkIG1lZWdlbGV2ZXJkIChzY3JpcHRzL2Nsb3VkLXJ1bi1hc3NldHMubWpzKSBlbiBhbHMgc3RhdGlzY2gKICAvLyBiZXN0YW5kIGdlc2VydmVlcmQuIE9udGJyZWVrdCBlciB0b2NoIMOpw6luLCBzdHV1ciBkYW4gZG9vciBuYWFyIGRlCiAgLy8gTG92YWJsZS1ob3N0IOKAlCBub29pdCBuYWFyIGVlbiBlaWdlbiBkb21laW4sIGRhdCBuYSB2ZXJodWl6aW5nIHplbGYgb3AKICAvLyBDbG91ZCBSdW4gZHJhYWl0IGVuIGVlbiBsdXMgem91IGdldmVuLgogIGlmIChwcm9jZXNzLmVudlsiQVBQX0hPU1RJTkciXSA9PT0gImNsb3VkLXJ1biIgJiYgdXJsLnBhdGhuYW1lLnN0YXJ0c1dpdGgoIi9fX2w1ZS9hc3NldHMtdjEvIikpIHsKICAgIGNvbnN0IGRvZWwgPSBuZXcgVVJMKGBodHRwczovL3Rla2VucmlzaWNva2FhcnQubG92YWJsZS5hcHAke3VybC5wYXRobmFtZX0ke3VybC5zZWFyY2h9YCk7CiAgICByZXR1cm4gbmV3IFJlc3BvbnNlKG51bGwsIHsKICAgICAgc3RhdHVzOiAzMDIsCiAgICAgIGhlYWRlcnM6IHsgTG9jYXRpb246IGRvZWwudG9TdHJpbmcoKSwgIkNhY2hlLUNvbnRyb2wiOiAicHVibGljLCBtYXgtYWdlPTg2NDAwIiB9LAogICAgfSk7CiAgfQoKICBpZiAoaG9zdCA9PT0gInRla2VucmlzaWNva2FhcnQubG92YWJsZS5hcHAiIHx8IGhvc3QgPT09ICJ3d3cudGVrZW5yaXNpY29rYWFydC5sb3ZhYmxlLmFwcCIpIHsKICAgIGNvbnN0IHRhcmdldCA9IG5ldyBVUkwocmVxdWVzdC51cmwpOwogICAgdGFyZ2V0LnByb3RvY29sID0gImh0dHBzOiI7CiAgICB0YXJnZXQuaG9zdG5hbWUgPSAidGVrZW5yaXNpY29rYWFydC5ubCI7CiAgICB0YXJnZXQucG9ydCA9ICIiOwogICAgcmV0dXJuIG5ldyBSZXNwb25zZShudWxsLCB7CiAgICAgIHN0YXR1czogMzA4LAogICAgICBoZWFkZXJzOiB7IExvY2F0aW9uOiB0YXJnZXQudG9TdHJpbmcoKSB9LAogICAgfSk7CiAgfQoKICByZXR1cm4gbmV4dCgpOwp9KTsKCmV4cG9ydCBjb25zdCBzdGFydEluc3RhbmNlID0gY3JlYXRlU3RhcnQoKCkgPT4gKHsKICBmdW5jdGlvbk1pZGRsZXdhcmU6IFthdHRhY2hTdXBhYmFzZUF1dGhdLAogIHJlcXVlc3RNaWRkbGV3YXJlOiBbbG92YWJsZVJlZGlyZWN0TWlkZGxld2FyZSwgZXJyb3JNaWRkbGV3YXJlLCBjc3JmTWlkZGxld2FyZV0sCn0pKTsK
+import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
+
+import { renderErrorPage } from "./lib/error-page";
+import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+
+const errorMiddleware = createMiddleware().server(async ({ next }) => {
+  try {
+    return await next();
+  } catch (error) {
+    if (error != null && typeof error === "object" && "statusCode" in error) {
+      throw error;
+    }
+    console.error(error);
+    return new Response(renderErrorPage(), {
+      status: 500,
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  }
+});
+
+// Start installs this automatically when src/start.ts is absent; defining the
+// file opts out, so re-add it explicitly to keep server functions protected
+// from cross-site requests.
+const csrfMiddleware = createCsrfMiddleware({
+  filter: (ctx) => ctx.handlerType === "serverFn",
+});
+
+// Bezoekers die het project via het lovable.app-adres openen worden direct naar
+// tekenrisicokaart.nl gestuurd. De preview- en dev-hosts blijven gewoon werken.
+const lovableRedirectMiddleware = createMiddleware().server(async ({ request, next }) => {
+  const method = request.method.toUpperCase();
+  if (method !== "GET" && method !== "HEAD") return next();
+
+  const url = new URL(request.url);
+  const forwardedHost = request.headers.get("x-forwarded-host");
+  const rawHost = (typeof forwardedHost === "string" && forwardedHost) || url.hostname;
+  const host = rawHost.split(",")[0]!.trim().split(":")[0]!.toLowerCase();
+
+  // Op Cloud Run worden platform-afbeeldingen (/__l5e/assets-v1/...) tijdens
+  // de build meegeleverd (scripts/cloud-run-assets.mjs) en als statisch
+  // bestand geserveerd. Ontbreekt er toch één, stuur dan door naar de
+  // Lovable-host — nooit naar een eigen domein, dat na verhuizing zelf op
+  // Cloud Run draait en een lus zou geven.
+  if (process.env["APP_HOSTING"] === "cloud-run" && url.pathname.startsWith("/__l5e/assets-v1/")) {
+    const doel = new URL(`https://tekenrisicokaart.lovable.app${url.pathname}${url.search}`);
+    return new Response(null, {
+      status: 302,
+      headers: { Location: doel.toString(), "Cache-Control": "public, max-age=86400" },
+    });
+  }
+
+  if (host === "tekenrisicokaart.lovable.app" || host === "www.tekenrisicokaart.lovable.app") {
+    const target = new URL(request.url);
+    target.protocol = "https:";
+    target.hostname = "tekenrisicokaart.nl";
+    target.port = "";
+    return new Response(null, {
+      status: 308,
+      headers: { Location: target.toString() },
+    });
+  }
+
+  return next();
+});
+
+export const startInstance = createStart(() => ({
+  functionMiddleware: [attachSupabaseAuth],
+  requestMiddleware: [lovableRedirectMiddleware, errorMiddleware, csrfMiddleware],
+}));

@@ -1,1 +1,365 @@
-aW1wb3J0IHsgQUlfQVNTSVNURU5UX1BSSVZBQ1kgfSBmcm9tICJAL2RhdGEvYWlWZXJ3ZXJraW5nIjsKCmV4cG9ydCB0eXBlIEFzc2lzdGVudENvbnRleHQgPSAia2FhcnQiIHwgImdpZHMiOwp0eXBlIFRla3N0ID0geyBubDogc3RyaW5nOyBlbjogc3RyaW5nIH07CmNvbnN0IHQgPSAobmw6IHN0cmluZywgZW46IHN0cmluZyk6IFRla3N0ID0+ICh7IG5sLCBlbiB9KTsKZXhwb3J0IHR5cGUgQXNzaXN0ZW50T25kZXJ3ZXJwID0gewogIGlkOiBzdHJpbmc7CiAgY29udGV4dDogQXNzaXN0ZW50Q29udGV4dCB8ICJiZWlkZSI7CiAgdGl0ZWw6IFRla3N0OwogIHZyYWdlbjogeyB2cmFhZzogVGVrc3Q7IGFudHdvb3JkOiBUZWtzdCB9W107CiAgbGluazogeyBwYWQ6IHN0cmluZzsgdGl0ZWw6IFRla3N0OyBrYWFydD86IGJvb2xlYW4gfTsKfTsKZXhwb3J0IGNvbnN0IEFTU0lTVEVOVF9PTkRFUldFUlBFTjogQXNzaXN0ZW50T25kZXJ3ZXJwW10gPSBbCiAgewogICAgaWQ6ICJrYWFydCIsCiAgICBjb250ZXh0OiAia2FhcnQiLAogICAgdGl0ZWw6IHQoIkthYXJ0a2xldXJlbiBlbiBjaWpmZXJzIiwgIk1hcCBjb2xvdXJzIGFuZCBmaWd1cmVzIiksCiAgICB2cmFnZW46IFsKICAgICAgewogICAgICAgIHZyYWFnOiB0KCJXYXQgYmV0ZWtlbmVuIGRlIGthYXJ0a2xldXJlbj8iLCAiV2hhdCBkbyB0aGUgbWFwIGNvbG91cnMgbWVhbj8iKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJEZSBrbGV1cmVuIHRvbmVuIGdlYmllZHNnZWJvbmRlbiBrbGFzc2VuIG9wIGJhc2lzIHZhbiBkZSBnZXNlbGVjdGVlcmRlIGdlZ2V2ZW5zLiBEZXplIGthYXJ0IGdlZWZ0IGdlYmllZHNnZWJvbmRlbiBpbmZvcm1hdGllIGVuIGdlZW4gaW5kaXZpZHVlbGUgbWVkaXNjaGUgcmlzaWNvLWluc2NoYXR0aW5nLiBFZW4gaG9nZSBrbGFzc2UgYmV0ZWtlbnQgbmlldCBkYXQgdXcgcGVyc29vbmxpamtlIGluZmVjdGllcmlzaWNvIGhvb2cgaXMuIiwKICAgICAgICAgICJDb2xvdXJzIHNob3cgYXJlYS1sZXZlbCBjbGFzc2VzIGJhc2VkIG9uIHRoZSBzZWxlY3RlZCBkYXRhLiBUaGlzIG1hcCBwcm92aWRlcyBhcmVhLWxldmVsIGluZm9ybWF0aW9uLCBub3QgYW4gaW5kaXZpZHVhbCBtZWRpY2FsIHJpc2sgYXNzZXNzbWVudC4gQSBoaWdoIGNsYXNzIGRvZXMgbm90IG1lYW4gdGhhdCB5b3VyIHBlcnNvbmFsIGluZmVjdGlvbiByaXNrIGlzIGhpZ2guIiwKICAgICAgICApLAogICAgICB9LAogICAgICB7CiAgICAgICAgdnJhYWc6IHQoIlppam4gYWxsZSBjaWpmZXJzIHZlcmdlbGlqa2JhYXI/IiwgIkFyZSBhbGwgZmlndXJlcyBjb21wYXJhYmxlPyIpLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIk5lZS4gVGVrZW5iZXRlbiwgemlla3RlZ2V2YWxsZW4sIG9uZGVyem9la3NwZXJjZW50YWdlcyBlbiBiZXZlc3RpZ2RlIHRla2Vudm9uZHN0ZW4gaGViYmVuIHZlcnNjaGlsbGVuZGUgYnJvbm5lbiwgcGVyaW9kZW4gZW4gYmVyZWtlbmluZ2VuLiBEZSB1aXRsZWcgYmlqIGRlIGthYXJ0IGVuIGJpaiBlbGtlIGJyb24gdmVybWVsZHQgd2F0IGhldCBjaWpmZXIgYmVzY2hyaWpmdC4iLAogICAgICAgICAgIk5vLiBUaWNrIGJpdGVzLCBkaXNlYXNlIGNhc2VzLCByZXNlYXJjaCBwZXJjZW50YWdlcyBhbmQgY29uZmlybWVkIHRpY2sgZmluZGluZ3MgaGF2ZSBkaWZmZXJlbnQgc291cmNlcywgdGltZSBwZXJpb2RzIGFuZCBjYWxjdWxhdGlvbnMuIFRoZSBtYXAgZXhwbGFuYXRpb24gYW5kIHNvdXJjZSBub3RlcyBkZXNjcmliZSB3aGF0IGVhY2ggZmlndXJlIHJlcHJlc2VudHMuIiwKICAgICAgICApLAogICAgICB9LAogICAgXSwKICAgIGxpbms6IHsKICAgICAgcGFkOiAiLz90YWI9aGVscCNoZWxwLWthYXJ0a2xldXJlbiIsCiAgICAgIGthYXJ0OiB0cnVlLAogICAgICB0aXRlbDogdCgiVWl0bGVnIG92ZXIga2FhcnRrbGFzc2VuIiwgIk1hcCBjbGFzcyBleHBsYW5hdGlvbiIpLAogICAgfSwKICB9LAogIHsKICAgIGlkOiAiZ2ViaWVkZW4iLAogICAgY29udGV4dDogImthYXJ0IiwKICAgIHRpdGVsOiB0KCJQcm92aW5jaWVzIGVuIGdlbWVlbnRlbiIsICJQcm92aW5jZXMgYW5kIG11bmljaXBhbGl0aWVzIiksCiAgICB2cmFnZW46IFsKICAgICAgewogICAgICAgIHZyYWFnOiB0KAogICAgICAgICAgIldhYXIgdmluZCBpayBtaWpuIHByb3ZpbmNpZSBvZiBnZW1lZW50ZT8iLAogICAgICAgICAgIldoZXJlIGNhbiBJIGZpbmQgbXkgcHJvdmluY2Ugb3IgbXVuaWNpcGFsaXR5PyIsCiAgICAgICAgKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJQcm92aW5jaWVzIGVuIEdlbWVlbnRlbiB0b25lbiBkZSBiZXNjaGlrYmFyZSBnZWJpZWRzY2lqZmVycy4gRGUgem9la2JhbGsgem9la3Qgb29rIG9wIHBsYWF0c25hbWVuLiBEZSBjaWpmZXJzIGJlc2NocmlqdmVuIGhldCBnZWJpZWQsIG5pZXQgdXcgcGVyc29vbmxpamtlIHNpdHVhdGllLiIsCiAgICAgICAgICAiUHJvdmluY2VzIGFuZCBNdW5pY2lwYWxpdGllcyBzaG93IGF2YWlsYWJsZSBhcmVhIGZpZ3VyZXMuIFRoZSBzZWFyY2ggYmFyIGFsc28gYWNjZXB0cyBwbGFjZSBuYW1lcy4gRmlndXJlcyBkZXNjcmliZSB0aGUgYXJlYSwgbm90IHlvdXIgcGVyc29uYWwgc2l0dWF0aW9uLiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgICAgewogICAgICAgIHZyYWFnOiB0KCJXYXQgYmV0ZWtlbnQgZWVuIFRCRS12aW5kcGxhYXRzPyIsICJXaGF0IGRvZXMgYSBUQkUgZmluZGluZyBsb2NhdGlvbiBtZWFuPyIpLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIkVlbiBiZWtlbmRlIFRCRS12aW5kcGxhYXRzIGlzIGVlbiBsb2NhdGllIHdhYXJ2b29yIGRlIHZlcm1lbGRlIGJyb24gYmV3aWpzIGJlc2NocmlqZnQuIE5pZXQgZWxrZSBtZW5zZWxpamtlIG1lbGRpbmcgaXMgb3BnZWxvcGVuIGluIGRlIHdvb25wcm92aW5jaWUuIEdlZW4gdmVybWVsZGUgdmluZHBsYWF0cyBiZXRla2VudCBuaWV0IGRhdCBUQkUgaXMgdWl0Z2VzbG90ZW4uIiwKICAgICAgICAgICJBIGtub3duIFRCRSBmaW5kaW5nIGxvY2F0aW9uIGlzIGEgbG9jYXRpb24gZm9yIHdoaWNoIHRoZSBjaXRlZCBzb3VyY2UgZGVzY3JpYmVzIGV2aWRlbmNlLiBIdW1hbiBjYXNlcyB3ZXJlIG5vdCBuZWNlc3NhcmlseSBhY3F1aXJlZCBpbiB0aGUgcHJvdmluY2Ugb2YgcmVzaWRlbmNlLiBObyBsaXN0ZWQgZmluZGluZyBkb2VzIG5vdCBydWxlIG91dCBUQkUuIiwKICAgICAgICApLAogICAgICB9LAogICAgXSwKICAgIGxpbms6IHsgcGFkOiAiLz90YWI9Z2VtIiwga2FhcnQ6IHRydWUsIHRpdGVsOiB0KCJHZW1lZW50ZW4gYmVraWprZW4iLCAiVmlldyBtdW5pY2lwYWxpdGllcyIpIH0sCiAgfSwKICB7CiAgICBpZDogIm1lbGRpbmdlbiIsCiAgICBjb250ZXh0OiAia2FhcnQiLAogICAgdGl0ZWw6IHQoIlRla2VubWVsZGluZ2VuIiwgIlRpY2sgcmVwb3J0cyIpLAogICAgdnJhZ2VuOiBbCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgiV2F0IGJldGVrZW5lbiBkZSBELSBlbiBILXN0aXBwZW4/IiwgIldoYXQgZG8gdGhlIEQgYW5kIEggZG90cyBtZWFuPyIpLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIkQgc3RhYXQgdm9vciBWbGVra2VudGVlayBlbiBIIHZvb3IgUmV1emVudGVlay4gRWVuIHN0aXAgdG9vbnQgZWVuIGJldmVzdGlnZGUgaGlzdG9yaXNjaGUgdm9uZHN0LCBtZXQgZWVuIGxvY2F0aWUgYmlqIGJlbmFkZXJpbmcgZW4gZWVuIGJyb24uIEhldCBpcyBnZWVuIGFhbnRhbCB0ZWtlbiwgemlla3RlZ2V2YWwgb2YgbGl2ZSBvdmVyemljaHQuIFJvZGUgVEJFLXN0aXBwZW4gdG9uZW4gYmVrZW5kZSBUQkUtdmluZHBsYWF0c2VuLiIsCiAgICAgICAgICAiRCBpbmRpY2F0ZXMgdGhlIG9ybmF0ZSBkb2cgdGljayBhbmQgSCB0aGUgZ2lhbnQgdGljay4gQSBkb3Qgc2hvd3MgYSBjb25maXJtZWQgaGlzdG9yaWNhbCBmaW5kaW5nIHdpdGggYW4gYXBwcm94aW1hdGUgbG9jYXRpb24gYW5kIHNvdXJjZS4gSXQgaXMgbm90IGEgdGljayBjb3VudCwgZGlzZWFzZSBjYXNlIG9yIGxpdmUgb3ZlcnZpZXcuIFJlZCBUQkUgZG90cyBzaG93IGtub3duIFRCRSBmaW5kaW5nIGxvY2F0aW9ucy4iLAogICAgICAgICksCiAgICAgIH0sCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgiV2FhciBrYW4gaWsgZWVuIGJpanpvbmRlcmUgdGVlayBtZWxkZW4/IiwgIldoZXJlIGNhbiBJIHJlcG9ydCBhbiB1bnVzdWFsIHRpY2s/IiksCiAgICAgICAgYW50d29vcmQ6IHQoCiAgICAgICAgICAiQmlqIGRlIHNvb3J0ZW4gaW4gVGVrZW5tZWxkaW5nZW4gc3RhYXQgZWVuIGtvcHBlbGluZyBuYWFyIGhldCBvZmZpY2nDq2xlIE5WV0EtbWVsZGZvcm11bGllci4gRGUgTlZXQSB2ZXJ6YW1lbHQgbWVsZGluZ2VuIG9tIGRlIHZlcnNwcmVpZGluZyB2YW4gZGV6ZSB0ZWtlbnNvb3J0ZW4gdGUgdm9sZ2VuLiIsCiAgICAgICAgICAiU3BlY2llcyBlbnRyaWVzIGluIFRpY2sgcmVwb3J0cyBsaW5rIHRvIHRoZSBvZmZpY2lhbCBOVldBIHJlcG9ydGluZyBmb3JtLiBUaGUgTlZXQSBjb2xsZWN0cyByZXBvcnRzIHRvIG1vbml0b3IgdGhlIGRpc3RyaWJ1dGlvbiBvZiB0aGVzZSB0aWNrIHNwZWNpZXMuIiwKICAgICAgICApLAogICAgICB9LAogICAgXSwKICAgIGxpbms6IHsKICAgICAgcGFkOiAiLz90YWI9dGVrZW5tZWxkaW5nZW4iLAogICAgICBrYWFydDogdHJ1ZSwKICAgICAgdGl0ZWw6IHQoIlRla2VubWVsZGluZ2VuIGJla2lqa2VuIiwgIlZpZXcgdGljayByZXBvcnRzIiksCiAgICB9LAogIH0sCiAgewogICAgaWQ6ICJnaWRzIiwKICAgIGNvbnRleHQ6ICJnaWRzIiwKICAgIHRpdGVsOiB0KCJWcmFnZW5saWpzdCBlbiBvdmVyemljaHQiLCAiUXVlc3Rpb25uYWlyZSBhbmQgcmVjb3JkIiksCiAgICB2cmFnZW46IFsKICAgICAgewogICAgICAgIHZyYWFnOiB0KCJXYXQgZG9ldCBUZWtlbmJlZXRHaWRzPyIsICJXaGF0IGRvZXMgVGljayBCaXRlIEd1aWRlIGRvPyIpLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIkRlIGdpZHMgb3JkZW50IGZlaXRlbGlqa2UgaW5mb3JtYXRpZSBkaWUgdSB6ZWxmIGludnVsdCBvdmVyIGVlbiB0ZWtlbmJlZXQgZW4gaGV0IHZlcmxvb3AgZGFhcnZhbi4gSGV0IG92ZXJ6aWNodCBpcyB2b29yIHV6ZWxmIG9mIG9tIG1ldCBlZW4gYXJ0cyB0ZSBkZWxlbi4gRGUgZ2lkcyBzdGVsdCBnZWVuIGRpYWdub3NlLCBiZXBhYWx0IGdlZW4gdXJnZW50aWUgZW4gYWR2aXNlZXJ0IGdlZW4gYmVoYW5kZWxpbmcuIiwKICAgICAgICAgICJUaGUgZ3VpZGUgb3JnYW5pc2VzIGZhY3R1YWwgaW5mb3JtYXRpb24geW91IGVudGVyIGFib3V0IGEgdGljayBiaXRlIGFuZCBpdHMgY291cnNlLiBUaGUgcmVjb3JkIGlzIGZvciB5b3Ugb3IgdG8gc2hhcmUgd2l0aCBhIGRvY3Rvci4gVGhlIGd1aWRlIGRvZXMgbm90IGRpYWdub3NlLCBkZXRlcm1pbmUgdXJnZW5jeSBvciByZWNvbW1lbmQgdHJlYXRtZW50LiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgICAgewogICAgICAgIHZyYWFnOiB0KAogICAgICAgICAgIkthbiBpayBkZSBnaWRzIHpvbmRlciBvbmRlcnpvZWsgZ2VicnVpa2VuPyIsCiAgICAgICAgICAiQ2FuIEkgdXNlIHRoZSBndWlkZSB3aXRob3V0IGpvaW5pbmcgcmVzZWFyY2g/IiwKICAgICAgICApLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIkphLiBPbmRlcnpvZWtzZGVlbG5hbWUgaXMgdnJpandpbGxpZyBlbiB2cmFhZ3QgYWZ6b25kZXJsaWprZSwgdWl0ZHJ1a2tlbGlqa2UgdG9lc3RlbW1pbmcuIFUga3VudCB1dyBvdmVyemljaHQgZW4gUERGIGdlYnJ1aWtlbiB6b25kZXIgYWFuIG9uZGVyem9layBtZWUgdGUgZG9lbi4iLAogICAgICAgICAgIlllcy4gUmVzZWFyY2ggcGFydGljaXBhdGlvbiBpcyB2b2x1bnRhcnkgYW5kIHJlcXVpcmVzIHNlcGFyYXRlLCBleHBsaWNpdCBjb25zZW50LiBZb3UgY2FuIHVzZSB5b3VyIHJlY29yZCBhbmQgUERGIHdpdGhvdXQgam9pbmluZyByZXNlYXJjaC4iLAogICAgICAgICksCiAgICAgIH0sCiAgICBdLAogICAgbGluazogewogICAgICBwYWQ6ICIvP3RhYj1oZWxwI2hlbHAtdGVrZW5iZWV0Z2lkcyIsCiAgICAgIGthYXJ0OiB0cnVlLAogICAgICB0aXRlbDogdCgiVWl0bGVnIG92ZXIgZGUgZ2lkcyIsICJHdWlkZSBleHBsYW5hdGlvbiIpLAogICAgfSwKICB9LAogIHsKICAgIGlkOiAiZm90byIsCiAgICBjb250ZXh0OiAiZ2lkcyIsCiAgICB0aXRlbDogdCgiRm90b+KAmXMgZW4gQUktdmVyZ2VsaWpraW5nIiwgIlBob3RvcyBhbmQgQUkgY29tcGFyaXNvbiIpLAogICAgdnJhZ2VuOiBbCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgiV2FubmVlciB3b3JkdCBtaWpuIGZvdG8gdmVyc3R1dXJkPyIsICJXaGVuIGlzIG15IHBob3RvIHNlbnQ/IiksCiAgICAgICAgYW50d29vcmQ6IHQoCiAgICAgICAgICAiRWVuIGdla296ZW4gZm90byBibGlqZnQgbG9rYWFsIHRvdGRhdCB1IGVlbiBvcHRpb25lbGUgQUktc2NhbiBzdGFydCBlbiBkZSBhcGFydGUgYmV2ZXN0aWdpbmcgdm9vciB2ZXJ3ZXJraW5nIGRvb3IgR29vZ2xlICh2ZXJ3ZXJrZXIsIG1ldCB2ZXJ3ZXJrZXJzb3ZlcmVlbmtvbXN0KSBhY2NlcHRlZXJ0LiBBbGxlZW4gaGV0IG9wZW5lbiBvZiBhbm51bGVyZW4gdmFuIGRpZSBiZXZlc3RpZ2luZyB2ZXJzdHV1cnQgZ2VlbiBmb3RvLiBPbmRlcnpvZWtzdG9lc3RlbW1pbmcgc3RhYXQgaGllciBsb3MgdmFuLiIsCiAgICAgICAgICAiQSBzZWxlY3RlZCBwaG90byBzdGF5cyBsb2NhbCB1bnRpbCB5b3Ugc3RhcnQgYW4gb3B0aW9uYWwgQUkgc2NhbiBhbmQgYWNjZXB0IHRoZSBzZXBhcmF0ZSBjb25maXJtYXRpb24gZm9yIHByb2Nlc3NpbmcgYnkgR29vZ2xlIChwcm9jZXNzb3IsIHVuZGVyIGEgZGF0YSBwcm9jZXNzaW5nIGFncmVlbWVudCkuIE9wZW5pbmcgb3IgY2FuY2VsbGluZyB0aGF0IGNvbmZpcm1hdGlvbiBkb2VzIG5vdCBzZW5kIGEgcGhvdG8uIFJlc2VhcmNoIGNvbnNlbnQgaXMgc2VwYXJhdGUuIiwKICAgICAgICApLAogICAgICB9LAogICAgICB7CiAgICAgICAgdnJhYWc6IHQoIkdlZWZ0IGRlIHZlcmdlbGlqa2luZyBlZW4gZGlhZ25vc2U/IiwgIkRvZXMgdGhlIGNvbXBhcmlzb24gZ2l2ZSBhIGRpYWdub3Npcz8iKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJOZWUuIERlIHZlcmdlbGlqa2luZyBiZXNjaHJpamZ0IHppY2h0YmFyZSBrZW5tZXJrZW4gb2YgZWVuIG1vZ2VsaWprZSB0ZWtlbnNvb3J0IG1ldCB2YXN0ZSB1aXRrb21zdGVuLiBaZSBzdGVsdCBnZWVuIGRpYWdub3NlIGVuIGJlcGFhbHQgZ2VlbiBpbmZlY3RpZWthbnMgb2YgYmVoYW5kZWxpbmcuIEZvdG/igJlzIGdhYW4gbmlldCBuYWFyIGhldCBvbmRlcnpvZWsuIFdpaiBnZWJydWlrZW4gZm90b+KAmXMgZW4gc2NhbnVpdGtvbXN0ZW4gemVsZiBuaWV0IHZvb3IgQUktdHJhaW5pbmc7IGRlIGV4dGVybmUgdm9vcndhYXJkZW4gd29yZGVuIGFmem9uZGVybGlqayBiZW9vcmRlZWxkLiIsCiAgICAgICAgICAiTm8uIENvbXBhcmlzb24gZGVzY3JpYmVzIHZpc2libGUgZmVhdHVyZXMgb3IgYSBwb3NzaWJsZSB0aWNrIHNwZWNpZXMgdXNpbmcgZml4ZWQgb3V0Y29tZXMuIEl0IGRvZXMgbm90IGRpYWdub3NlIG9yIGRldGVybWluZSBpbmZlY3Rpb24gcHJvYmFiaWxpdHkgb3IgdHJlYXRtZW50LiBQaG90b3MgYXJlIGV4Y2x1ZGVkIGZyb20gcmVzZWFyY2guIFdlIGRvIG5vdCB1c2UgcGhvdG9zIG9yIHNjYW4gcmVzdWx0cyBvdXJzZWx2ZXMgZm9yIEFJIHRyYWluaW5nOyBleHRlcm5hbCB0ZXJtcyBhcmUgYXNzZXNzZWQgc2VwYXJhdGVseS4iLAogICAgICAgICksCiAgICAgIH0sCiAgICBdLAogICAgbGluazogewogICAgICBwYWQ6ICIvdHJhbnNwYXJhbnRpZXZlcmtsYXJpbmciLAogICAgICB0aXRlbDogdCgiVHJhbnNwYXJhbnRpZSBlbiBBSS1nZWJydWlrIiwgIlRyYW5zcGFyZW5jeSBhbmQgQUkgdXNlIiksCiAgICB9LAogIH0sCiAgewogICAgaWQ6ICJwZGYiLAogICAgY29udGV4dDogImdpZHMiLAogICAgdGl0ZWw6IHQoIlBERiBlbiBhZmRydWtrZW4iLCAiUERGIGFuZCBwcmludGluZyIpLAogICAgdnJhZ2VuOiBbCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgiV2FhciB2aW5kIGlrIG1pam4gUERGPyIsICJXaGVyZSBjYW4gSSBmaW5kIG15IFBERj8iKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJEZSBQREYtIGVuIGFmZHJ1a2tub3BwZW4gc3RhYW4gYmlqIHV3IG92ZXJ6aWNodCBpbiBkZSBnaWRzLiBIZXQgZG9jdW1lbnQgd29yZHQgb3AgdXcgdG9lc3RlbCBnZW1hYWt0OyB1IGtpZXN0IHplbGYgb2YgdSBoZXQgb3BzbGFhdCwgYWZkcnVrdCBvZiBkZWVsdC4iLAogICAgICAgICAgIlBERiBhbmQgcHJpbnQgY29udHJvbHMgYXJlIGF2YWlsYWJsZSB3aXRoIHlvdXIgcmVjb3JkIGluIHRoZSBndWlkZS4gVGhlIGRvY3VtZW50IGlzIGdlbmVyYXRlZCBvbiB5b3VyIGRldmljZTsgeW91IGNob29zZSB3aGV0aGVyIHRvIHNhdmUsIHByaW50IG9yIHNoYXJlIGl0LiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgICAgewogICAgICAgIHZyYWFnOiB0KAogICAgICAgICAgIkJsaWp2ZW4gZm90b+KAmXMgYmVzY2hpa2JhYXIgdm9vciBlZW4gdHdlZWRlIFBERj8iLAogICAgICAgICAgIkFyZSBwaG90b3MgYXZhaWxhYmxlIGZvciBhIHNlY29uZCBQREY/IiwKICAgICAgICApLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIkZvdG/igJlzIGJpaiBoZXQgdHVzc2VudGlqZHNlIG92ZXJ6aWNodCBibGlqdmVuIHRpamRlbGlqayBpbiBoZXQgZ2VoZXVnZW4gdmFuIGRlIGFwcCB2b29yIGJla2lqa2VuIGVuIGhlcmhhYWxkZSBQREYtZXhwb3J0cywgdG90ZGF0IHUgZGUgZ2lkcyBvcG5pZXV3IGJlZ2ludC4gWmUgd29yZGVuIG5pZXQgZHV1cnphYW0gZG9vciBkZSBhcHAgb3BnZXNsYWdlbi4gRWVuIFBERiBkaWUgdSB6ZWxmIGJld2FhcnQga2FuIGRlIGZvdG/igJlzIHdlbCBiZXZhdHRlbi4iLAogICAgICAgICAgIlBob3RvcyBpbiB0aGUgaW50ZXJpbSByZWNvcmQgcmVtYWluIHRlbXBvcmFyaWx5IGluIGFwcCBtZW1vcnkgZm9yIHZpZXdpbmcgYW5kIHJlcGVhdCBQREYgZXhwb3J0cyB1bnRpbCB5b3UgcmVzdGFydCB0aGUgZ3VpZGUuIFRoZSBhcHAgZG9lcyBub3Qgc3RvcmUgdGhlbSBkdXJhYmx5LiBBIFBERiB5b3Ugc2F2ZSB5b3Vyc2VsZiBtYXkgY29udGFpbiB0aGUgcGhvdG9zLiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgIF0sCiAgICBsaW5rOiB7CiAgICAgIHBhZDogIi8/dGFiPWhlbHAjaGVscC10ZWtlbmJlZXRnaWRzIiwKICAgICAga2FhcnQ6IHRydWUsCiAgICAgIHRpdGVsOiB0KCJVaXRsZWcgb3ZlciBvdmVyemljaHQgZW4gUERGIiwgIlJlY29yZCBhbmQgUERGIGV4cGxhbmF0aW9uIiksCiAgICB9LAogIH0sCiAgewogICAgaWQ6ICJvbmRlcnpvZWsiLAogICAgY29udGV4dDogImJlaWRlIiwKICAgIHRpdGVsOiB0KCJPbmRlcnpvZWsgZW4gaW50cmVra2VuIiwgIlJlc2VhcmNoIGFuZCB3aXRoZHJhd2FsIiksCiAgICB2cmFnZW46IFsKICAgICAgewogICAgICAgIHZyYWFnOiB0KCJXZWxrZSBnZWdldmVucyBnYWFuIG5hYXIgb25kZXJ6b2VrPyIsICJXaGljaCBkYXRhIGlzIHVzZWQgZm9yIHJlc2VhcmNoPyIpLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIkFsbGVlbiBuYSB1dyBhZnpvbmRlcmxpamtlIHVpdGRydWtrZWxpamtlIHRvZXN0ZW1taW5nIHdvcmRlbiBkZSBpbmdldnVsZGUgb25kZXJ6b2Vrc2dlZ2V2ZW5zIGdlcHNldWRvbmltaXNlZXJkIG9wZ2VzbGFnZW4uIEZvdG/igJlzIGdhYW4gbmlldCBtZWUuIEdlcHNldWRvbmltaXNlZXJkIGlzIG5pZXQgaGV0emVsZmRlIGFscyB2b2xsZWRpZyBhbm9uaWVtLiBEZSBwcml2YWN5dmVya2xhcmluZyBiZXNjaHJpamZ0IGRlIG9wc2xhZyBlbiB1dyByZWNodGVuLiIsCiAgICAgICAgICAiT25seSBhZnRlciB5b3VyIHNlcGFyYXRlIGV4cGxpY2l0IGNvbnNlbnQgYXJlIHRoZSBlbnRlcmVkIHJlc2VhcmNoIGRhdGEgc3RvcmVkIGluIHBzZXVkb255bWlzZWQgZm9ybS4gUGhvdG9zIGFyZSBleGNsdWRlZC4gUHNldWRvbnltaXNlZCBpcyBub3QgdGhlIHNhbWUgYXMgZnVsbHkgYW5vbnltb3VzLiBUaGUgcHJpdmFjeSBzdGF0ZW1lbnQgZGVzY3JpYmVzIHN0b3JhZ2UgYW5kIHlvdXIgcmlnaHRzLiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgICAgewogICAgICAgIHZyYWFnOiB0KCJIb2UgdHJlayBpayBtaWpuIGRlZWxuYW1lIGluPyIsICJIb3cgZG8gSSB3aXRoZHJhdyBteSBwYXJ0aWNpcGF0aW9uPyIpLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIkdlYnJ1aWsgaGV0IGludHJla2Zvcm11bGllciBvbmRlciBIZWxwIGJpaiBEZWVsbmVtZW4gYWFuIG9uZGVyem9lay4gVSBoZWJ0IHV3IGRlZWxuYW1lbnVtbWVyIGVuIHBlcnNvb25saWprZSBpbnRyZWtjb2RlIG5vZGlnLiBab25kZXIgY29kZSB2b2xndCBoYW5kbWF0aWdlIGNvbnRyb2xlIHZpYSBoZXQgY29udGFjdGZvcm11bGllci4gSW50cmVra2VuIHZlcndpamRlcnQgZ2VlbiBnZWdldmVucyB1aXQgYWwgZ2VtYWFrdGUgdmVyc2xldXRlbGRlIGJhY2stdXBzOyBkaWUgdmVyZHdpam5lbiB3YW5uZWVyIGRlIGJhY2stdXBzIHZlcmxvcGVuLiIsCiAgICAgICAgICAiVXNlIHRoZSB3aXRoZHJhd2FsIGZvcm0gdW5kZXIgSGVscCBpbiBSZXNlYXJjaCBwYXJ0aWNpcGF0aW9uLiBZb3UgbmVlZCB5b3VyIHBhcnRpY2lwYW50IG51bWJlciBhbmQgcGVyc29uYWwgd2l0aGRyYXdhbCBjb2RlLiBXaXRob3V0IHRoZSBjb2RlLCBtYW51YWwgdmVyaWZpY2F0aW9uIHRocm91Z2ggdGhlIGNvbnRhY3QgZm9ybSBpcyByZXF1aXJlZC4gV2l0aGRyYXdhbCBkb2VzIG5vdCByZW1vdmUgZGF0YSBmcm9tIGV4aXN0aW5nIGVuY3J5cHRlZCBiYWNrdXBzOyB0aGV5IGRpc2FwcGVhciB3aGVuIHRob3NlIGJhY2t1cHMgZXhwaXJlLiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgIF0sCiAgICBsaW5rOiB7CiAgICAgIHBhZDogIi8/dGFiPWhlbHAjaGVscC1vbmRlcnpvZWsiLAogICAgICBrYWFydDogdHJ1ZSwKICAgICAgdGl0ZWw6IHQoIk9uZGVyem9layBlbiBpbnRyZWtmb3JtdWxpZXIiLCAiUmVzZWFyY2ggYW5kIHdpdGhkcmF3YWwgZm9ybSIpLAogICAgfSwKICB9LAogIHsKICAgIGlkOiAicHJpdmFjeSIsCiAgICBjb250ZXh0OiAiYmVpZGUiLAogICAgdGl0ZWw6IHQoIlByaXZhY3kgZW4gY29udGFjdCIsICJQcml2YWN5IGFuZCBjb250YWN0IiksCiAgICB2cmFnZW46IFsKICAgICAgewogICAgICAgIHZyYWFnOiB0KCJLYW4gZGV6ZSBhc3Npc3RlbnQgbWlqbiBnZWdldmVucyB6aWVuPyIsICJDYW4gdGhpcyBhc3Npc3RhbnQgc2VlIG15IGRhdGE/IiksCiAgICAgICAgYW50d29vcmQ6IHQoCiAgICAgICAgICBgRGV6ZSBpbmZvcm1hdGllYXNzaXN0ZW50IGhlZWZ0IGdlZW4gdG9lZ2FuZyB0b3QgdXcgaW5nZXZ1bGRlIGdpZHNhbnR3b29yZGVuLCBmb3Rv4oCZcyBvZiBvbmRlcnpvZWtzZ2VnZXZlbnMuICR7QUlfQVNTSVNURU5UX1BSSVZBQ1kubmx9IFN0dXVyIGdlZW4gbWVkaXNjaGUgb2YgcGVyc29vbmxpamtlIGdlZ2V2ZW5zIG1lZS5gLAogICAgICAgICAgYFRoaXMgaW5mb3JtYXRpb24gYXNzaXN0YW50IGhhcyBubyBhY2Nlc3MgdG8geW91ciBndWlkZSBhbnN3ZXJzLCBwaG90b3Mgb3IgcmVzZWFyY2ggZGF0YS4gJHtBSV9BU1NJU1RFTlRfUFJJVkFDWS5lbn0gUGxlYXNlIGRvIG5vdCBpbmNsdWRlIG1lZGljYWwgb3IgcGVyc29uYWwgZGF0YS5gLAogICAgICAgICksCiAgICAgIH0sCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgKICAgICAgICAgICJXYWFyIGthbiBpayBlZW4gdnJhYWcgb2YgY29ycmVjdGllIGRvb3JnZXZlbj8iLAogICAgICAgICAgIldoZXJlIGNhbiBJIHNlbmQgYSBxdWVzdGlvbiBvciBjb3JyZWN0aW9uPyIsCiAgICAgICAgKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJIZXQgY29udGFjdGZvcm11bGllciBzdGFhdCBvbmRlciBIZWxwLiBTdHV1ciBnZWVuIG1lZGlzY2hlIGdlZ2V2ZW5zLCBrbGFjaHRlbiBvZiBzeW1wdG9tZW4sIGRpYWdub3NlcywgbWVkaWNhdGllIG9mIG9uZGVyem9la3NiZXN0YW5kZW4gbWVlLiBQcml2YWN5dmVyem9la2VuIGt1bnQgdSBkYWFyIG9vayBpbmRpZW5lbjsgZGUgcHJpdmFjeXZlcmtsYXJpbmcgYmVzY2hyaWpmdCB1dyByZWNodGVuLiIsCiAgICAgICAgICAiVGhlIGNvbnRhY3QgZm9ybSBpcyB1bmRlciBIZWxwLiBQbGVhc2UgZG8gbm90IGluY2x1ZGUgbWVkaWNhbCBkYXRhLCBjb21wbGFpbnRzIG9yIHN5bXB0b21zLCBkaWFnbm9zZXMsIG1lZGljYXRpb24gb3IgcmVzZWFyY2ggZmlsZXMuIFlvdSBjYW4gYWxzbyBzdWJtaXQgcHJpdmFjeSByZXF1ZXN0cyB0aGVyZTsgdGhlIHByaXZhY3kgc3RhdGVtZW50IGRlc2NyaWJlcyB5b3VyIHJpZ2h0cy4iLAogICAgICAgICksCiAgICAgIH0sCiAgICBdLAogICAgbGluazogewogICAgICBwYWQ6ICIvP3RhYj1oZWxwI2hlbHAtY29udGFjdCIsCiAgICAgIGthYXJ0OiB0cnVlLAogICAgICB0aXRlbDogdCgiQ29udGFjdGZvcm11bGllciIsICJDb250YWN0IGZvcm0iKSwKICAgIH0sCiAgfSwKICB7CiAgICBpZDogImJyb25uZW4iLAogICAgY29udGV4dDogImJlaWRlIiwKICAgIHRpdGVsOiB0KCJCcm9ubmVuIGVuIHZlcmFudHdvb3JkaW5nIiwgIlNvdXJjZXMgYW5kIGFjY291bnRhYmlsaXR5IiksCiAgICB2cmFnZW46IFsKICAgICAgewogICAgICAgIHZyYWFnOiB0KCJXYWFyIGtvbXQgZGUgaW5mb3JtYXRpZSB2YW5kYWFuPyIsICJXaGVyZSBkb2VzIHRoZSBpbmZvcm1hdGlvbiBjb21lIGZyb20/IiksCiAgICAgICAgYW50d29vcmQ6IHQoCiAgICAgICAgICAiRGUgd2Vic2l0ZSB2ZXJ3aWpzdCBuYWFyIG9wZW5iYXJlIGJyb25uZW4gZW4gd2V0ZW5zY2hhcHBlbGlqa2UgcHVibGljYXRpZXMuIEJyb24sIHBlcmlvZGUgZW4gYmVwZXJraW5nZW4gd29yZGVuIGJpaiBkZSBnZWdldmVucyB1aXRnZWxlZ2QuIERlIGdlZGVlbGRlIGJyb252ZXJhbnR3b29yZGluZyBzdGFhdCBpbiBkZSB0cmFuc3BhcmFudGlldmVya2xhcmluZy4iLAogICAgICAgICAgIlRoZSB3ZWJzaXRlIHJlZmVycyB0byBwdWJsaWMgc291cmNlcyBhbmQgc2NpZW50aWZpYyBwdWJsaWNhdGlvbnMuIFNvdXJjZXMsIHRpbWUgcGVyaW9kcyBhbmQgbGltaXRhdGlvbnMgYXJlIGV4cGxhaW5lZCBhbG9uZ3NpZGUgdGhlIGRhdGEuIFNoYXJlZCBzb3VyY2UgYWNjb3VudGFiaWxpdHkgaXMgYXZhaWxhYmxlIGluIHRoZSB0cmFuc3BhcmVuY3kgc3RhdGVtZW50LiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgICAgewogICAgICAgIHZyYWFnOiB0KAogICAgICAgICAgIkdhcmFuZGVlcnQgYXV0b21hdGlzY2hlIGNvbnRyb2xlIGRhdCBhbGxlcyBrbG9wdD8iLAogICAgICAgICAgIkRvZXMgYXV0b21hdGljIGNoZWNraW5nIGd1YXJhbnRlZSBhY2N1cmFjeT8iLAogICAgICAgICksCiAgICAgICAgYW50d29vcmQ6IHQoCiAgICAgICAgICAiTmVlLiBBdXRvbWF0aXNjaGUgY29udHJvbGVzIGt1bm5lbiB2ZXJhbmRlcmluZ2VuIGVuIHRlY2huaXNjaGUgcHJvYmxlbWVuIHNpZ25hbGVyZW4sIG1hYXIgdmVydmFuZ2VuIGdlZW4gaW5ob3VkZWxpamtlIGJlb29yZGVsaW5nLiBFZW4gYmVyZWlrYmFhciBicm9uYWRyZXMgYmV0ZWtlbnQgbmlldCBkYXQgYWxsZSBpbmZvcm1hdGllIGFjdHVlZWwgb2Ygdm9sbGVkaWcgaXMuIiwKICAgICAgICAgICJOby4gQXV0b21hdGljIGNoZWNrcyBjYW4gZmxhZyBjaGFuZ2VzIGFuZCB0ZWNobmljYWwgaXNzdWVzLCBidXQgZG8gbm90IHJlcGxhY2UgYSBjb250ZW50IHJldmlldy4gQSByZWFjaGFibGUgc291cmNlIGFkZHJlc3MgZG9lcyBub3QgbWVhbiB0aGF0IGFsbCBpbmZvcm1hdGlvbiBpcyBjdXJyZW50IG9yIGNvbXBsZXRlLiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgIF0sCiAgICBsaW5rOiB7CiAgICAgIHBhZDogIi90cmFuc3BhcmFudGlldmVya2xhcmluZyIsCiAgICAgIHRpdGVsOiB0KCJCcm9ubmVuIGVuIHRyYW5zcGFyYW50aWUiLCAiU291cmNlcyBhbmQgdHJhbnNwYXJlbmN5IiksCiAgICB9LAogIH0sCiAgewogICAgaWQ6ICJ3ZWJzaXRlIiwKICAgIGNvbnRleHQ6ICJiZWlkZSIsCiAgICB0aXRlbDogdCgiWm8gd2Vya3QgZGUgd2Vic2l0ZSIsICJIb3cgdGhlIHdlYnNpdGUgd29ya3MiKSwKICAgIHZyYWdlbjogWwogICAgICB7CiAgICAgICAgdnJhYWc6IHQoIldhdCBrYW4gaWsgb3AgZGV6ZSB3ZWJzaXRlIHZpbmRlbj8iLCAiV2hhdCBjYW4gSSBmaW5kIG9uIHRoaXMgd2Vic2l0ZT8iKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJEZSB3ZWJzaXRlIGhlZWZ0IHR3ZWUgZGVsZW46IFRla2VuUmlzaWNvS2FhcnQgbWV0IGdlYmllZHNnZWJvbmRlbiBrYWFydGluZm9ybWF0aWUgb3ZlciB0ZWtlbiwgdGVrZW5iZXRlbiBlbiB0ZWtlbnNvb3J0ZW4sIGVuIFRla2VuYmVldEdpZHMgbWV0IGVlbiBlZHVjYXRpZXZlIHZyYWdlbmxpanN0IGVuIGxvZ2JvZWsgbmEgZWVuIHRla2VuYmVldC4gT25kZXIgSGVscCBzdGFhdCB1aXRsZWcgcGVyIG9uZGVyZGVlbC4gRGV6ZSBrYWFydCBnZWVmdCBnZWJpZWRzZ2Vib25kZW4gaW5mb3JtYXRpZSBlbiBnZWVuIGluZGl2aWR1ZWxlIG1lZGlzY2hlIHJpc2ljby1pbnNjaGF0dGluZy4iLAogICAgICAgICAgIlRoZSB3ZWJzaXRlIGhhcyB0d28gcGFydHM6IFRla2VuUmlzaWNvS2FhcnQgd2l0aCBhcmVhLWxldmVsIG1hcCBpbmZvcm1hdGlvbiBhYm91dCB0aWNrcywgdGljayBiaXRlcyBhbmQgdGljayBzcGVjaWVzLCBhbmQgVGVrZW5iZWV0R2lkcyB3aXRoIGFuIGVkdWNhdGlvbmFsIHF1ZXN0aW9ubmFpcmUgYW5kIHJlY29yZCBhZnRlciBhIHRpY2sgYml0ZS4gSGVscCBleHBsYWlucyBlYWNoIHBhcnQuIFRoaXMgbWFwIHByb3ZpZGVzIGFyZWEtbGV2ZWwgaW5mb3JtYXRpb24sIG5vdCBhbiBpbmRpdmlkdWFsIG1lZGljYWwgcmlzayBhc3Nlc3NtZW50LiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgICAgewogICAgICAgIHZyYWFnOiB0KAogICAgICAgICAgIkhvZSB3aXNzZWwgaWsgdHVzc2VuIE5lZGVybGFuZHMgZW4gRW5nZWxzPyIsCiAgICAgICAgICAiSG93IGRvIEkgc3dpdGNoIGJldHdlZW4gRHV0Y2ggYW5kIEVuZ2xpc2g/IiwKICAgICAgICApLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIk1ldCBkZSB0YWFsa25vcCBib3ZlbmluIHdpc3NlbHQgdSB0dXNzZW4gTmVkZXJsYW5kcyBlbiBFbmdlbHMuIEFscyB1IGJpaiBkZSBjb29raWV2b29ya2V1cmVuIHZvb3JrZXVyZW4gbGFhdCBvbnRob3VkZW4sIGJsaWpmdCB1dyB0YWFsa2V1emUgYmV3YWFyZCB2b29yIHV3IHZvbGdlbmRlIGJlem9lay4iLAogICAgICAgICAgIlVzZSB0aGUgbGFuZ3VhZ2UgYnV0dG9uIGF0IHRoZSB0b3AgdG8gc3dpdGNoIGJldHdlZW4gRHV0Y2ggYW5kIEVuZ2xpc2guIElmIHlvdSBhbGxvdyByZW1lbWJlcmluZyBwcmVmZXJlbmNlcyBpbiB0aGUgY29va2llIHByZWZlcmVuY2VzLCB5b3VyIGxhbmd1YWdlIGNob2ljZSBpcyBrZXB0IGZvciB5b3VyIG5leHQgdmlzaXQuIiwKICAgICAgICApLAogICAgICB9LAogICAgXSwKICAgIGxpbms6IHsgcGFkOiAiLz90YWI9aGVscCIsIGthYXJ0OiB0cnVlLCB0aXRlbDogdCgiVWl0bGVnIG9uZGVyIEhlbHAiLCAiRXhwbGFuYXRpb24gdW5kZXIgSGVscCIpIH0sCiAgfSwKICB7CiAgICBpZDogImNvb2tpZXMiLAogICAgY29udGV4dDogImJlaWRlIiwKICAgIHRpdGVsOiB0KCJDb29raWVzIGVuIHZvb3JrZXVyZW4iLCAiQ29va2llcyBhbmQgcHJlZmVyZW5jZXMiKSwKICAgIHZyYWdlbjogWwogICAgICB7CiAgICAgICAgdnJhYWc6IHQoIldlbGtlIGNvb2tpZWtldXplcyBrYW4gaWsgbWFrZW4/IiwgIldoaWNoIGNvb2tpZSBjaG9pY2VzIGNhbiBJIG1ha2U/IiksCiAgICAgICAgYW50d29vcmQ6IHQoCiAgICAgICAgICAiSW4gZGUgY29va2lldm9vcmtldXJlbiBraWVzdCB1IHR1c3Nlbjogc3RyaWt0IG5vb2R6YWtlbGlqayAoYWx0aWpkIGFhbiksIHZvb3JrZXVyZW4gb250aG91ZGVuIGVuIHN0YXRpc3RpZWtlbi4gSGV0IHNjaGVybSBvcGVudCBiaWogdXcgZWVyc3RlIGJlem9lay4gRGl0IGdlc3ByZWsgbWV0IGRlIGFzc2lzdGVudCB2YWx0IGJ1aXRlbiBkaWUga2V1emVzOiBoZXQgd29yZHQgbmlldCBpbiB1dyBicm93c2VyIG9wZ2VzbGFnZW4uIiwKICAgICAgICAgICJJbiB0aGUgY29va2llIHByZWZlcmVuY2VzIHlvdSBjaG9vc2UgYmV0d2Vlbjogc3RyaWN0bHkgbmVjZXNzYXJ5IChhbHdheXMgb24pLCByZW1lbWJlciBwcmVmZXJlbmNlcyBhbmQgc3RhdGlzdGljcy4gVGhlIHNjcmVlbiBvcGVucyBvbiB5b3VyIGZpcnN0IHZpc2l0LiBUaGlzIGFzc2lzdGFudCBjb252ZXJzYXRpb24gZmFsbHMgb3V0c2lkZSB0aG9zZSBjaG9pY2VzOiBpdCBpcyBub3Qgc3RvcmVkIGluIHlvdXIgYnJvd3Nlci4iLAogICAgICAgICksCiAgICAgIH0sCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgiS2FuIGlrIG1pam4ga2V1emUgbGF0ZXIgd2lqemlnZW4/IiwgIkNhbiBJIGNoYW5nZSBteSBjaG9pY2UgbGF0ZXI/IiksCiAgICAgICAgYW50d29vcmQ6IHQoCiAgICAgICAgICAiSmEuIE1ldCBoZXQgcm9uZGUgc2NoaWxka25vcGplIGxpbmtzb25kZXIgaW4gYmVlbGQgb3BlbnQgdSBkZSBjb29raWV2b29ya2V1cmVuIG9wbmlldXcgZW4gcGFzdCB1IHV3IGtldXplIGFhbi4gSGV0IGNvb2tpZWJlbGVpZCBiZXNjaHJpamZ0IHdhdCBlbGtlIGNhdGVnb3JpZSBkb2V0LiIsCiAgICAgICAgICAiWWVzLiBUaGUgcm91bmQgc2hpZWxkIGJ1dHRvbiBpbiB0aGUgYm90dG9tLWxlZnQgY29ybmVyIG9wZW5zIHRoZSBjb29raWUgcHJlZmVyZW5jZXMgYWdhaW4sIHdoZXJlIHlvdSBjYW4gYWRqdXN0IHlvdXIgY2hvaWNlLiBUaGUgY29va2llIHBvbGljeSBkZXNjcmliZXMgd2hhdCBlYWNoIGNhdGVnb3J5IGRvZXMuIiwKICAgICAgICApLAogICAgICB9LAogICAgXSwKICAgIGxpbms6IHsgcGFkOiAiL2Nvb2tpZWJlbGVpZCIsIHRpdGVsOiB0KCJDb29raWViZWxlaWQiLCAiQ29va2llIHBvbGljeSIpIH0sCiAgfSwKICB7CiAgICBpZDogInZlcmtsYXJpbmdlbiIsCiAgICBjb250ZXh0OiAiYmVpZGUiLAogICAgdGl0ZWw6IHQoIlZvb3J3YWFyZGVuIGVuIHZlcmtsYXJpbmdlbiIsICJUZXJtcyBhbmQgc3RhdGVtZW50cyIpLAogICAgdnJhZ2VuOiBbCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgiV2Vsa2UgZG9jdW1lbnRlbiB6aWpuIGVyPyIsICJXaGljaCBkb2N1bWVudHMgYXJlIGF2YWlsYWJsZT8iKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJEZSBnZWJydWlrc3Zvb3J3YWFyZGVuLCBkZSBwcml2YWN5dmVya2xhcmluZywgZGUgdmVya2xhcmluZyBvdmVyIGdlem9uZGhlaWRzZ2VnZXZlbnMsIGRlIHRyYW5zcGFyYW50aWV2ZXJrbGFyaW5nLCBkZSB0b2VnYW5rZWxpamtoZWlkc3ZlcmtsYXJpbmcsIGhldCB2ZXJ3ZXJraW5nc3JlZ2lzdGVyLCBkZSBnZWdldmVuc2Jlc2NoZXJtaW5nc2VmZmVjdGJlb29yZGVsaW5nIGVuIGhldCBjb29raWViZWxlaWQuIFplIHppam4gaW4gaGV0IE5lZGVybGFuZHMgZW4gRW5nZWxzIGJlc2NoaWtiYWFyIGVuIHUga3VudCB6ZSBhbHMgUERGIG9wc2xhYW4uIiwKICAgICAgICAgICJUZXJtcyBvZiB1c2UsIHRoZSBwcml2YWN5IHN0YXRlbWVudCwgdGhlIGhlYWx0aCBkYXRhIHN0YXRlbWVudCwgdGhlIHRyYW5zcGFyZW5jeSBzdGF0ZW1lbnQsIHRoZSBhY2Nlc3NpYmlsaXR5IHN0YXRlbWVudCwgdGhlIHByb2Nlc3NpbmcgcmVnaXN0ZXIsIHRoZSBkYXRhIHByb3RlY3Rpb24gaW1wYWN0IGFzc2Vzc21lbnQgYW5kIHRoZSBjb29raWUgcG9saWN5LiBUaGV5IGFyZSBhdmFpbGFibGUgaW4gRHV0Y2ggYW5kIEVuZ2xpc2ggYW5kIGNhbiBiZSBzYXZlZCBhcyBQREYuIiwKICAgICAgICApLAogICAgICB9LAogICAgICB7CiAgICAgICAgdnJhYWc6IHQoIldpZSBpcyB2ZXJhbnR3b29yZGVsaWprIHZvb3IgZGUgd2Vic2l0ZT8iLCAiV2hvIGlzIHJlc3BvbnNpYmxlIGZvciB0aGUgd2Vic2l0ZT8iKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJJbiBkZSBnZWJydWlrc3Zvb3J3YWFyZGVuIGVuIGhldCB2ZXJ3ZXJraW5nc3JlZ2lzdGVyIHN0YWF0IHdpZSB2ZXJhbnR3b29yZGVsaWprIGlzIGVuIHdlbGtlIHBhcnRpamVuIGFjaHRlciBkZSBkaWVuc3RlbiB6aXR0ZW4sIG1ldCBodW4gcm9sbGVuIGVuIGRlIGJlcGVya2luZ2VuIGRhYXJ2YW4uIiwKICAgICAgICAgICJUaGUgdGVybXMgb2YgdXNlIGFuZCB0aGUgcHJvY2Vzc2luZyByZWdpc3RlciBzdGF0ZSB3aG8gaXMgcmVzcG9uc2libGUgYW5kIHdoaWNoIHBhcnRpZXMgc2l0IGJlaGluZCB0aGUgc2VydmljZXMsIHdpdGggdGhlaXIgcm9sZXMgYW5kIHRoZSBsaW1pdGF0aW9ucyB0aGVyZW9mLiIsCiAgICAgICAgKSwKICAgICAgfSwKICAgIF0sCiAgICBsaW5rOiB7IHBhZDogIi9nZWJydWlrc3Zvb3J3YWFyZGVuIiwgdGl0ZWw6IHQoIkdlYnJ1aWtzdm9vcndhYXJkZW4iLCAiVGVybXMgb2YgdXNlIikgfSwKICB9LAogIHsKICAgIGlkOiAiemlla3RlbiIsCiAgICBjb250ZXh0OiAiYmVpZGUiLAogICAgdGl0ZWw6IHQoIlppZWt0ZW4gZW4gbGFuZGVsaWprIG92ZXJ6aWNodCIsICJEaXNlYXNlcyBhbmQgbmF0aW9uYWwgb3ZlcnZpZXciKSwKICAgIHZyYWdlbjogWwogICAgICB7CiAgICAgICAgdnJhYWc6IHQoCiAgICAgICAgICAiV2FhciB2aW5kIGlrIGluZm9ybWF0aWUgb3ZlciBkb29yIHRla2VuIG92ZXJnZWRyYWdlbiB6aWVrdGVuPyIsCiAgICAgICAgICAiV2hlcmUgY2FuIEkgZmluZCBpbmZvcm1hdGlvbiBhYm91dCB0aWNrLWJvcm5lIGRpc2Vhc2VzPyIsCiAgICAgICAgKSwKICAgICAgICBhbnR3b29yZDogdCgKICAgICAgICAgICJIZXQgbGFuZGVsaWprZSBvdmVyemljaHQgYmVzY2hyaWpmdCAxMSBhYW5kb2VuaW5nZW4gZGllIG1ldCB0ZWtlbiBlbiB0ZWtlbmJldGVuIHNhbWVuaGFuZ2VuLCBtZXQgcGVyIGFhbmRvZW5pbmcgYnJvbiwgYmV3aWpzc3RhdHVzIGVuIGJlcGVya2luZ2VuLiBEZXplIGluZm9ybWF0aWUgaXMgYWxnZW1lbmUgdm9vcmxpY2h0aW5nIGVuIHN0ZWx0IGdlZW4gZGlhZ25vc2UuIiwKICAgICAgICAgICJUaGUgbmF0aW9uYWwgb3ZlcnZpZXcgZGVzY3JpYmVzIDExIGNvbmRpdGlvbnMgYXNzb2NpYXRlZCB3aXRoIHRpY2tzIGFuZCB0aWNrIGJpdGVzLCB3aXRoIHNvdXJjZSwgZXZpZGVuY2Ugc3RhdHVzIGFuZCBsaW1pdGF0aW9ucyBwZXIgY29uZGl0aW9uLiBUaGlzIGluZm9ybWF0aW9uIGlzIGdlbmVyYWwgZWR1Y2F0aW9uIGFuZCBkb2VzIG5vdCBkaWFnbm9zZS4iLAogICAgICAgICksCiAgICAgIH0sCiAgICAgIHsKICAgICAgICB2cmFhZzogdCgiS2FuIGlrIGhpZXIgZWVuIGRpYWdub3NlIGtyaWpnZW4/IiwgIkNhbiBJIGdldCBhIGRpYWdub3NpcyBoZXJlPyIpLAogICAgICAgIGFudHdvb3JkOiB0KAogICAgICAgICAgIk5lZS4gRGV6ZSB3ZWJzaXRlIGVuIGRlIGFzc2lzdGVudCBnZXZlbiBhbGxlZW4gZ2Vjb250cm9sZWVyZGUgd2Vic2l0ZS1pbmZvcm1hdGllIG92ZXIgZ2ViaWVkZW4sIGJyb25uZW4gZW4gdGVrZW5zb29ydGVuLCBnZWVuIGRpYWdub3NlLCBpbmZlY3RpZWthbnMgb2YgYmVoYW5kZWxhZHZpZXMuIiwKICAgICAgICAgICJOby4gVGhpcyB3ZWJzaXRlIGFuZCB0aGUgYXNzaXN0YW50IG9ubHkgcHJvdmlkZSByZXZpZXdlZCB3ZWJzaXRlIGluZm9ybWF0aW9uIGFib3V0IGFyZWFzLCBzb3VyY2VzIGFuZCB0aWNrIHNwZWNpZXMsIG5vdCBhIGRpYWdub3NpcywgaW5mZWN0aW9uIHByb2JhYmlsaXR5IG9yIHRyZWF0bWVudCBhZHZpY2UuIiwKICAgICAgICApLAogICAgICB9LAogICAgXSwKICAgIGxpbms6IHsKICAgICAgcGFkOiAiL3ppZWt0ZW4iLAogICAgICBrYWFydDogdHJ1ZSwKICAgICAgdGl0ZWw6IHQoIk92ZXJ6aWNodCB2YW4gYWFuZG9lbmluZ2VuIiwgIk92ZXJ2aWV3IG9mIGNvbmRpdGlvbnMiKSwKICAgIH0sCiAgfSwKXTsKZXhwb3J0IGZ1bmN0aW9uIGFzc2lzdGVudE9uZGVyd2VycGVuKGNvbnRleHQ6IEFzc2lzdGVudENvbnRleHQpIHsKICByZXR1cm4gQVNTSVNURU5UX09OREVSV0VSUEVOLmZpbHRlcigKICAgIChpdGVtKSA9PiBpdGVtLmNvbnRleHQgPT09IGNvbnRleHQgfHwgaXRlbS5jb250ZXh0ID09PSAiYmVpZGUiLAogICk7Cn0KZXhwb3J0IGZ1bmN0aW9uIGFzc2lzdGVudExpbmsob25kZXJ3ZXJwOiBBc3Npc3RlbnRPbmRlcndlcnAsIGdpZHNIb3N0OiBib29sZWFuKSB7CiAgcmV0dXJuIG9uZGVyd2VycC5saW5rLmthYXJ0ICYmIGdpZHNIb3N0CiAgICA/IGBodHRwczovL3Rla2VucmlzaWNva2FhcnQubmwke29uZGVyd2VycC5saW5rLnBhZH1gCiAgICA6IG9uZGVyd2VycC5saW5rLnBhZDsKfQo=
+import { AI_ASSISTENT_PRIVACY } from "@/data/aiVerwerking";
+
+export type AssistentContext = "kaart" | "gids";
+type Tekst = { nl: string; en: string };
+const t = (nl: string, en: string): Tekst => ({ nl, en });
+export type AssistentOnderwerp = {
+  id: string;
+  context: AssistentContext | "beide";
+  titel: Tekst;
+  vragen: { vraag: Tekst; antwoord: Tekst }[];
+  link: { pad: string; titel: Tekst; kaart?: boolean };
+};
+export const ASSISTENT_ONDERWERPEN: AssistentOnderwerp[] = [
+  {
+    id: "kaart",
+    context: "kaart",
+    titel: t("Kaartkleuren en cijfers", "Map colours and figures"),
+    vragen: [
+      {
+        vraag: t("Wat betekenen de kaartkleuren?", "What do the map colours mean?"),
+        antwoord: t(
+          "De kleuren tonen gebiedsgebonden klassen op basis van de geselecteerde gegevens. Deze kaart geeft gebiedsgebonden informatie en geen individuele medische risico-inschatting. Een hoge klasse betekent niet dat uw persoonlijke infectierisico hoog is.",
+          "Colours show area-level classes based on the selected data. This map provides area-level information, not an individual medical risk assessment. A high class does not mean that your personal infection risk is high.",
+        ),
+      },
+      {
+        vraag: t("Zijn alle cijfers vergelijkbaar?", "Are all figures comparable?"),
+        antwoord: t(
+          "Nee. Tekenbeten, ziektegevallen, onderzoekspercentages en bevestigde tekenvondsten hebben verschillende bronnen, perioden en berekeningen. De uitleg bij de kaart en bij elke bron vermeldt wat het cijfer beschrijft.",
+          "No. Tick bites, disease cases, research percentages and confirmed tick findings have different sources, time periods and calculations. The map explanation and source notes describe what each figure represents.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/?tab=help#help-kaartkleuren",
+      kaart: true,
+      titel: t("Uitleg over kaartklassen", "Map class explanation"),
+    },
+  },
+  {
+    id: "gebieden",
+    context: "kaart",
+    titel: t("Provincies en gemeenten", "Provinces and municipalities"),
+    vragen: [
+      {
+        vraag: t(
+          "Waar vind ik mijn provincie of gemeente?",
+          "Where can I find my province or municipality?",
+        ),
+        antwoord: t(
+          "Provincies en Gemeenten tonen de beschikbare gebiedscijfers. De zoekbalk zoekt ook op plaatsnamen. De cijfers beschrijven het gebied, niet uw persoonlijke situatie.",
+          "Provinces and Municipalities show available area figures. The search bar also accepts place names. Figures describe the area, not your personal situation.",
+        ),
+      },
+      {
+        vraag: t("Wat betekent een TBE-vindplaats?", "What does a TBE finding location mean?"),
+        antwoord: t(
+          "Een bekende TBE-vindplaats is een locatie waarvoor de vermelde bron bewijs beschrijft. Niet elke menselijke melding is opgelopen in de woonprovincie. Geen vermelde vindplaats betekent niet dat TBE is uitgesloten.",
+          "A known TBE finding location is a location for which the cited source describes evidence. Human cases were not necessarily acquired in the province of residence. No listed finding does not rule out TBE.",
+        ),
+      },
+    ],
+    link: { pad: "/?tab=gem", kaart: true, titel: t("Gemeenten bekijken", "View municipalities") },
+  },
+  {
+    id: "meldingen",
+    context: "kaart",
+    titel: t("Tekenmeldingen", "Tick reports"),
+    vragen: [
+      {
+        vraag: t("Wat betekenen de D- en H-stippen?", "What do the D and H dots mean?"),
+        antwoord: t(
+          "D staat voor Vlekkenteek en H voor Reuzenteek. Een stip toont een bevestigde historische vondst, met een locatie bij benadering en een bron. Het is geen aantal teken, ziektegeval of live overzicht. Rode TBE-stippen tonen bekende TBE-vindplaatsen.",
+          "D indicates the ornate dog tick and H the giant tick. A dot shows a confirmed historical finding with an approximate location and source. It is not a tick count, disease case or live overview. Red TBE dots show known TBE finding locations.",
+        ),
+      },
+      {
+        vraag: t("Waar kan ik een bijzondere teek melden?", "Where can I report an unusual tick?"),
+        antwoord: t(
+          "Bij de soorten in Tekenmeldingen staat een koppeling naar het officiële NVWA-meldformulier. De NVWA verzamelt meldingen om de verspreiding van deze tekensoorten te volgen.",
+          "Species entries in Tick reports link to the official NVWA reporting form. The NVWA collects reports to monitor the distribution of these tick species.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/?tab=tekenmeldingen",
+      kaart: true,
+      titel: t("Tekenmeldingen bekijken", "View tick reports"),
+    },
+  },
+  {
+    id: "gids",
+    context: "gids",
+    titel: t("Vragenlijst en overzicht", "Questionnaire and record"),
+    vragen: [
+      {
+        vraag: t("Wat doet TekenbeetGids?", "What does Tick Bite Guide do?"),
+        antwoord: t(
+          "De gids ordent feitelijke informatie die u zelf invult over een tekenbeet en het verloop daarvan. Het overzicht is voor uzelf of om met een arts te delen. De gids stelt geen diagnose, bepaalt geen urgentie en adviseert geen behandeling.",
+          "The guide organises factual information you enter about a tick bite and its course. The record is for you or to share with a doctor. The guide does not diagnose, determine urgency or recommend treatment.",
+        ),
+      },
+      {
+        vraag: t(
+          "Kan ik de gids zonder onderzoek gebruiken?",
+          "Can I use the guide without joining research?",
+        ),
+        antwoord: t(
+          "Ja. Onderzoeksdeelname is vrijwillig en vraagt afzonderlijke, uitdrukkelijke toestemming. U kunt uw overzicht en PDF gebruiken zonder aan onderzoek mee te doen.",
+          "Yes. Research participation is voluntary and requires separate, explicit consent. You can use your record and PDF without joining research.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/?tab=help#help-tekenbeetgids",
+      kaart: true,
+      titel: t("Uitleg over de gids", "Guide explanation"),
+    },
+  },
+  {
+    id: "foto",
+    context: "gids",
+    titel: t("Foto’s en AI-vergelijking", "Photos and AI comparison"),
+    vragen: [
+      {
+        vraag: t("Wanneer wordt mijn foto verstuurd?", "When is my photo sent?"),
+        antwoord: t(
+          "Een gekozen foto blijft lokaal totdat u een optionele AI-scan start en de aparte bevestiging voor verwerking door Google (verwerker, met verwerkersovereenkomst) accepteert. Alleen het openen of annuleren van die bevestiging verstuurt geen foto. Onderzoekstoestemming staat hier los van.",
+          "A selected photo stays local until you start an optional AI scan and accept the separate confirmation for processing by Google (processor, under a data processing agreement). Opening or cancelling that confirmation does not send a photo. Research consent is separate.",
+        ),
+      },
+      {
+        vraag: t("Geeft de vergelijking een diagnose?", "Does the comparison give a diagnosis?"),
+        antwoord: t(
+          "Nee. De vergelijking beschrijft zichtbare kenmerken of een mogelijke tekensoort met vaste uitkomsten. Ze stelt geen diagnose en bepaalt geen infectiekans of behandeling. Foto’s gaan niet naar het onderzoek. Wij gebruiken foto’s en scanuitkomsten zelf niet voor AI-training; de externe voorwaarden worden afzonderlijk beoordeeld.",
+          "No. Comparison describes visible features or a possible tick species using fixed outcomes. It does not diagnose or determine infection probability or treatment. Photos are excluded from research. We do not use photos or scan results ourselves for AI training; external terms are assessed separately.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/transparantieverklaring",
+      titel: t("Transparantie en AI-gebruik", "Transparency and AI use"),
+    },
+  },
+  {
+    id: "pdf",
+    context: "gids",
+    titel: t("PDF en afdrukken", "PDF and printing"),
+    vragen: [
+      {
+        vraag: t("Waar vind ik mijn PDF?", "Where can I find my PDF?"),
+        antwoord: t(
+          "De PDF- en afdrukknoppen staan bij uw overzicht in de gids. Het document wordt op uw toestel gemaakt; u kiest zelf of u het opslaat, afdrukt of deelt.",
+          "PDF and print controls are available with your record in the guide. The document is generated on your device; you choose whether to save, print or share it.",
+        ),
+      },
+      {
+        vraag: t(
+          "Blijven foto’s beschikbaar voor een tweede PDF?",
+          "Are photos available for a second PDF?",
+        ),
+        antwoord: t(
+          "Foto’s bij het tussentijdse overzicht blijven tijdelijk in het geheugen van de app voor bekijken en herhaalde PDF-exports, totdat u de gids opnieuw begint. Ze worden niet duurzaam door de app opgeslagen. Een PDF die u zelf bewaart kan de foto’s wel bevatten.",
+          "Photos in the interim record remain temporarily in app memory for viewing and repeat PDF exports until you restart the guide. The app does not store them durably. A PDF you save yourself may contain the photos.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/?tab=help#help-tekenbeetgids",
+      kaart: true,
+      titel: t("Uitleg over overzicht en PDF", "Record and PDF explanation"),
+    },
+  },
+  {
+    id: "onderzoek",
+    context: "beide",
+    titel: t("Onderzoek en intrekken", "Research and withdrawal"),
+    vragen: [
+      {
+        vraag: t("Welke gegevens gaan naar onderzoek?", "Which data is used for research?"),
+        antwoord: t(
+          "Alleen na uw afzonderlijke uitdrukkelijke toestemming worden de ingevulde onderzoeksgegevens gepseudonimiseerd opgeslagen. Foto’s gaan niet mee. Gepseudonimiseerd is niet hetzelfde als volledig anoniem. De privacyverklaring beschrijft de opslag en uw rechten.",
+          "Only after your separate explicit consent are the entered research data stored in pseudonymised form. Photos are excluded. Pseudonymised is not the same as fully anonymous. The privacy statement describes storage and your rights.",
+        ),
+      },
+      {
+        vraag: t("Hoe trek ik mijn deelname in?", "How do I withdraw my participation?"),
+        antwoord: t(
+          "Gebruik het intrekformulier onder Help bij Deelnemen aan onderzoek. U hebt uw deelnamenummer en persoonlijke intrekcode nodig. Zonder code volgt handmatige controle via het contactformulier. Intrekken verwijdert geen gegevens uit al gemaakte versleutelde back-ups; die verdwijnen wanneer de back-ups verlopen.",
+          "Use the withdrawal form under Help in Research participation. You need your participant number and personal withdrawal code. Without the code, manual verification through the contact form is required. Withdrawal does not remove data from existing encrypted backups; they disappear when those backups expire.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/?tab=help#help-onderzoek",
+      kaart: true,
+      titel: t("Onderzoek en intrekformulier", "Research and withdrawal form"),
+    },
+  },
+  {
+    id: "privacy",
+    context: "beide",
+    titel: t("Privacy en contact", "Privacy and contact"),
+    vragen: [
+      {
+        vraag: t("Kan deze assistent mijn gegevens zien?", "Can this assistant see my data?"),
+        antwoord: t(
+          `Deze informatieassistent heeft geen toegang tot uw ingevulde gidsantwoorden, foto’s of onderzoeksgegevens. ${AI_ASSISTENT_PRIVACY.nl} Stuur geen medische of persoonlijke gegevens mee.`,
+          `This information assistant has no access to your guide answers, photos or research data. ${AI_ASSISTENT_PRIVACY.en} Please do not include medical or personal data.`,
+        ),
+      },
+      {
+        vraag: t(
+          "Waar kan ik een vraag of correctie doorgeven?",
+          "Where can I send a question or correction?",
+        ),
+        antwoord: t(
+          "Het contactformulier staat onder Help. Stuur geen medische gegevens, klachten of symptomen, diagnoses, medicatie of onderzoeksbestanden mee. Privacyverzoeken kunt u daar ook indienen; de privacyverklaring beschrijft uw rechten.",
+          "The contact form is under Help. Please do not include medical data, complaints or symptoms, diagnoses, medication or research files. You can also submit privacy requests there; the privacy statement describes your rights.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/?tab=help#help-contact",
+      kaart: true,
+      titel: t("Contactformulier", "Contact form"),
+    },
+  },
+  {
+    id: "bronnen",
+    context: "beide",
+    titel: t("Bronnen en verantwoording", "Sources and accountability"),
+    vragen: [
+      {
+        vraag: t("Waar komt de informatie vandaan?", "Where does the information come from?"),
+        antwoord: t(
+          "De website verwijst naar openbare bronnen en wetenschappelijke publicaties. Bron, periode en beperkingen worden bij de gegevens uitgelegd. De gedeelde bronverantwoording staat in de transparantieverklaring.",
+          "The website refers to public sources and scientific publications. Sources, time periods and limitations are explained alongside the data. Shared source accountability is available in the transparency statement.",
+        ),
+      },
+      {
+        vraag: t(
+          "Garandeert automatische controle dat alles klopt?",
+          "Does automatic checking guarantee accuracy?",
+        ),
+        antwoord: t(
+          "Nee. Automatische controles kunnen veranderingen en technische problemen signaleren, maar vervangen geen inhoudelijke beoordeling. Een bereikbaar bronadres betekent niet dat alle informatie actueel of volledig is.",
+          "No. Automatic checks can flag changes and technical issues, but do not replace a content review. A reachable source address does not mean that all information is current or complete.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/transparantieverklaring",
+      titel: t("Bronnen en transparantie", "Sources and transparency"),
+    },
+  },
+  {
+    id: "website",
+    context: "beide",
+    titel: t("Zo werkt de website", "How the website works"),
+    vragen: [
+      {
+        vraag: t("Wat kan ik op deze website vinden?", "What can I find on this website?"),
+        antwoord: t(
+          "De website heeft twee delen: TekenRisicoKaart met gebiedsgebonden kaartinformatie over teken, tekenbeten en tekensoorten, en TekenbeetGids met een educatieve vragenlijst en logboek na een tekenbeet. Onder Help staat uitleg per onderdeel. Deze kaart geeft gebiedsgebonden informatie en geen individuele medische risico-inschatting.",
+          "The website has two parts: TekenRisicoKaart with area-level map information about ticks, tick bites and tick species, and TekenbeetGids with an educational questionnaire and record after a tick bite. Help explains each part. This map provides area-level information, not an individual medical risk assessment.",
+        ),
+      },
+      {
+        vraag: t(
+          "Hoe wissel ik tussen Nederlands en Engels?",
+          "How do I switch between Dutch and English?",
+        ),
+        antwoord: t(
+          "Met de taalknop bovenin wisselt u tussen Nederlands en Engels. Als u bij de cookievoorkeuren voorkeuren laat onthouden, blijft uw taalkeuze bewaard voor uw volgende bezoek.",
+          "Use the language button at the top to switch between Dutch and English. If you allow remembering preferences in the cookie preferences, your language choice is kept for your next visit.",
+        ),
+      },
+    ],
+    link: { pad: "/?tab=help", kaart: true, titel: t("Uitleg onder Help", "Explanation under Help") },
+  },
+  {
+    id: "cookies",
+    context: "beide",
+    titel: t("Cookies en voorkeuren", "Cookies and preferences"),
+    vragen: [
+      {
+        vraag: t("Welke cookiekeuzes kan ik maken?", "Which cookie choices can I make?"),
+        antwoord: t(
+          "In de cookievoorkeuren kiest u tussen: strikt noodzakelijk (altijd aan), voorkeuren onthouden en statistieken. Het scherm opent bij uw eerste bezoek. Dit gesprek met de assistent valt buiten die keuzes: het wordt niet in uw browser opgeslagen.",
+          "In the cookie preferences you choose between: strictly necessary (always on), remember preferences and statistics. The screen opens on your first visit. This assistant conversation falls outside those choices: it is not stored in your browser.",
+        ),
+      },
+      {
+        vraag: t("Kan ik mijn keuze later wijzigen?", "Can I change my choice later?"),
+        antwoord: t(
+          "Ja. Met het ronde schildknopje linksonder in beeld opent u de cookievoorkeuren opnieuw en past u uw keuze aan. Het cookiebeleid beschrijft wat elke categorie doet.",
+          "Yes. The round shield button in the bottom-left corner opens the cookie preferences again, where you can adjust your choice. The cookie policy describes what each category does.",
+        ),
+      },
+    ],
+    link: { pad: "/cookiebeleid", titel: t("Cookiebeleid", "Cookie policy") },
+  },
+  {
+    id: "verklaringen",
+    context: "beide",
+    titel: t("Voorwaarden en verklaringen", "Terms and statements"),
+    vragen: [
+      {
+        vraag: t("Welke documenten zijn er?", "Which documents are available?"),
+        antwoord: t(
+          "De gebruiksvoorwaarden, de privacyverklaring, de verklaring over gezondheidsgegevens, de transparantieverklaring, de toegankelijkheidsverklaring, het verwerkingsregister, de gegevensbeschermingseffectbeoordeling en het cookiebeleid. Ze zijn in het Nederlands en Engels beschikbaar en u kunt ze als PDF opslaan.",
+          "Terms of use, the privacy statement, the health data statement, the transparency statement, the accessibility statement, the processing register, the data protection impact assessment and the cookie policy. They are available in Dutch and English and can be saved as PDF.",
+        ),
+      },
+      {
+        vraag: t("Wie is verantwoordelijk voor de website?", "Who is responsible for the website?"),
+        antwoord: t(
+          "In de gebruiksvoorwaarden en het verwerkingsregister staat wie verantwoordelijk is en welke partijen achter de diensten zitten, met hun rollen en de beperkingen daarvan.",
+          "The terms of use and the processing register state who is responsible and which parties sit behind the services, with their roles and the limitations thereof.",
+        ),
+      },
+    ],
+    link: { pad: "/gebruiksvoorwaarden", titel: t("Gebruiksvoorwaarden", "Terms of use") },
+  },
+  {
+    id: "ziekten",
+    context: "beide",
+    titel: t("Ziekten en landelijk overzicht", "Diseases and national overview"),
+    vragen: [
+      {
+        vraag: t(
+          "Waar vind ik informatie over door teken overgedragen ziekten?",
+          "Where can I find information about tick-borne diseases?",
+        ),
+        antwoord: t(
+          "Het landelijke overzicht beschrijft 11 aandoeningen die met teken en tekenbeten samenhangen, met per aandoening bron, bewijsstatus en beperkingen. Deze informatie is algemene voorlichting en stelt geen diagnose.",
+          "The national overview describes 11 conditions associated with ticks and tick bites, with source, evidence status and limitations per condition. This information is general education and does not diagnose.",
+        ),
+      },
+      {
+        vraag: t("Kan ik hier een diagnose krijgen?", "Can I get a diagnosis here?"),
+        antwoord: t(
+          "Nee. Deze website en de assistent geven alleen gecontroleerde website-informatie over gebieden, bronnen en tekensoorten, geen diagnose, infectiekans of behandeladvies.",
+          "No. This website and the assistant only provide reviewed website information about areas, sources and tick species, not a diagnosis, infection probability or treatment advice.",
+        ),
+      },
+    ],
+    link: {
+      pad: "/ziekten",
+      kaart: true,
+      titel: t("Overzicht van aandoeningen", "Overview of conditions"),
+    },
+  },
+];
+export function assistentOnderwerpen(context: AssistentContext) {
+  return ASSISTENT_ONDERWERPEN.filter(
+    (item) => item.context === context || item.context === "beide",
+  );
+}
+export function assistentLink(onderwerp: AssistentOnderwerp, gidsHost: boolean) {
+  return onderwerp.link.kaart && gidsHost
+    ? `https://tekenrisicokaart.nl${onderwerp.link.pad}`
+    : onderwerp.link.pad;
+}
