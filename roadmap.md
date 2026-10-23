@@ -1,6 +1,6 @@
 # Roadmap
 
-- [x] Bij beide scans afzonderlijke bevestiging vóór overname in gidsvragen (NL/EN); annuleren, weigeren met handmatige invoer, bevestigen en wissen van oude soortovername in browser gecontroleerd met onderschepte proefscans zonder externe verzending/opslag. Acht tests geslaagd, build OK. Niet gepubliceerd.
+- [x] Bij beide scans afzonderlijke bevestiging vóór overname in gidsvragen (NL/EN); annuleren, weigeren met handmatige invoer, bevestigen en wissen van oude soortovername in browser gecontroleerd met onderschepte proefscans zonder externe verzending/opslag. Acht tests geslaagd, build OK. Gepubliceerd 23 oktober 2026 09:52 UTC op tekenbeetgids.nl en tekenrisicokaart.nl en via commit 1f07cc0c7 naar Cloud Run overgenomen (workflow run 29 geslaagd).
 
 - [x] Afzonderlijke persoonlijke limieten voor teek- en beetplekscans ingevoerd; beide volgordes getest (2 tests geslaagd, build OK); gezamenlijk kostenplafond behouden. Gepubliceerd 23 oktober 2026 08:52 UTC en via commit 0ce8d34c1 naar Cloud Run overgenomen (workflow geslaagd, backend-status ok).
 - [x] Gebruiker bevestigt deelnamebewijs opslaan/printen op iPhone en ontvangst van de e-mailmelding.
