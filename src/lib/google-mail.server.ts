@@ -26,13 +26,20 @@ async function mailToken(): Promise<string> {
   return ((await tok.json()) as { access_token: string }).access_token;
 }
 
-export async function verstuurViaGoogle(aan: string, onderwerp: string, tekst: string) {
-  if (process.env["APP_HOSTING"] !== "cloud-run") throw new Error("alleen-op-google");
+export const googleMailBeschikbaar = () => process.env["APP_HOSTING"] === "cloud-run";
+
+/** Verstuurt een volledig RFC 2822-bericht (zonder From-regel) als noreply via Google. */
+export async function verstuurRuwViaGoogle(rawZonderFrom: string) {
+  if (!googleMailBeschikbaar()) throw new Error("alleen-op-google");
   const token = await mailToken();
-  const raw = [`From: TekenbeetGids <${AFZENDER}>`, `To: ${aan}`, `Subject: ${hdr(onderwerp)}`, "MIME-Version: 1.0", 'Content-Type: text/plain; charset="UTF-8"', "Content-Transfer-Encoding: base64", "", b64(tekst)].join("\r\n");
+  const raw = `From: TekenbeetGids <${AFZENDER}>\r\n${rawZonderFrom}`;
   const r = await fetch("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {
     method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({ raw: b64(raw).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "") }),
   });
   if (!r.ok) throw new Error(`gmail ${r.status}: ${(await r.text()).slice(0, 300)}`);
+}
+
+export async function verstuurViaGoogle(aan: string, onderwerp: string, tekst: string) {
+  await verstuurRuwViaGoogle([`To: ${aan}`, `Subject: ${hdr(onderwerp)}`, "MIME-Version: 1.0", 'Content-Type: text/plain; charset="UTF-8"', "Content-Transfer-Encoding: base64", "", b64(tekst)].join("\r\n"));
 }
