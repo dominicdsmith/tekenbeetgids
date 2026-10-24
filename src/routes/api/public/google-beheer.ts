@@ -13,6 +13,23 @@ export const Route = createFileRoute("/api/public/google-beheer")({
       if (tekst.length > 200) return Response.json({ ok: false }, { status: 413, headers });
       let actie = "";
       try { actie = tekst ? String((JSON.parse(tekst) as { actie?: unknown }).actie ?? "") : ""; } catch { actie = ""; }
+      if (actie === "testmail") {
+        try {
+          const { verifieerGoogleBeheer } = await import("@/lib/google-beheer-auth.server");
+          await verifieerGoogleBeheer(request);
+        } catch {
+          return Response.json({ ok: false, message: "Geen Google-beheertoegang." }, { status: 401, headers });
+        }
+        try {
+          const { verstuurViaGoogle } = await import("@/lib/google-mail.server");
+          await verstuurViaGoogle("ddsmith@dominicsmith.nl", "Testmail TekenbeetGids via Google", "Dit is een testmail, verstuurd door de website bij Google als noreply@tekenbeetgids.nl.\r\n\r\nU hoeft niets te doen.");
+          return Response.json({ ok: true, message: "Testmail verstuurd naar uw beheeradres." }, { headers });
+        } catch (e) {
+          const m = e instanceof Error ? e.message : String(e);
+          console.error("[google-beheer] testmail:", m);
+          return Response.json({ ok: false, message: m === "alleen-op-google" ? "Testmail werkt alleen op de website bij Google (tekenbeetgids.nl)." : `Testmail mislukt: ${m.split(":")[0]}` }, { status: 502, headers });
+        }
+      }
       const backend = process.env["CLOUD_BACKEND_URL"];
       if (actie && backend) {
         // Cloud Run: stuur door naar de Lovable-omgeving, die het Google-token zelf opnieuw controleert.
