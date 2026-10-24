@@ -1,6 +1,22 @@
 const GATEWAY = "https://connector-gateway.lovable.dev/google_mail/gmail/v1";
 const ONTVANGER = "noreply@tekenbeetgids.nl";
 
+// Op Google (Cloud Run) eerst via Workspace-delegatie; mislukt dat, dan de bestaande koppeling.
+async function verstuurRuw(raw: string, lovableKey?: string, gmailKey?: string): Promise<{ ok: boolean; status: number; text: () => Promise<string> }> {
+  const g = await import("./google-mail.server");
+  if (g.googleMailBeschikbaar()) {
+    try { await g.verstuurRuwViaGoogle(raw); return { ok: true, status: 200, text: async () => "" }; }
+    catch (e) { console.error("google-mail mislukt, val terug:", e instanceof Error ? e.message.slice(0, 120) : e); }
+  }
+  if (!lovableKey || !gmailKey) return { ok: false, status: 0, text: async () => "Gmail-koppeling ontbreekt" };
+  return fetch(`${GATEWAY}/users/me/messages/send`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${lovableKey}`, "X-Connection-Api-Key": gmailKey, "Content-Type": "application/json" },
+    body: JSON.stringify({ raw: base64url(new TextEncoder().encode(raw)) }),
+  });
+}
+
+
 function base64url(bytes: Uint8Array) {
   let bin = "";
   for (const b of bytes) bin += String.fromCharCode(b);
@@ -26,10 +42,6 @@ export async function verstuurContactMail(bericht: {
 }) {
   const lovableKey = process.env["LOVABLE_API_KEY"];
   const gmailKey = process.env["GOOGLE_MAIL_API_KEY"];
-  if (!lovableKey || !gmailKey) {
-    console.error("contact-mail: Gmail-koppeling ontbreekt");
-    return false;
-  }
 
   const beheerBody = [
     `Nieuw bericht via het contactformulier van TekenRisicoKaart.`,
@@ -103,15 +115,7 @@ export async function verstuurContactMail(bericht: {
     base64url(new TextEncoder().encode(bevestigingBody)).replace(/-/g, "+").replace(/_/g, "/"),
   ].join("\r\n");
 
-  const verstuur = async (raw: string) => fetch(`${GATEWAY}/users/me/messages/send`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${lovableKey}`,
-      "X-Connection-Api-Key": gmailKey,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ raw: base64url(new TextEncoder().encode(raw)) }),
-  });
+  const verstuur = (raw: string) => verstuurRuw(raw, lovableKey, gmailKey);
 
   try {
     const beheerRes = await verstuur(beheerRaw);
@@ -137,7 +141,6 @@ export async function verstuurContactMail(bericht: {
 export async function verstuurBeheerMelding(onderwerp: string, regels: string[]) {
   const lovableKey = process.env["LOVABLE_API_KEY"];
   const gmailKey = process.env["GOOGLE_MAIL_API_KEY"];
-  if (!lovableKey || !gmailKey) return false;
   const body = [...regels, ``, `— Automatische melding van tekenrisicokaart.nl`].join("\r\n");
   const raw = [
     `To: ${ONTVANGER}`,
@@ -149,11 +152,7 @@ export async function verstuurBeheerMelding(onderwerp: string, regels: string[])
     base64url(new TextEncoder().encode(body)).replace(/-/g, "+").replace(/_/g, "/"),
   ].join("\r\n");
   try {
-    const res = await fetch(`${GATEWAY}/users/me/messages/send`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${lovableKey}`, "X-Connection-Api-Key": gmailKey, "Content-Type": "application/json" },
-      body: JSON.stringify({ raw: base64url(new TextEncoder().encode(raw)) }),
-    });
+    const res = await verstuurRuw(raw, lovableKey, gmailKey);
     if (!res.ok) console.error(`beheermelding mislukt [${res.status}]`);
     return res.ok;
   } catch (e) {
