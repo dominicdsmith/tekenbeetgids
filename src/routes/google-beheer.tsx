@@ -1,9 +1,52 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { ShieldCheck, LogIn, LogOut, Save } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ShieldCheck, LogIn, LogOut, Save, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { User } from "firebase/auth";
+import type { TaakStatus } from "@/lib/google-taakstatus";
+
+const TAAKNAMEN: Record<string, string> = {
+  "backup-export-wekelijks": "Wekelijkse back-up",
+  "beveiligingsscan-dagelijks": "Beveiligingsscan",
+  "databroncontrole-dagelijks": "Broncontrole en melding",
+  "opschonen-oude-gegevens": "Opschonen oude gegevens",
+  "rivm-sync-dagelijks": "RIVM-cijfers bijwerken",
+  "tbe-activiteit-sync-dagelijks": "TBE-activiteit bijwerken",
+  "taakstatus-google-elk-uur": "Taakstatus naar Google",
+};
+const OORDEEL: Record<TaakStatus["oordeel"], string> = { ok: "Geslaagd", fout: "Fout", inactief: "Uitgeschakeld", onbekend: "Nog niet gedraaid" };
+const tijd = (v: string | null) => v ? new Date(v).toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam", dateStyle: "short", timeStyle: "short" }) : "—";
+
+function Taakstatus({ user }: { user: User }) {
+  const [taken, setTaken] = useState<TaakStatus[] | null>(null);
+  const [fout, setFout] = useState("");
+  const [bezig, setBezig] = useState(false);
+  async function laad(actie: "taken" | "taken-vernieuwen") {
+    setBezig(true); setFout("");
+    try {
+      const token = await user.getIdToken();
+      const r = await fetch("/api/public/google-beheer", { method: "POST", cache: "no-store", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ actie }) });
+      const j = await r.json() as { ok: boolean; taken?: TaakStatus[]; message?: string };
+      if (!r.ok || !j.ok) throw new Error(j.message ?? "Taakstatus niet beschikbaar.");
+      setTaken(j.taken ?? []);
+    } catch (e) { setFout(e instanceof Error ? e.message : "Taakstatus niet beschikbaar."); }
+    finally { setBezig(false); }
+  }
+  useEffect(() => { void laad("taken"); }, [user]);
+  const fouten = taken?.filter(t => t.oordeel === "fout").length ?? 0;
+  return <section className="mt-8 border-t border-border pt-6">
+    <div className="mb-3 flex items-center justify-between gap-3"><h2 className="text-lg font-semibold">Automatische taken</h2><Button size="sm" variant="outline" disabled={bezig} onClick={() => void laad("taken-vernieuwen")}><RefreshCw />Vernieuwen</Button></div>
+    <p className="mb-4 text-sm text-muted-foreground">De taken draaien nog in de huidige omgeving; hun status wordt elk uur bij Google vastgelegd. Vernieuwen leest de status opnieuw uit, zonder taken te starten.</p>
+    {fout && <p role="alert" className="mb-3 text-sm text-destructive">{fout}</p>}
+    {taken && <p role="status" className="mb-3 text-sm">{fouten ? `${fouten} taak/taken met fouten.` : "Geen fouten gevonden."}</p>}
+    {taken && <ul className="space-y-3">{taken.map(t => <li key={t.taak} className="rounded-md border border-border p-3 text-sm">
+      <div className="flex justify-between gap-2"><span className="font-medium">{TAAKNAMEN[t.taak] ?? t.taak}</span><span className={t.oordeel === "fout" ? "font-semibold text-destructive" : "text-primary"}>{OORDEEL[t.oordeel]}</span></div>
+      <div className="mt-1 text-muted-foreground">Laatst gestart: {tijd(t.laatsteStart)} · 7 dagen: {t.runs7d} keer, {t.mislukt7d} mislukt</div>
+    </li>)}</ul>}
+    {taken?.[0]?.bijgewerkt && <p className="mt-3 text-xs text-muted-foreground">Bij Google vastgelegd: {tijd(taken[0].bijgewerkt)}</p>}
+  </section>;
+}
 
 export const Route = createFileRoute("/google-beheer")({
   component: GoogleBeheer,
@@ -68,7 +111,7 @@ function GoogleBeheer() {
   return <main className="mx-auto max-w-xl px-4 py-8 text-foreground">
     <header className="mb-6 border-b border-border pb-5"><div className="flex items-center gap-3"><ShieldCheck className="size-6 text-primary" /><h1 className="text-2xl font-semibold">Google-beheer</h1></div></header>
     {!user ? <><p className="mb-5 text-sm">Afzonderlijke beheerlogin. Uw bestaande login blijft ongewijzigd. Uw naam en profielfoto worden bij Google bewaard.</p><Button onClick={() => void login()} disabled={busy}><LogIn />Inloggen met Google</Button></>
-      : <section><h2 className="mb-4 text-lg font-semibold">Beheerprofiel</h2><label htmlFor="google-profielnaam" className="mb-2 block text-sm">Naam</label><Input id="google-profielnaam" maxLength={100} value={naam} onChange={e => setNaam(e.target.value)} /><div className="mt-4 flex flex-wrap gap-3"><Button disabled={busy || !naam.trim()} onClick={() => void save()}><Save />Profiel opslaan</Button><Button disabled={busy} variant="outline" onClick={() => void logout()}><LogOut />Uitloggen</Button></div><p className="mt-4 text-sm">Google-beheertoegang gecontroleerd. Deze aparte pagina wijzigt geen onderzoeksadministratie.</p></section>}
+      : <><section><h2 className="mb-4 text-lg font-semibold">Beheerprofiel</h2><label htmlFor="google-profielnaam" className="mb-2 block text-sm">Naam</label><Input id="google-profielnaam" maxLength={100} value={naam} onChange={e => setNaam(e.target.value)} /><div className="mt-4 flex flex-wrap gap-3"><Button disabled={busy || !naam.trim()} onClick={() => void save()}><Save />Profiel opslaan</Button><Button disabled={busy} variant="outline" onClick={() => void logout()}><LogOut />Uitloggen</Button></div><p className="mt-4 text-sm">Google-beheertoegang gecontroleerd. Deze aparte pagina wijzigt geen onderzoeksadministratie.</p></section><Taakstatus user={user} /></>}
     {busy && <p role="status" className="mt-4 text-sm">Verwerken…</p>}
     {fout && <p role="alert" className="mt-4 text-sm text-destructive">{fout}</p>}
     {melding && <p role="status" className="mt-4 text-sm">{melding}</p>}

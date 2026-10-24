@@ -43,6 +43,7 @@ import { Route as ApiPublicHooksBackupExportRouteImport } from './routes/api/pub
 import { Route as ApiPublicHooksBeveiligingsscanRouteImport } from './routes/api/public/hooks/beveiligingsscan'
 import { Route as ApiPublicHooksDataControleRouteImport } from './routes/api/public/hooks/data-controle'
 import { Route as ApiPublicHooksGoogleBackupExportRouteImport } from './routes/api/public/hooks/google-backup-export'
+import { Route as ApiPublicHooksTaakstatusGoogleRouteImport } from './routes/api/public/hooks/taakstatus-google'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -227,6 +228,12 @@ const ApiPublicHooksGoogleBackupExportRoute =
     path: '/api/public/hooks/google-backup-export',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicHooksTaakstatusGoogleRoute =
+  ApiPublicHooksTaakstatusGoogleRouteImport.update({
+    id: '/api/public/hooks/taakstatus-google',
+    path: '/api/public/hooks/taakstatus-google',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -262,6 +269,7 @@ export interface FileRoutesByFullPath {
   '/api/public/hooks/beveiligingsscan': typeof ApiPublicHooksBeveiligingsscanRoute
   '/api/public/hooks/data-controle': typeof ApiPublicHooksDataControleRoute
   '/api/public/hooks/google-backup-export': typeof ApiPublicHooksGoogleBackupExportRoute
+  '/api/public/hooks/taakstatus-google': typeof ApiPublicHooksTaakstatusGoogleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -297,6 +305,7 @@ export interface FileRoutesByTo {
   '/api/public/hooks/beveiligingsscan': typeof ApiPublicHooksBeveiligingsscanRoute
   '/api/public/hooks/data-controle': typeof ApiPublicHooksDataControleRoute
   '/api/public/hooks/google-backup-export': typeof ApiPublicHooksGoogleBackupExportRoute
+  '/api/public/hooks/taakstatus-google': typeof ApiPublicHooksTaakstatusGoogleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -334,6 +343,7 @@ export interface FileRoutesById {
   '/api/public/hooks/beveiligingsscan': typeof ApiPublicHooksBeveiligingsscanRoute
   '/api/public/hooks/data-controle': typeof ApiPublicHooksDataControleRoute
   '/api/public/hooks/google-backup-export': typeof ApiPublicHooksGoogleBackupExportRoute
+  '/api/public/hooks/taakstatus-google': typeof ApiPublicHooksTaakstatusGoogleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -371,6 +381,7 @@ export interface FileRouteTypes {
     | '/api/public/hooks/beveiligingsscan'
     | '/api/public/hooks/data-controle'
     | '/api/public/hooks/google-backup-export'
+    | '/api/public/hooks/taakstatus-google'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -406,6 +417,7 @@ export interface FileRouteTypes {
     | '/api/public/hooks/beveiligingsscan'
     | '/api/public/hooks/data-controle'
     | '/api/public/hooks/google-backup-export'
+    | '/api/public/hooks/taakstatus-google'
   id:
     | '__root__'
     | '/'
@@ -442,6 +454,7 @@ export interface FileRouteTypes {
     | '/api/public/hooks/beveiligingsscan'
     | '/api/public/hooks/data-controle'
     | '/api/public/hooks/google-backup-export'
+    | '/api/public/hooks/taakstatus-google'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -473,6 +486,7 @@ export interface RootRouteChildren {
   ApiPublicHooksBeveiligingsscanRoute: typeof ApiPublicHooksBeveiligingsscanRoute
   ApiPublicHooksDataControleRoute: typeof ApiPublicHooksDataControleRoute
   ApiPublicHooksGoogleBackupExportRoute: typeof ApiPublicHooksGoogleBackupExportRoute
+  ApiPublicHooksTaakstatusGoogleRoute: typeof ApiPublicHooksTaakstatusGoogleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -715,6 +729,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicHooksGoogleBackupExportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/taakstatus-google': {
+      id: '/api/public/hooks/taakstatus-google'
+      path: '/api/public/hooks/taakstatus-google'
+      fullPath: '/api/public/hooks/taakstatus-google'
+      preLoaderRoute: typeof ApiPublicHooksTaakstatusGoogleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -772,6 +793,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicHooksBeveiligingsscanRoute: ApiPublicHooksBeveiligingsscanRoute,
   ApiPublicHooksDataControleRoute: ApiPublicHooksDataControleRoute,
   ApiPublicHooksGoogleBackupExportRoute: ApiPublicHooksGoogleBackupExportRoute,
+  ApiPublicHooksTaakstatusGoogleRoute: ApiPublicHooksTaakstatusGoogleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

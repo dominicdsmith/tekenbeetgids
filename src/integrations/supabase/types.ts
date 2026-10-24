@@ -704,6 +704,19 @@ export type Database = {
           uitgevoerd_op: string
         }[]
       }
+      taakstatus_overzicht: {
+        Args: never
+        Returns: {
+          actief: boolean
+          laatste_einde: string
+          laatste_start: string
+          laatste_status: string
+          mislukt_7d: number
+          runs_7d: number
+          schema_cron: string
+          taak: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
