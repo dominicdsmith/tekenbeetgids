@@ -36,6 +36,8 @@ describe("Google intrekkingsbeveiliging", () => {
   it("bewaart in het intrekkingsdocument geen rapport of persoonlijke inhoud", async () => {
     let body: unknown;
     await markeerIntrekking(async (_path, init) => { body = JSON.parse(String(init?.body)); return {}; }, "TRK-2026-ABC123");
-    expect(body).toEqual({ writes: [{ update: { name: intrekkingDocument("TRK-2026-ABC123"), fields: { ingetrokken: { booleanValue: true } } } }] });
+    expect(body).toEqual({ writes: [{ update: { name: intrekkingDocument("TRK-2026-ABC123"), fields: {
+      ingetrokken: { booleanValue: true }, google_verwijdering: { stringValue: "in-behandeling" }, bijgewerkt: { timestampValue: expect.any(String) },
+    } } }] });
   });
 });

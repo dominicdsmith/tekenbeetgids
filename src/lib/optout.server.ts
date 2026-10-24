@@ -115,8 +115,8 @@ export async function verwerkOptOut(data: z.output<typeof optOutSchema>) {
   const verlopen = !rl || nu.getTime() - new Date(rl.window_start).getTime() > 60 * 60_000;
   await supabaseAdmin.from("contact_rate_limit").upsert({
     ip_hash: ipHash,
-    window_start: verlopen ? nu.toISOString() : rl!.window_start,
-    aantal: verlopen ? 1 : rl!.aantal + 1,
+    window_start: verlopen ? nu.toISOString() : rl?.window_start ?? nu.toISOString(),
+    aantal: verlopen ? 1 : (rl?.aantal ?? 0) + 1,
   });
 
   const nummer = data.deelnamenummer;
@@ -126,6 +126,11 @@ export async function verwerkOptOut(data: z.output<typeof optOutSchema>) {
     const gemeld = await meldOptOut(nummer, `[HANDMATIG CONTROLEREN - geen geldige intrekcode] ${data.toelichting}`, { onderzoek: 0, registratie: 0 });
     return { ok: true as const, reden: "handmatig" as const, verwijderd: 0, gemeld };
   }
+  // Shadow-only Google verification occurs before records disappear. Legacy decision remains authoritative.
+  try {
+    const { registreerGoogleCodecontrole } = await import("./google-intrekcontrole.server");
+    await registreerGoogleCodecontrole(nummer, data.intrekcode);
+  } catch { console.warn("Google-schaduwcontrole niet beschikbaar"); }
   const { data: gewist, error } = await supabaseAdmin
     .from("onderzoek_deelnames")
     .delete()

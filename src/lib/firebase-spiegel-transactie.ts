@@ -40,7 +40,7 @@ export async function schrijfZonderIntrekking(transport: SpiegelTransport, numme
 export async function markeerIntrekking(transport: SpiegelTransport, nummer: string): Promise<void> {
   await transport(`${MIGRATIE_DATABASE}/documents:commit`, {
     method: "POST", body: JSON.stringify({ writes: [{ update: {
-      name: intrekkingDocument(nummer), fields: { ingetrokken: { booleanValue: true } },
+      name: intrekkingDocument(nummer), fields: { ingetrokken: { booleanValue: true }, google_verwijdering: { stringValue: "in-behandeling" }, bijgewerkt: { timestampValue: new Date().toISOString() } },
     } }] }),
   });
 }

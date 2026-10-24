@@ -1,7 +1,7 @@
 import { createServerOnlyFn } from "@tanstack/react-start";
 import { MIGRATIE_DATABASE } from "./firebase-migratie";
 import { codeerSpiegelLog, codeerSpiegelRij, nummerValtOnderIntrekking, spiegelTabel } from "./firebase-spiegel";
-import { markeerIntrekking, schrijfZonderIntrekking } from "./firebase-spiegel-transactie";
+import { intrekkingDocument, markeerIntrekking, schrijfZonderIntrekking } from "./firebase-spiegel-transactie";
 
 type Transport = (path: string, init?: RequestInit) => Promise<unknown>;
 
@@ -88,6 +88,20 @@ export async function spiegelWisIntrekking(deelnamenummer: string): Promise<void
         });
       }
     }
+    // Completion requires read-back; a failed/uncertain deletion keeps its pending marker.
+    for (const collectie of ["deelnames", "registraties"] as const) {
+      const gevonden = await transport(`${MIGRATIE_DATABASE}/documents:runQuery`, { method: "POST", body: JSON.stringify({ structuredQuery: {
+        from: [{ collectionId: collectie }], select: { fields: [{ fieldPath: "nummer" }] },
+        where: { compositeFilter: { op: "AND", filters: [
+          { fieldFilter: { field: { fieldPath: "nummer" }, op: "GREATER_THAN_OR_EQUAL", value: { stringValue: deelnamenummer } } },
+          { fieldFilter: { field: { fieldPath: "nummer" }, op: "LESS_THAN", value: { stringValue: `${deelnamenummer}\uf8ff` } } },
+        ] } }, limit: 1,
+      } }) }) as { document?: unknown }[];
+      if (!Array.isArray(gevonden) || gevonden.some(r => r.document)) throw new Error("Google-verwijdering nog niet bevestigd");
+    }
+    await transport(`${MIGRATIE_DATABASE}/documents:commit`, { method: "POST", body: JSON.stringify({ writes: [{ update: {
+      name: intrekkingDocument(deelnamenummer), fields: { google_verwijdering: { stringValue: "afgerond" }, bijgewerkt: { timestampValue: new Date().toISOString() } },
+    }, updateMask: { fieldPaths: ["google_verwijdering", "bijgewerkt"] }, currentDocument: { exists: true } }] }) });
   } catch (e) {
     console.error("Spiegel-intrekking mislukt:", e);
     await logSpiegel(transport, "intrekken", deelnamenummer, false, e instanceof Error ? e.message : "onbekende fout");

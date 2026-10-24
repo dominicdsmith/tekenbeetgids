@@ -24,6 +24,14 @@ export const Route = createFileRoute("/api/public/google-beheer")({
       try {
         const { verifieerGoogleBeheer } = await import("@/lib/google-beheer-auth.server");
         await verifieerGoogleBeheer(request);
+        if (actie === "intrekkingen") {
+          try {
+            const { leesGoogleIntrekStatus } = await import("@/lib/google-intrekstatus.server");
+            return Response.json({ ok: true, intrekkingen: await leesGoogleIntrekStatus() }, { headers });
+          } catch {
+            return Response.json({ ok: false, message: "Intrekkingscontrole bij Google is tijdelijk niet beschikbaar." }, { status: 502, headers });
+          }
+        }
         if (actie === "taken" || actie === "taken-vernieuwen") {
           const m = await import("@/lib/google-taakstatus.server");
           try {
