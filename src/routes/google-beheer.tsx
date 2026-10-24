@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ShieldCheck, LogIn, LogOut, Save, RefreshCw } from "lucide-react";
+import { ShieldCheck, LogIn, LogOut, Save, RefreshCw, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { User } from "firebase/auth";
@@ -94,6 +94,27 @@ function Taakstatus({ user }: { user: User }) {
   </section>;
 }
 
+function Testmail({ user }: { user: User }) {
+  const [bezig, setBezig] = useState(false);
+  const [uitkomst, setUitkomst] = useState("");
+  async function stuur() {
+    setBezig(true); setUitkomst("");
+    try {
+      const token = await user.getIdToken();
+      const r = await fetch("/api/public/google-beheer", { method: "POST", cache: "no-store", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ actie: "testmail" }) });
+      const j = await r.json() as { message?: string };
+      setUitkomst(j.message ?? (r.ok ? "Verstuurd." : "Mislukt."));
+    } catch { setUitkomst("Testmail mislukt."); }
+    finally { setBezig(false); }
+  }
+  return <section className="mt-8 border-t border-border pt-6">
+    <h2 className="mb-3 text-lg font-semibold">Mail via Google</h2>
+    <p className="mb-4 text-sm text-muted-foreground">Stuurt één testmail als noreply naar uw beheeradres. De gewone mail van de website verandert hierdoor niet.</p>
+    <Button size="sm" disabled={bezig} onClick={() => void stuur()}><Mail />Testmail versturen</Button>
+    {uitkomst && <p role="status" className="mt-3 text-sm">{uitkomst}</p>}
+  </section>;
+}
+
 export const Route = createFileRoute("/google-beheer")({
   component: GoogleBeheer,
   head: () => ({ meta: [
@@ -157,7 +178,7 @@ function GoogleBeheer() {
   return <main className="mx-auto max-w-xl px-4 py-8 text-foreground">
     <header className="mb-6 border-b border-border pb-5"><div className="flex items-center gap-3"><ShieldCheck className="size-6 text-primary" /><h1 className="text-2xl font-semibold">Google-beheer</h1></div></header>
     {!user ? <><p className="mb-5 text-sm">Afzonderlijke beheerlogin. Uw bestaande login blijft ongewijzigd. Uw naam en profielfoto worden bij Google bewaard.</p><Button onClick={() => void login()} disabled={busy}><LogIn />Inloggen met Google</Button></>
-      : <><section><h2 className="mb-4 text-lg font-semibold">Beheerprofiel</h2><label htmlFor="google-profielnaam" className="mb-2 block text-sm">Naam</label><Input id="google-profielnaam" maxLength={100} value={naam} onChange={e => setNaam(e.target.value)} /><div className="mt-4 flex flex-wrap gap-3"><Button disabled={busy || !naam.trim()} onClick={() => void save()}><Save />Profiel opslaan</Button><Button disabled={busy} variant="outline" onClick={() => void logout()}><LogOut />Uitloggen</Button></div><p className="mt-4 text-sm">Google-beheertoegang gecontroleerd. Deze aparte pagina wijzigt geen onderzoeksadministratie.</p></section><Taakstatus user={user} /><Intrekkingsstatus user={user} /></>}
+      : <><section><h2 className="mb-4 text-lg font-semibold">Beheerprofiel</h2><label htmlFor="google-profielnaam" className="mb-2 block text-sm">Naam</label><Input id="google-profielnaam" maxLength={100} value={naam} onChange={e => setNaam(e.target.value)} /><div className="mt-4 flex flex-wrap gap-3"><Button disabled={busy || !naam.trim()} onClick={() => void save()}><Save />Profiel opslaan</Button><Button disabled={busy} variant="outline" onClick={() => void logout()}><LogOut />Uitloggen</Button></div><p className="mt-4 text-sm">Google-beheertoegang gecontroleerd. Deze aparte pagina wijzigt geen onderzoeksadministratie.</p></section><Taakstatus user={user} /><Intrekkingsstatus user={user} /><Testmail user={user} /></>}
     {busy && <p role="status" className="mt-4 text-sm">Verwerken…</p>}
     {fout && <p role="alert" className="mt-4 text-sm text-destructive">{fout}</p>}
     {melding && <p role="status" className="mt-4 text-sm">{melding}</p>}
