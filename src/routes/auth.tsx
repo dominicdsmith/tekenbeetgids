@@ -26,6 +26,7 @@ function AuthPagina() {
   const [wachtwoord, setWachtwoord] = useState("");
   const [bezig, setBezig] = useState(false);
   const [fout, setFout] = useState("");
+  const [melding, setMelding] = useState("");
 
   const inloggen = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,6 +75,19 @@ function AuthPagina() {
         </button>
       </form>
       {fout && <p style={{ color: "#A63428", fontSize: 12, fontWeight: 700 }}>{fout}</p>}
+      <button
+        type="button"
+        onClick={async () => {
+          if (!email.trim()) return setFout("Vul eerst uw e-mailadres in.");
+          await supabase.auth.resetPasswordForEmail(email.trim(), { redirectTo: `${window.location.origin}/wachtwoord-instellen` });
+          setFout("");
+          setMelding("Als dit e-mailadres bekend is, ontvangt u een link om uw wachtwoord in te stellen.");
+        }}
+        style={{ marginTop: 12, background: "none", border: "none", padding: 0, color: BLAUW, textDecoration: "underline", fontSize: 12, cursor: "pointer" }}
+      >
+        Wachtwoord vergeten?
+      </button>
+      {melding && <p style={{ fontSize: 12 }}>{melding}</p>}
     </main>
   );
 }

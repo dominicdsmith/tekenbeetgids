@@ -16,6 +16,7 @@ import { Route as CookiebeleidRouteImport } from './routes/cookiebeleid'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as GebruiksvoorwaardenRouteImport } from './routes/gebruiksvoorwaarden'
 import { Route as GegevensbeschermingseffectbeoordelingRouteImport } from './routes/gegevensbeschermingseffectbeoordeling'
+import { Route as GoogleBeheerRouteImport } from './routes/google-beheer'
 import { Route as PrivacyverklaringRouteImport } from './routes/privacyverklaring'
 import { Route as PrivacyverklaringGezondheidsgegevensRouteImport } from './routes/privacyverklaring-gezondheidsgegevens'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -23,20 +24,25 @@ import { Route as TekenbeethulpRouteImport } from './routes/tekenbeethulp'
 import { Route as ToegankelijkheidsverklaringRouteImport } from './routes/toegankelijkheidsverklaring'
 import { Route as TransparantieverklaringRouteImport } from './routes/transparantieverklaring'
 import { Route as VerwerkingsregisterRouteImport } from './routes/verwerkingsregister'
+import { Route as WachtwoordInstellenRouteImport } from './routes/wachtwoord-instellen'
 import { Route as ZiektenIndexRouteImport } from './routes/ziekten.index'
 import { Route as ZiektenIdRouteImport } from './routes/ziekten.$id'
 import { Route as AuthenticatedBeheerContactlogRouteImport } from './routes/_authenticated/beheer.contactlog'
+import { Route as AuthenticatedBeheerFirebaseMigratieRouteImport } from './routes/_authenticated/beheer.firebase-migratie'
+import { Route as AuthenticatedBeheerFirebaseProefRouteImport } from './routes/_authenticated/beheer.firebase-proef'
 import { Route as AuthenticatedBeheerOnderzoekRouteImport } from './routes/_authenticated/beheer.onderzoek'
 import { Route as AuthenticatedBeheerPrivacyregisterRouteImport } from './routes/_authenticated/beheer.privacyregister'
 import { Route as AuthenticatedBeheerRegistratiesRouteImport } from './routes/_authenticated/beheer.registraties'
 import { Route as ApiPublicAssistentRouteImport } from './routes/api/public/assistent'
 import { Route as ApiPublicBackendStatusRouteImport } from './routes/api/public/backend-status'
 import { Route as ApiPublicCloudBackendRouteImport } from './routes/api/public/cloud-backend'
+import { Route as ApiPublicGoogleBeheerRouteImport } from './routes/api/public/google-beheer'
 import { Route as ApiPublicRivmSyncRouteImport } from './routes/api/public/rivm-sync'
 import { Route as ApiPublicTbeActiviteitSyncRouteImport } from './routes/api/public/tbe-activiteit-sync'
 import { Route as ApiPublicHooksBackupExportRouteImport } from './routes/api/public/hooks/backup-export'
 import { Route as ApiPublicHooksBeveiligingsscanRouteImport } from './routes/api/public/hooks/beveiligingsscan'
 import { Route as ApiPublicHooksDataControleRouteImport } from './routes/api/public/hooks/data-controle'
+import { Route as ApiPublicHooksGoogleBackupExportRouteImport } from './routes/api/public/hooks/google-backup-export'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -73,6 +79,11 @@ const GegevensbeschermingseffectbeoordelingRoute =
     path: '/gegevensbeschermingseffectbeoordeling',
     getParentRoute: () => rootRouteImport,
   } as any)
+const GoogleBeheerRoute = GoogleBeheerRouteImport.update({
+  id: '/google-beheer',
+  path: '/google-beheer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyverklaringRoute = PrivacyverklaringRouteImport.update({
   id: '/privacyverklaring',
   path: '/privacyverklaring',
@@ -110,6 +121,11 @@ const VerwerkingsregisterRoute = VerwerkingsregisterRouteImport.update({
   path: '/verwerkingsregister',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WachtwoordInstellenRoute = WachtwoordInstellenRouteImport.update({
+  id: '/wachtwoord-instellen',
+  path: '/wachtwoord-instellen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ZiektenIndexRoute = ZiektenIndexRouteImport.update({
   id: '/ziekten/',
   path: '/ziekten/',
@@ -124,6 +140,18 @@ const AuthenticatedBeheerContactlogRoute =
   AuthenticatedBeheerContactlogRouteImport.update({
     id: '/beheer/contactlog',
     path: '/beheer/contactlog',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBeheerFirebaseMigratieRoute =
+  AuthenticatedBeheerFirebaseMigratieRouteImport.update({
+    id: '/beheer/firebase-migratie',
+    path: '/beheer/firebase-migratie',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBeheerFirebaseProefRoute =
+  AuthenticatedBeheerFirebaseProefRouteImport.update({
+    id: '/beheer/firebase-proef',
+    path: '/beheer/firebase-proef',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedBeheerOnderzoekRoute =
@@ -159,6 +187,11 @@ const ApiPublicCloudBackendRoute = ApiPublicCloudBackendRouteImport.update({
   path: '/api/public/cloud-backend',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicGoogleBeheerRoute = ApiPublicGoogleBeheerRouteImport.update({
+  id: '/api/public/google-beheer',
+  path: '/api/public/google-beheer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicRivmSyncRoute = ApiPublicRivmSyncRouteImport.update({
   id: '/api/public/rivm-sync',
   path: '/api/public/rivm-sync',
@@ -188,6 +221,12 @@ const ApiPublicHooksDataControleRoute =
     path: '/api/public/hooks/data-controle',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicHooksGoogleBackupExportRoute =
+  ApiPublicHooksGoogleBackupExportRouteImport.update({
+    id: '/api/public/hooks/google-backup-export',
+    path: '/api/public/hooks/google-backup-export',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -196,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/disclaimer': typeof DisclaimerRoute
   '/gebruiksvoorwaarden': typeof GebruiksvoorwaardenRoute
   '/gegevensbeschermingseffectbeoordeling': typeof GegevensbeschermingseffectbeoordelingRoute
+  '/google-beheer': typeof GoogleBeheerRoute
   '/privacyverklaring': typeof PrivacyverklaringRoute
   '/privacyverklaring-gezondheidsgegevens': typeof PrivacyverklaringGezondheidsgegevensRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -203,20 +243,25 @@ export interface FileRoutesByFullPath {
   '/toegankelijkheidsverklaring': typeof ToegankelijkheidsverklaringRoute
   '/transparantieverklaring': typeof TransparantieverklaringRoute
   '/verwerkingsregister': typeof VerwerkingsregisterRoute
+  '/wachtwoord-instellen': typeof WachtwoordInstellenRoute
   '/ziekten/$id': typeof ZiektenIdRoute
   '/ziekten/': typeof ZiektenIndexRoute
   '/beheer/contactlog': typeof AuthenticatedBeheerContactlogRoute
+  '/beheer/firebase-migratie': typeof AuthenticatedBeheerFirebaseMigratieRoute
+  '/beheer/firebase-proef': typeof AuthenticatedBeheerFirebaseProefRoute
   '/beheer/onderzoek': typeof AuthenticatedBeheerOnderzoekRoute
   '/beheer/privacyregister': typeof AuthenticatedBeheerPrivacyregisterRoute
   '/beheer/registraties': typeof AuthenticatedBeheerRegistratiesRoute
   '/api/public/assistent': typeof ApiPublicAssistentRoute
   '/api/public/backend-status': typeof ApiPublicBackendStatusRoute
   '/api/public/cloud-backend': typeof ApiPublicCloudBackendRoute
+  '/api/public/google-beheer': typeof ApiPublicGoogleBeheerRoute
   '/api/public/rivm-sync': typeof ApiPublicRivmSyncRoute
   '/api/public/tbe-activiteit-sync': typeof ApiPublicTbeActiviteitSyncRoute
   '/api/public/hooks/backup-export': typeof ApiPublicHooksBackupExportRoute
   '/api/public/hooks/beveiligingsscan': typeof ApiPublicHooksBeveiligingsscanRoute
   '/api/public/hooks/data-controle': typeof ApiPublicHooksDataControleRoute
+  '/api/public/hooks/google-backup-export': typeof ApiPublicHooksGoogleBackupExportRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -225,6 +270,7 @@ export interface FileRoutesByTo {
   '/disclaimer': typeof DisclaimerRoute
   '/gebruiksvoorwaarden': typeof GebruiksvoorwaardenRoute
   '/gegevensbeschermingseffectbeoordeling': typeof GegevensbeschermingseffectbeoordelingRoute
+  '/google-beheer': typeof GoogleBeheerRoute
   '/privacyverklaring': typeof PrivacyverklaringRoute
   '/privacyverklaring-gezondheidsgegevens': typeof PrivacyverklaringGezondheidsgegevensRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -232,20 +278,25 @@ export interface FileRoutesByTo {
   '/toegankelijkheidsverklaring': typeof ToegankelijkheidsverklaringRoute
   '/transparantieverklaring': typeof TransparantieverklaringRoute
   '/verwerkingsregister': typeof VerwerkingsregisterRoute
+  '/wachtwoord-instellen': typeof WachtwoordInstellenRoute
   '/ziekten/$id': typeof ZiektenIdRoute
   '/ziekten': typeof ZiektenIndexRoute
   '/beheer/contactlog': typeof AuthenticatedBeheerContactlogRoute
+  '/beheer/firebase-migratie': typeof AuthenticatedBeheerFirebaseMigratieRoute
+  '/beheer/firebase-proef': typeof AuthenticatedBeheerFirebaseProefRoute
   '/beheer/onderzoek': typeof AuthenticatedBeheerOnderzoekRoute
   '/beheer/privacyregister': typeof AuthenticatedBeheerPrivacyregisterRoute
   '/beheer/registraties': typeof AuthenticatedBeheerRegistratiesRoute
   '/api/public/assistent': typeof ApiPublicAssistentRoute
   '/api/public/backend-status': typeof ApiPublicBackendStatusRoute
   '/api/public/cloud-backend': typeof ApiPublicCloudBackendRoute
+  '/api/public/google-beheer': typeof ApiPublicGoogleBeheerRoute
   '/api/public/rivm-sync': typeof ApiPublicRivmSyncRoute
   '/api/public/tbe-activiteit-sync': typeof ApiPublicTbeActiviteitSyncRoute
   '/api/public/hooks/backup-export': typeof ApiPublicHooksBackupExportRoute
   '/api/public/hooks/beveiligingsscan': typeof ApiPublicHooksBeveiligingsscanRoute
   '/api/public/hooks/data-controle': typeof ApiPublicHooksDataControleRoute
+  '/api/public/hooks/google-backup-export': typeof ApiPublicHooksGoogleBackupExportRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -256,6 +307,7 @@ export interface FileRoutesById {
   '/disclaimer': typeof DisclaimerRoute
   '/gebruiksvoorwaarden': typeof GebruiksvoorwaardenRoute
   '/gegevensbeschermingseffectbeoordeling': typeof GegevensbeschermingseffectbeoordelingRoute
+  '/google-beheer': typeof GoogleBeheerRoute
   '/privacyverklaring': typeof PrivacyverklaringRoute
   '/privacyverklaring-gezondheidsgegevens': typeof PrivacyverklaringGezondheidsgegevensRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -263,20 +315,25 @@ export interface FileRoutesById {
   '/toegankelijkheidsverklaring': typeof ToegankelijkheidsverklaringRoute
   '/transparantieverklaring': typeof TransparantieverklaringRoute
   '/verwerkingsregister': typeof VerwerkingsregisterRoute
+  '/wachtwoord-instellen': typeof WachtwoordInstellenRoute
   '/ziekten/$id': typeof ZiektenIdRoute
   '/ziekten/': typeof ZiektenIndexRoute
   '/_authenticated/beheer/contactlog': typeof AuthenticatedBeheerContactlogRoute
+  '/_authenticated/beheer/firebase-migratie': typeof AuthenticatedBeheerFirebaseMigratieRoute
+  '/_authenticated/beheer/firebase-proef': typeof AuthenticatedBeheerFirebaseProefRoute
   '/_authenticated/beheer/onderzoek': typeof AuthenticatedBeheerOnderzoekRoute
   '/_authenticated/beheer/privacyregister': typeof AuthenticatedBeheerPrivacyregisterRoute
   '/_authenticated/beheer/registraties': typeof AuthenticatedBeheerRegistratiesRoute
   '/api/public/assistent': typeof ApiPublicAssistentRoute
   '/api/public/backend-status': typeof ApiPublicBackendStatusRoute
   '/api/public/cloud-backend': typeof ApiPublicCloudBackendRoute
+  '/api/public/google-beheer': typeof ApiPublicGoogleBeheerRoute
   '/api/public/rivm-sync': typeof ApiPublicRivmSyncRoute
   '/api/public/tbe-activiteit-sync': typeof ApiPublicTbeActiviteitSyncRoute
   '/api/public/hooks/backup-export': typeof ApiPublicHooksBackupExportRoute
   '/api/public/hooks/beveiligingsscan': typeof ApiPublicHooksBeveiligingsscanRoute
   '/api/public/hooks/data-controle': typeof ApiPublicHooksDataControleRoute
+  '/api/public/hooks/google-backup-export': typeof ApiPublicHooksGoogleBackupExportRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -287,6 +344,7 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/gebruiksvoorwaarden'
     | '/gegevensbeschermingseffectbeoordeling'
+    | '/google-beheer'
     | '/privacyverklaring'
     | '/privacyverklaring-gezondheidsgegevens'
     | '/sitemap.xml'
@@ -294,20 +352,25 @@ export interface FileRouteTypes {
     | '/toegankelijkheidsverklaring'
     | '/transparantieverklaring'
     | '/verwerkingsregister'
+    | '/wachtwoord-instellen'
     | '/ziekten/$id'
     | '/ziekten/'
     | '/beheer/contactlog'
+    | '/beheer/firebase-migratie'
+    | '/beheer/firebase-proef'
     | '/beheer/onderzoek'
     | '/beheer/privacyregister'
     | '/beheer/registraties'
     | '/api/public/assistent'
     | '/api/public/backend-status'
     | '/api/public/cloud-backend'
+    | '/api/public/google-beheer'
     | '/api/public/rivm-sync'
     | '/api/public/tbe-activiteit-sync'
     | '/api/public/hooks/backup-export'
     | '/api/public/hooks/beveiligingsscan'
     | '/api/public/hooks/data-controle'
+    | '/api/public/hooks/google-backup-export'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -316,6 +379,7 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/gebruiksvoorwaarden'
     | '/gegevensbeschermingseffectbeoordeling'
+    | '/google-beheer'
     | '/privacyverklaring'
     | '/privacyverklaring-gezondheidsgegevens'
     | '/sitemap.xml'
@@ -323,20 +387,25 @@ export interface FileRouteTypes {
     | '/toegankelijkheidsverklaring'
     | '/transparantieverklaring'
     | '/verwerkingsregister'
+    | '/wachtwoord-instellen'
     | '/ziekten/$id'
     | '/ziekten'
     | '/beheer/contactlog'
+    | '/beheer/firebase-migratie'
+    | '/beheer/firebase-proef'
     | '/beheer/onderzoek'
     | '/beheer/privacyregister'
     | '/beheer/registraties'
     | '/api/public/assistent'
     | '/api/public/backend-status'
     | '/api/public/cloud-backend'
+    | '/api/public/google-beheer'
     | '/api/public/rivm-sync'
     | '/api/public/tbe-activiteit-sync'
     | '/api/public/hooks/backup-export'
     | '/api/public/hooks/beveiligingsscan'
     | '/api/public/hooks/data-controle'
+    | '/api/public/hooks/google-backup-export'
   id:
     | '__root__'
     | '/'
@@ -346,6 +415,7 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/gebruiksvoorwaarden'
     | '/gegevensbeschermingseffectbeoordeling'
+    | '/google-beheer'
     | '/privacyverklaring'
     | '/privacyverklaring-gezondheidsgegevens'
     | '/sitemap.xml'
@@ -353,20 +423,25 @@ export interface FileRouteTypes {
     | '/toegankelijkheidsverklaring'
     | '/transparantieverklaring'
     | '/verwerkingsregister'
+    | '/wachtwoord-instellen'
     | '/ziekten/$id'
     | '/ziekten/'
     | '/_authenticated/beheer/contactlog'
+    | '/_authenticated/beheer/firebase-migratie'
+    | '/_authenticated/beheer/firebase-proef'
     | '/_authenticated/beheer/onderzoek'
     | '/_authenticated/beheer/privacyregister'
     | '/_authenticated/beheer/registraties'
     | '/api/public/assistent'
     | '/api/public/backend-status'
     | '/api/public/cloud-backend'
+    | '/api/public/google-beheer'
     | '/api/public/rivm-sync'
     | '/api/public/tbe-activiteit-sync'
     | '/api/public/hooks/backup-export'
     | '/api/public/hooks/beveiligingsscan'
     | '/api/public/hooks/data-controle'
+    | '/api/public/hooks/google-backup-export'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -377,6 +452,7 @@ export interface RootRouteChildren {
   DisclaimerRoute: typeof DisclaimerRoute
   GebruiksvoorwaardenRoute: typeof GebruiksvoorwaardenRoute
   GegevensbeschermingseffectbeoordelingRoute: typeof GegevensbeschermingseffectbeoordelingRoute
+  GoogleBeheerRoute: typeof GoogleBeheerRoute
   PrivacyverklaringRoute: typeof PrivacyverklaringRoute
   PrivacyverklaringGezondheidsgegevensRoute: typeof PrivacyverklaringGezondheidsgegevensRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -384,16 +460,19 @@ export interface RootRouteChildren {
   ToegankelijkheidsverklaringRoute: typeof ToegankelijkheidsverklaringRoute
   TransparantieverklaringRoute: typeof TransparantieverklaringRoute
   VerwerkingsregisterRoute: typeof VerwerkingsregisterRoute
+  WachtwoordInstellenRoute: typeof WachtwoordInstellenRoute
   ZiektenIdRoute: typeof ZiektenIdRoute
   ZiektenIndexRoute: typeof ZiektenIndexRoute
   ApiPublicAssistentRoute: typeof ApiPublicAssistentRoute
   ApiPublicBackendStatusRoute: typeof ApiPublicBackendStatusRoute
   ApiPublicCloudBackendRoute: typeof ApiPublicCloudBackendRoute
+  ApiPublicGoogleBeheerRoute: typeof ApiPublicGoogleBeheerRoute
   ApiPublicRivmSyncRoute: typeof ApiPublicRivmSyncRoute
   ApiPublicTbeActiviteitSyncRoute: typeof ApiPublicTbeActiviteitSyncRoute
   ApiPublicHooksBackupExportRoute: typeof ApiPublicHooksBackupExportRoute
   ApiPublicHooksBeveiligingsscanRoute: typeof ApiPublicHooksBeveiligingsscanRoute
   ApiPublicHooksDataControleRoute: typeof ApiPublicHooksDataControleRoute
+  ApiPublicHooksGoogleBackupExportRoute: typeof ApiPublicHooksGoogleBackupExportRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -447,6 +526,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GegevensbeschermingseffectbeoordelingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/google-beheer': {
+      id: '/google-beheer'
+      path: '/google-beheer'
+      fullPath: '/google-beheer'
+      preLoaderRoute: typeof GoogleBeheerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacyverklaring': {
       id: '/privacyverklaring'
       path: '/privacyverklaring'
@@ -496,6 +582,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VerwerkingsregisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wachtwoord-instellen': {
+      id: '/wachtwoord-instellen'
+      path: '/wachtwoord-instellen'
+      fullPath: '/wachtwoord-instellen'
+      preLoaderRoute: typeof WachtwoordInstellenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ziekten/': {
       id: '/ziekten/'
       path: '/ziekten'
@@ -515,6 +608,20 @@ declare module '@tanstack/react-router' {
       path: '/beheer/contactlog'
       fullPath: '/beheer/contactlog'
       preLoaderRoute: typeof AuthenticatedBeheerContactlogRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/beheer/firebase-migratie': {
+      id: '/_authenticated/beheer/firebase-migratie'
+      path: '/beheer/firebase-migratie'
+      fullPath: '/beheer/firebase-migratie'
+      preLoaderRoute: typeof AuthenticatedBeheerFirebaseMigratieRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/beheer/firebase-proef': {
+      id: '/_authenticated/beheer/firebase-proef'
+      path: '/beheer/firebase-proef'
+      fullPath: '/beheer/firebase-proef'
+      preLoaderRoute: typeof AuthenticatedBeheerFirebaseProefRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/beheer/onderzoek': {
@@ -559,6 +666,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicCloudBackendRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/google-beheer': {
+      id: '/api/public/google-beheer'
+      path: '/api/public/google-beheer'
+      fullPath: '/api/public/google-beheer'
+      preLoaderRoute: typeof ApiPublicGoogleBeheerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/rivm-sync': {
       id: '/api/public/rivm-sync'
       path: '/api/public/rivm-sync'
@@ -594,11 +708,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicHooksDataControleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/google-backup-export': {
+      id: '/api/public/hooks/google-backup-export'
+      path: '/api/public/hooks/google-backup-export'
+      fullPath: '/api/public/hooks/google-backup-export'
+      preLoaderRoute: typeof ApiPublicHooksGoogleBackupExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedBeheerContactlogRoute: typeof AuthenticatedBeheerContactlogRoute
+  AuthenticatedBeheerFirebaseMigratieRoute: typeof AuthenticatedBeheerFirebaseMigratieRoute
+  AuthenticatedBeheerFirebaseProefRoute: typeof AuthenticatedBeheerFirebaseProefRoute
   AuthenticatedBeheerOnderzoekRoute: typeof AuthenticatedBeheerOnderzoekRoute
   AuthenticatedBeheerPrivacyregisterRoute: typeof AuthenticatedBeheerPrivacyregisterRoute
   AuthenticatedBeheerRegistratiesRoute: typeof AuthenticatedBeheerRegistratiesRoute
@@ -606,6 +729,9 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBeheerContactlogRoute: AuthenticatedBeheerContactlogRoute,
+  AuthenticatedBeheerFirebaseMigratieRoute:
+    AuthenticatedBeheerFirebaseMigratieRoute,
+  AuthenticatedBeheerFirebaseProefRoute: AuthenticatedBeheerFirebaseProefRoute,
   AuthenticatedBeheerOnderzoekRoute: AuthenticatedBeheerOnderzoekRoute,
   AuthenticatedBeheerPrivacyregisterRoute:
     AuthenticatedBeheerPrivacyregisterRoute,
@@ -624,6 +750,7 @@ const rootRouteChildren: RootRouteChildren = {
   GebruiksvoorwaardenRoute: GebruiksvoorwaardenRoute,
   GegevensbeschermingseffectbeoordelingRoute:
     GegevensbeschermingseffectbeoordelingRoute,
+  GoogleBeheerRoute: GoogleBeheerRoute,
   PrivacyverklaringRoute: PrivacyverklaringRoute,
   PrivacyverklaringGezondheidsgegevensRoute:
     PrivacyverklaringGezondheidsgegevensRoute,
@@ -632,16 +759,19 @@ const rootRouteChildren: RootRouteChildren = {
   ToegankelijkheidsverklaringRoute: ToegankelijkheidsverklaringRoute,
   TransparantieverklaringRoute: TransparantieverklaringRoute,
   VerwerkingsregisterRoute: VerwerkingsregisterRoute,
+  WachtwoordInstellenRoute: WachtwoordInstellenRoute,
   ZiektenIdRoute: ZiektenIdRoute,
   ZiektenIndexRoute: ZiektenIndexRoute,
   ApiPublicAssistentRoute: ApiPublicAssistentRoute,
   ApiPublicBackendStatusRoute: ApiPublicBackendStatusRoute,
   ApiPublicCloudBackendRoute: ApiPublicCloudBackendRoute,
+  ApiPublicGoogleBeheerRoute: ApiPublicGoogleBeheerRoute,
   ApiPublicRivmSyncRoute: ApiPublicRivmSyncRoute,
   ApiPublicTbeActiviteitSyncRoute: ApiPublicTbeActiviteitSyncRoute,
   ApiPublicHooksBackupExportRoute: ApiPublicHooksBackupExportRoute,
   ApiPublicHooksBeveiligingsscanRoute: ApiPublicHooksBeveiligingsscanRoute,
   ApiPublicHooksDataControleRoute: ApiPublicHooksDataControleRoute,
+  ApiPublicHooksGoogleBackupExportRoute: ApiPublicHooksGoogleBackupExportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -106,6 +106,7 @@ jobs:
             CLOUD_BACKEND_URL=${{ vars.CLOUD_BACKEND_URL }}
             SUPABASE_URL=${{ vars.VITE_SUPABASE_URL }}
             SUPABASE_PUBLISHABLE_KEY=${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+            FIREBASE_ADMIN_UID=EWPaSty3GLeUFA4RCRdVpw7jZkC3
           env_vars_update_strategy: merge
           secrets: ${{ vars.CLOUD_RUN_SECRETS }}
           secrets_update_strategy: merge

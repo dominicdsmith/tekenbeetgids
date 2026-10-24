@@ -64,15 +64,24 @@ export async function bewaarRegistratie(data: z.output<typeof registratieSchema>
   const gegevens = data.gegevens as Record<string, never>;
   for (let poging = 0; poging < 5; poging += 1) {
     const registratienummer = poging === 0 ? data.nummer : `${data.nummer}-${maakRegistratienummer().slice(-4)}`;
-    const { error } = await supabaseAdmin.from("tekenbeet_registraties").insert({
+    const { data: opgeslagen, error } = await supabaseAdmin.from("tekenbeet_registraties").insert({
       registratienummer,
       taal: data.taal,
       overzicht: data.overzicht,
       gegevens,
       ip_hash: ipHash,
-    });
-    if (!error) return { ok: true as const, registratienummer };
-    if (error.code !== "23505") return { ok: false as const, reden: "opslag" as const };
+    }).select("id, created_at").single();
+    if (!error && opgeslagen) {
+      /* Live-spiegel naar Google (fase B deel 2); mislukken blokkeert de registratie niet. */
+      try {
+        const { spiegelOpslaan } = await import("@/lib/firebase-spiegel.server");
+        await spiegelOpslaan("tekenbeet_registraties", { ...opgeslagen, registratienummer, taal: data.taal, overzicht: data.overzicht, gegevens, ip_hash: ipHash });
+      } catch (e) {
+        console.error("Spiegel-koppeling mislukt:", e);
+      }
+      return { ok: true as const, registratienummer };
+    }
+    if (error && error.code !== "23505") return { ok: false as const, reden: "opslag" as const };
   }
   return { ok: false as const, reden: "opslag" as const };
 }

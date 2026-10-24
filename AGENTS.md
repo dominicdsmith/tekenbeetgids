@@ -9,7 +9,7 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Route alpha-gal treatment recording through its dedicated option dataset and existing treatment-record fields; this excludes infection-treatment questions without changing stored record compatibility.
+- Use the dedicated alpha-gal treatment dataset with existing record fields; exclude infection-treatment questions without breaking records.
 - Subdirectories have their own AGENTS.md; read it before changing files there.
 - Keep species-confirmed tick findings in a source-linked dataset separate from TBE and tick-bite counts; preserve historical dates and approximate location labels because public monitoring sources do not provide a live species-level feed.
 - Photo comparisons use reviewed IDs/labels only and the server-only Gemini helper with completion checks, provider blocks and versioned caches. Scan steps hold pending results; ScanOvername gates answer adoption and invalidation clears derived species.
@@ -24,7 +24,12 @@
 - Keep legal-document PDF controls in JuridischPagina and generate the currently rendered language locally with the shared PDF helper, without the report watermark; this keeps all legal exports consistent.
 - Use the shared prescription dataset and AntibioticaKeuze for all antibiotic questions, preserving identifiers and separating other medicines; this keeps recording consistent.
 - Working copies go to the shared Drive via werkkopie.server.ts; match columns by header title and delete opt-outs by participant number.
-- Weekly backup: pg_cron calls /api/public/hooks/backup-export to export the source tables as JSON encrypted to the shared Drive Back-up folder (last 12 kept); Lovable Cloud stays the source of record. Keep server-side key derivation at or below the runtime's PBKDF2 ceiling of 100,000 iterations and store the count used inside each encrypted export, so older files stay openable.
+- Firebase trials use fixed server-only paths, admin checks, synthetic input and atomic commits; never call production writes, mail, AI, Drive or cron. Existing login is temporary, not migrated storage.
+- Google migration: preserve writes/cron until verified cutover. Mirrors fail without blocking; log to migratie_log. Compare ID pages/counts/content; block bulk re-import. Mirrors check withdrawal markers transactionally; cleanup marks first, status requires existing rows. Google admin reads verify roles/no-store; exports use one snapshot including markers and AES-GCM/PBKDF2 100000. Replacement backup stays disabled until cutover/restore proof; neither markers nor exports authorize cutover.
+- Record comparison computes complete field equality server-side and exposes only record IDs, presence and field statuses to authenticated admins, never values or secret field names; this permits diagnosis without copying sensitive records into browser state.
+- Independent Google administration uses a separate Firebase in-memory session and dedicated bearer-verifying API, requiring a server-provisioned UID plus verified approved Google identity; editable Firebase profiles never grant roles and existing Cloud login stays untouched.
+- Recovery drills require admin and two confirmations, upload encrypted snapshots without retention/deletion, restore create-only into unique nested herstelproeven paths, compare every row and erase/read-back-check trial records; never target live collections or the synthetic trial database, and never treat data recovery as proof of auth/code/task cutover readiness.
+- Withdrawal-code migration derives legacy codes only inside the old server, stores number-bound SHA-256 fingerprints in Google after transactional participant/marker checks and admin confirmation, never exports codes/keys, and does not activate Google-only validation until verified cutover and new-code issuance are ready.
 - Keep the map header in an opaque isolated layer and reserve a minimum top status-bar inset in standalone mode; iPadOS can report zero safe-area while its status bar still overlaps fixed content.
 - Assistant AI selects reviewed NL/EN answer IDs only; filter its stream into AI Elements, never expose generated prose. Clear chat on close; no storage, record access or internet tools.
 - TekenbeetGids share tags use its domain and public/og-image-tekenbeetgids.jpg, avoiding map-image overwrites.
@@ -32,6 +37,7 @@
 
 - Use aiVerwerking.ts; distinguish AI/storage contracts and owner/audit evidence.
 - Personal photo limits are keyed by scan type; global cost limits remain shared. Only reviewed scan-limit errors cross the bridge; other errors stay private; never auto-retry.
-- Cloud Run CI builds Bun/Vite with NITRO_PRESET=node-server and ships only .output in a non-root Node container; keep private runtime secrets in Secret Manager, because Lovable runtime credentials are not automatically portable and must never enter browser builds or images.
+- Cloud Run CI uses NITRO_PRESET=node-server and ships Bun/Vite .output in a non-root Node container; secrets stay in Secret Manager, never browser builds/images.
+- Pin patched transitive dependencies with root overrides; verify advisories and tests.
 - Cloud Run forwards only allowlisted public actions to the Lovable-hosted cloud-backend endpoint using signed, expiring, atomically single-use requests; user-scoped admin reads remain authenticated and RLS-protected, and cron/connector execution stays on Lovable to preserve existing keys and withdrawal-code compatibility.
 - Bridge actions pass rewritten origin/IP headers via request-scoped AsyncLocalStorage (bridgeHeaders.server.ts, read with bridgeHeader); never mutate immutable edge request.headers. Same-origin checks compare host (zelfdeOorsprong), never full origin URLs (Cloud Run sees http://). Cloud Run CI bundles .asset.json files into public/__l5e (scripts/cloud-run-assets.mjs); missing ones redirect to tekenrisicokaart.lovable.app, never an own domain (loop risk).

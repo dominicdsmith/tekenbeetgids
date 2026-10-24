@@ -6,6 +6,12 @@ maar alleen vanaf `main`. Project: `tekenbeetgids-vertex-ai`, regio:
 `europe-west4`, servicenaam en Artifact Registry-repository: `tekenbeetgids`.
 De bestaande Lovable-publicatie wordt niet aangepast.
 
+**Nieuw migratiedoel (23 oktober 2026):** bronadministratie en automatische taken
+ook naar Google, met behoud van wijzigen vanuit Lovable. Onderstaande instructies
+beschrijven de **huidige hybride uitvoering**, niet de definitieve databaseverhuizing.
+De veilige omschakelvoorwaarden staan in [google-database-migration.md](./google-database-migration.md).
+Zet de bestaande verbinding en taken niet uit voordat die controles zijn afgerond.
+
 ## 1. Google Cloud eenmalig instellen
 
 Facturering moet actief zijn. Schakel Cloud Run API, Artifact Registry API en,

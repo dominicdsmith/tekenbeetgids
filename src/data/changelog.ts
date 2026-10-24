@@ -20,6 +20,32 @@ export type ChangelogItem = {
 export const CHANGELOG: ChangelogItem[] = [
   {
     versie: 1,
+    update: "24102026",
+    datum: "24 oktober 2026",
+    punten: [
+      { tijd: "00:57", tekst: "Beveiliging diepgaand beoordeeld; open aandachtspunten vastgelegd en kwetsbare pakketten bijgewerkt. Broncontroles, peildata en beveiligingslog bijgewerkt; onbereikbare bronnen behouden hun bestaande gegevens." },
+      { tijd: "00:43", tekst: "Publicatie van de bijgewerkte sites gecontroleerd." },
+      { tijd: "00:19", tekst: "Nieuwe onderzoeksgegevens worden ook naar de afgeschermde Google-omgeving gekopieerd; de bestaande administratie blijft voorlopig leidend." },
+      { tijd: "00:09", tekst: "Bestaande onderzoeksgegevens naar Google gekopieerd en aantallen vergeleken; de definitieve omschakeling is nog niet uitgevoerd." },
+      { tijd: "00:04", tekst: "Afgeschermde Google-opslag voor de voorbereide verhuizing aangemaakt." },
+    ],
+  },
+  {
+    versie: 1,
+    update: "23102026",
+    datum: "23 oktober 2026",
+    punten: [
+      { tijd: "23:50", tekst: "Kosten en budgetwaarschuwingen gecontroleerd." },
+      { tijd: "23:48", tekst: "Privacyverzoeken duidelijker weergegeven in de afgeschermde proefomgeving." },
+      { tijd: "23:40", tekst: "Beheerderstoegang tot de proefomgeving ingericht." },
+      { tijd: "23:25", tekst: "Afgeschermde Google-proefomgeving toegevoegd zonder de bestaande administratie te wijzigen." },
+      { tijd: "23:18", tekst: "Mogelijkheden en beperkingen van de databaseverhuizing onderzocht." },
+      { tijd: "22:57", tekst: "Voorbereiding van de databaseverhuizing naar Google; bestaande geplande taken blijven voorlopig behouden." },
+      { tijd: "22:23", tekst: "Verduidelijkte Google-vermelding in de verklaringen gepubliceerd." },
+    ],
+  },
+  {
+    versie: 1,
     update: "20102026",
     datum: "20 oktober 2026",
     punten: [

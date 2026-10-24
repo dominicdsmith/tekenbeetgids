@@ -151,6 +151,13 @@ export async function verwerkOptOut(data: z.output<typeof optOutSchema>) {
   } catch (e) {
     console.error("opt-out kopierij wissen mislukt", e);
   }
+  /* Verwijder ook de live-spiegel bij Google (fase B deel 2); mislukken blokkeert de intrekking niet. */
+  try {
+    const { spiegelWisIntrekking } = await import("@/lib/firebase-spiegel.server");
+    await spiegelWisIntrekking(nummer);
+  } catch (e) {
+    console.error("Spiegel-intrekking mislukt:", e);
+  }
   const gemeld = await meldOptOut(nummer, data.toelichting, {
     onderzoek: gewist?.length ?? 0,
     registratie: gewistReg?.length ?? 0,

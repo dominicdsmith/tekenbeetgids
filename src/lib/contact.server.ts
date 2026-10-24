@@ -128,12 +128,19 @@ export async function verwerkContact(data: z.output<typeof contactSchema>) {
       return { ok: false as const, reden: "server" as const };
     }
     referentie = maakReferentie(nieuw.id, nieuw.created_at);
+    /* Live-spiegel naar Google (fase B deel 2); mislukken blokkeert de melding niet. */
+    try {
+      const { spiegelOpslaan } = await import("@/lib/firebase-spiegel.server");
+      await spiegelOpslaan("contact_berichten", { ...nieuw, ...rij });
+    } catch (e) {
+      console.error("Spiegel-koppeling mislukt:", e);
+    }
 
     // Op verzoek óók in het aparte, afgeschermde register met een eigen
     // verzoeknummer (art. 30 AVG) — eveneens zonder naam en e-mailadres.
     if (data.bewaren) {
       const nummer = maakVerzoeknummer(nieuw.created_at);
-      const { error: pvError } = await supabaseAdmin.from("privacy_verzoeken").insert({
+      const pvRij = {
         verzoeknummer: nummer,
         soort: data.soort === "privacyklacht" ? "klacht" : "verzoek",
         naam: "",
@@ -142,9 +149,19 @@ export async function verwerkContact(data: z.output<typeof contactSchema>) {
         taal: data.taal,
         ip_hash: ipHash,
         contact_referentie: referentie,
-      });
+      };
+      const { data: pvNieuw, error: pvError } = await supabaseAdmin.from("privacy_verzoeken").insert(pvRij).select("id, created_at").single();
       if (pvError) console.error("privacyregister insert mislukt", pvError.message);
-      else verzoeknummer = nummer;
+      else {
+        verzoeknummer = nummer;
+        /* Live-spiegel naar Google (fase B deel 2); mislukken blokkeert niet. */
+        try {
+          const { spiegelOpslaan } = await import("@/lib/firebase-spiegel.server");
+          await spiegelOpslaan("privacy_verzoeken", { ...pvNieuw, ...pvRij });
+        } catch (e) {
+          console.error("Spiegel-koppeling mislukt:", e);
+        }
+      }
     }
 
     // Anonieme kopie naar de afgeschermde werkomgeving bij Google: klachten → Klachtenregister,

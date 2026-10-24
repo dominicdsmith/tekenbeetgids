@@ -32,8 +32,16 @@ export const Route = createFileRoute("/api/public/hooks/backup-export")({
         // Back-uplog: één regel per run (geslaagd of mislukt); regels ouder dan een jaar vervallen.
         const log = async (geslaagd: boolean, toelichting: string, bestand?: string, aantal?: number) => {
           try {
-            await supabase.from("backup_log").insert({ geslaagd, toelichting, bestand: bestand ?? null, aantal_records: aantal ?? null });
+            const rij = { geslaagd, toelichting, bestand: bestand ?? null, aantal_records: aantal ?? null };
+            const { data: opgeslagen } = await supabase.from("backup_log").insert(rij).select("id, uitgevoerd_op").single();
             await supabase.from("backup_log").delete().lt("uitgevoerd_op", new Date(Date.now() - 365 * 864e5).toISOString());
+            /* Live-spiegel naar Google (fase B deel 2); mislukken blokkeert de back-up niet. */
+            if (opgeslagen) {
+              try {
+                const { spiegelOpslaan } = await import("@/lib/firebase-spiegel.server");
+                await spiegelOpslaan("backup_log", { ...opgeslagen, ...rij });
+              } catch (e) { console.error("Spiegel-koppeling mislukt:", e); }
+            }
           } catch (e) { console.error("Back-uplog schrijven mislukt:", e); }
         };
         const wachtzin = process.env["BACKUP_WACHTZIN"];

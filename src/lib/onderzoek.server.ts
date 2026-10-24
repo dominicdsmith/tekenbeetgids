@@ -47,6 +47,13 @@ export async function markeerTekenbeetGemeld(data: z.output<typeof meldingSchema
   } catch (e) {
     console.error("Werkkopie-statusbijwerking mislukt:", e);
   }
+  /* Werk ook de live-spiegel bij Google bij; mislukken blokkeert niet. */
+  try {
+    const { spiegelDeelnameStatus } = await import("@/lib/firebase-spiegel.server");
+    await spiegelDeelnameStatus(data.deelnamenummer, "Tekenbeet gemeld", gemeldOp);
+  } catch (e) {
+    console.error("Spiegel-statusbijwerking mislukt:", e);
+  }
   return { ok: true as const, status: "Tekenbeet gemeld" as const };
 }
 
@@ -71,10 +78,19 @@ export async function bewaarDeelname(data: z.output<typeof onderzoekSchema>) {
 
   for (let poging = 0; poging < 5; poging++) {
     const deelnamenummer = maakDeelnamenummer();
-    const { error } = await supabaseAdmin
+    const { data: opgeslagen, error } = await supabaseAdmin
       .from("onderzoek_deelnames")
-      .insert({ deelnamenummer, rapport: data.rapport, gegevens, taal: data.taal, ip_hash: ipHash });
-    if (!error) {
+      .insert({ deelnamenummer, rapport: data.rapport, gegevens, taal: data.taal, ip_hash: ipHash })
+      .select("id, created_at")
+      .single();
+    if (!error && opgeslagen) {
+      /* Live-spiegel naar Google (fase B deel 2); mislukken blokkeert de deelname niet. */
+      try {
+        const { spiegelOpslaan } = await import("@/lib/firebase-spiegel.server");
+        await spiegelOpslaan("onderzoek_deelnames", { ...opgeslagen, deelnamenummer, rapport: data.rapport, gegevens, taal: data.taal, ip_hash: ipHash, status: "Ingediend", gemeld_op: null });
+      } catch (e) {
+        console.error("Spiegel-koppeling mislukt:", e);
+      }
       /* Kopie naar de gekoppelde werkkopie (afgeschermde werkomgeving bij Google); mislukken hiervan blokkeert de deelname niet. */
       try {
         await voegToeAanNextcloud(deelnamenummer, data);
